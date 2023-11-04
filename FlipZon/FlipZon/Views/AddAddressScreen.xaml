@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customrenders="clr-namespace:FlipZon.CustomRenders"
+             x:Class="FlipZon.Views.AddAddressScreen"
+             xmlns:vm="clr-namespace:FlipZon.ViewModels"
+             x:DataType="vm:AddAddressScreenViewModel"
+             Title="AddAddressScreen">
+    <Grid RowDefinitions="Auto,*,Auto">
+      <Grid ColumnDefinitions="Auto,*"
+                  ColumnSpacing="10">
+                <ImageButton Source="back_arrow.png"
+                             WidthRequest="25"
+                             HeightRequest="25"
+                             VerticalOptions="Start"
+                             HorizontalOptions="Start"
+                             Command="{Binding BackCommand}"
+                             BackgroundColor="Transparent" />
+                <Label Text="Add Address"
+                       Grid.Column="1"
+                       VerticalTextAlignment="Center"
+                       TextColor="BlueViolet"
+                       FontSize="14" />
+            </Grid>
+    <VerticalStackLayout>
+        <VerticalStackLayout>
+          <Label 
+            Text="Contact Details"
+            FontAttributes="Bold"
+            TextColor="Black"/>
+          <VerticalStackLayout Spacing="5">
+            <Label Text="Full Name"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <customrenders:CustomEntry Placeholder="Enter your Email"
+                                           Margin="5,0"
+                                           Keyboard="Email"
+                                           PlaceholderColor="Gray" />
+            </Frame>
+        </VerticalStackLayout>
+          <VerticalStackLayout Spacing="5">
+            <Label Text="Mobile No"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <customrenders:CustomEntry Placeholder="Enter Mobile No"
+                                           Margin="5,0"
+                                           Keyboard="Email"
+                                           PlaceholderColor="Gray" />
+            </Frame>
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+     <VerticalStackLayout>
+          <Label 
+            Text="Address"
+            FontAttributes="Bold"
+            TextColor="Black"/>
+       <VerticalStackLayout Spacing="5">
+            <Label Text="Door No"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <customrenders:CustomEntry Placeholder="Enter your Door no"
+                                           Margin="5,0"
+                                           Keyboard="Email"
+                                           PlaceholderColor="Gray" />
+            </Frame>
+        </VerticalStackLayout>
+          <VerticalStackLayout Spacing="5">
+            <Label Text="Pincode"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <customrenders:CustomEntry Placeholder="Enter your Pincode"
+                                           Margin="5,0"
+                                           Keyboard="Email"
+                                           PlaceholderColor="Gray" />
+            </Frame>
+        </VerticalStackLayout>
+          <VerticalStackLayout Spacing="5">
+            <Label Text="Address"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <customrenders:CustomEntry Placeholder="Enter your Address"
+                                           Margin="5,0"
+                                           Keyboard="Email"
+                                           PlaceholderColor="Gray" />
+            </Frame>
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+
+    </VerticalStackLayout>
+    <Button Grid.Row="2"
+             BackgroundColor="Black"
+             CornerRadius="5"
+             TextColor="White"
+             Text="Add Address"/>
+  
+     
+         
+    </Grid>
+</ContentPage>
+

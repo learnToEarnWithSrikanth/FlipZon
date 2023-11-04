@@ -2,7 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace FlipZon;
+namespace MauiSampleTest;
 
 public class Program : MauiApplication
 {

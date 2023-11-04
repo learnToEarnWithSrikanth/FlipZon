@@ -1,11 +1,10 @@
 ﻿namespace FlipZon.Views;
 
-public partial class MainPage : ContentPage
+public partial class HomeScreen : ContentPage
 {
-    public MainPage()
+    public HomeScreen()
     {
         InitializeComponent();
     }
 }
-
 

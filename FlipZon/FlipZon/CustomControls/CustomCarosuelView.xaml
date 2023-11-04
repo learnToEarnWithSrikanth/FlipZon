@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:FlipZon.Models"
+             x:Name="Custom_Carosuel_View"
+             xmlns:converters="clr-namespace:FlipZon.Converters"
+             x:Class="FlipZon.CustomControls.CustomCarosuelView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:ImageSourceConverter x:Key="imageSourceConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <CarouselView ItemsSource="{Binding Source={x:Reference Custom_Carosuel_View},Path=ItemSource}"
+                      HeightRequest="{Binding Source={x:Reference Custom_Carosuel_View},Path=CarosuelHeight}"
+                      x:Name="carouselView"
+                      IsScrollAnimated="True"
+                      IndicatorView="indicatorView">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:ThumbNailModel">
+                    <Image Source="{Binding Name,Converter={x:StaticResource imageSourceConverter}}"
+                           Aspect="Fill" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView x:Name="indicatorView"
+                       HeightRequest="20"
+                       Margin="0,10,0,0"
+                       HideSingle="True"
+                       IndicatorsShape="Circle"
+                       IndicatorColor="Gray"
+                       SelectedIndicatorColor="Black"
+                       HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentView>

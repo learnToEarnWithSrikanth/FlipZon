@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlipZon.CustomControls.ProductListView"
+             x:Name="Product_List_View">
+    <Frame HasShadow="False"
+           Padding="0"
+           BorderColor="Gray"
+           CornerRadius="5"
+           HeightRequest="120"
+           BackgroundColor="White">
+        <Grid ColumnDefinitions="1.5*,2*">
+            <Image Source="{Binding Source={x:Reference Product_List_View},Path=ThumbNail}"
+                   Aspect="Fill"
+                   Margin="5" />
+            <VerticalStackLayout Padding="10"
+                                 Grid.Column="1"
+                                 Spacing="10">
+                <Label Text="{Binding Source={x:Reference Product_List_View},Path=Title}"
+                       MaxLines="1"
+                       Style="{x:StaticResource BoldBlack12}"
+                       LineBreakMode="TailTruncation" />
+                <Label Text="{Binding Source={x:Reference Product_List_View}, Path=Description}"
+                       Style="{x:StaticResource RegularGray12}"
+                       MaxLines="1"
+                       LineBreakMode="TailTruncation"
+                       FontSize="10" />
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="{Binding Source={x:Reference Product_List_View},Path=DiscountedPrice,StringFormat='${0}'}"
+                           TextColor="Green"
+                           FontSize="12"
+                           FontAttributes="Bold" />
+                    <Label Text="{Binding Source={x:Reference Product_List_View},Path=OrginalPrice,StringFormat='${0}'}"
+                           Style="{x:StaticResource BoldGray12}"
+                           TextDecorations="Strikethrough" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource BoldBlack12}"
+                           VerticalTextAlignment="Center"
+                           Text="{Binding Source={x:Reference Product_List_View},Path=Rating}" />
+                  <Image Source="star.png"
+                           WidthRequest="15"
+                           HeightRequest="15"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                  Command="{Binding Source={x:Reference Product_List_View},Path=ProductTappedCommand}"
+                                  CommandParameter="{Binding .}" />
+        </Frame.GestureRecognizers>
+    </Frame>
+</ContentView>

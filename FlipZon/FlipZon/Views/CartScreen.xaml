@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlipZon.Views.CartScreen"
+             Title="CartScreen"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="True"
+             xmlns:vm="clr-namespace:FlipZon.ViewModels"
+             xmlns:models="clr-namespace:FlipZon.Models"
+             x:DataType="vm:CartScreenViewModel">
+    <Grid Margin="10">
+        <CollectionView ItemsSource="{Binding CartItems}"
+                        x:Name="CartCollection">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:CartResponseDTO">
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Text="Delete"
+                                           Command="{Binding Source={x:Reference CartCollection},Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding .}"
+                                           BackgroundColor="Red" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Text="Save For Later"
+                                           Command="{Binding Source={x:Reference CartCollection},Path=BindingContext.SaveForLaterCommand}"
+                                           CommandParameter="{Binding .}"
+                                           BackgroundColor="Orange" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame HeightRequest="100"
+                               BorderColor="Gray"
+                               Padding="10"
+                               BackgroundColor="White">
+                            <Grid ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="10"
+                                  RowSpacing="10">
+                                <Image Source="{Binding ProductInfo.Thumbnail}"
+                                       WidthRequest="100"
+                                       Aspect="Fill" />
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="10"
+                                                     VerticalOptions="CenterAndExpand">
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          ColumnSpacing="5">
+                                        <Label Text="{Binding ProductInfo.Title}"
+                                               MaxLines="1"
+                                               Style="{x:StaticResource BoldBlack12}"
+                                               LineBreakMode="TailTruncation" />
+                                    </Grid>
+                                    <Label Text="{Binding ProductInfo.Description}"
+                                           Style="{x:StaticResource RegularGray12}"
+                                           MaxLines="1"
+                                           LineBreakMode="TailTruncation"
+                                           FontSize="12" />
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <HorizontalStackLayout VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding ProductInfo.Price,StringFormat='${0}'}"
+                                                   TextColor="Green"
+                                                   FontSize="14"
+                                                   FontAttributes="Bold" />
+                                            <Label Text="{Binding SubTotal,StringFormat='${0}'}"
+                                                   FontSize="14"
+                                                   Style="{x:StaticResource BoldGray12}" />
+                                        </HorizontalStackLayout>
+                                        <!-- <Border StrokeThickness="1"
+                                     Grid.Column="1"
+                                     Padding="6"
+                                     Stroke="Gray"
+                                     StrokeShape="RoundRectangle 5">
+                        
+                                 <Border.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding Source={x:Reference CartCollection},Path=BindingContext.UpdateCartCountCommand}"/>
+
+                      </Border.GestureRecognizers>
+                             </Border> -->
+                                        <HorizontalStackLayout VerticalOptions="CenterAndExpand"
+                                                               Grid.Column="1"
+                                                               Spacing="10"
+                                                               HorizontalOptions="CenterAndExpand">
+                                            <Label Text="Qty"
+                                                   VerticalTextAlignment="Center"
+                                                   TextColor="Black" />
+                                            <Border StrokeThickness="1"
+                                                    Grid.Column="1"
+                                                    HeightRequest="30"
+                                                    WidthRequest="50"
+                                                    Stroke="Gray"
+                                                    StrokeShape="RoundRectangle 5">
+                                                <Entry Text="{Binding Quantity}"
+                                                       TextColor="Black"
+                                                       Keyboard="Numeric"
+                                                       IsEnabled="{Binding IsEditQuantityEnabled}"
+                                                       BackgroundColor="Transparent" />
+                                            </Border>
+                                            <!-- <Button Text="Edit"
+                                           Command="{Binding Toggle}"/> -->
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
