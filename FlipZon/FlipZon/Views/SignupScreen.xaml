@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlipZon.Views.SignupScreen"
+             xmlns:FAIcons="clr-namespace:FlipZon.Utilities.Helpers"
+             xmlns:vm="clr-namespace:FlipZon.ViewModels"
+             xmlns:customRenders="clr-namespace:FlipZon.CustomRenders"
+             x:DataType="vm:SignupScreenViewModel"
+             Title="SignupScreen">
+    <VerticalStackLayout Margin="10"
+                         Spacing="15">
+        <ImageButton Source="back_arrow.png"
+                     WidthRequest="25"
+                     HeightRequest="25"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"
+                     Command="{Binding BackCommand}"
+                     BackgroundColor="Transparent" />
+        <VerticalStackLayout Spacing="3"
+                             Margin="0,20,0,0">
+            <Label Text="Sign Up!"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="30" />
+            <HorizontalStackLayout Spacing="3">
+                <Label Text="Already have an Account?"
+                       FontAttributes="Bold" />
+                <Label Text="Sign in"
+                       TextColor="Orange"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding LoginCommad}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <Label Text="Name"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <customRenders:CustomEntry Placeholder="Enter your Name"
+                                           Margin="5,0"
+                                           PlaceholderColor="Gray" />
+            </Frame>
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <Label Text="Email"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <customRenders:CustomEntry Placeholder="Enter your Email"
+                                           Margin="5,0"
+                                           Keyboard="Email"
+                                           PlaceholderColor="Gray" />
+            </Frame>
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <Label Text="Password"
+                   FontAttributes="Bold" />
+            <Frame HasShadow="False"
+                   Padding="0"
+                   CornerRadius="5"
+                   BorderColor="Gray">
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="5"
+                      Padding="5,0">
+                    <customRenders:CustomEntry Placeholder="Enter your Password"
+                                               IsPassword="{Binding CanShowPassword,Converter={x:StaticResource inverseBoolConverter}}"
+                                               Grid.Column="0"
+                                               PlaceholderColor="Gray" />
+                    <ImageButton Source="eye_close.png"
+                                 WidthRequest="20"
+                                 HeightRequest="20"
+                                 Grid.Column="1"
+                                 Command="{Binding TogglePasswordVisiblityCommand}"
+                                 VerticalOptions="Center">
+                        <ImageButton.Triggers>
+                            <DataTrigger TargetType="ImageButton"
+                                         Binding="{Binding CanShowPassword}"
+                                         Value="True">
+                                <Setter Property="Source"
+                                        Value="eye_open.png" />
+                            </DataTrigger>
+                        </ImageButton.Triggers>
+                    </ImageButton>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+        <VerticalStackLayout Margin="0,20,0,0">
+            <Button Text="Signup"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    BackgroundColor="Orange"
+                    TextColor="White"
+                    FontAttributes="Bold" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
