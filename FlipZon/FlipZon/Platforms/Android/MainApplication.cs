@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.Runtime;
+using SQLitePCL;
 
-namespace FlipZon;
+namespace MauiSampleTest;
 
 [Application]
 public class MainApplication : MauiApplication
@@ -11,6 +12,11 @@ public class MainApplication : MauiApplication
     {
     }
 
-    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+    protected override MauiApp CreateMauiApp()
+    {
+        raw.SetProvider(new SQLite3Provider_e_sqlite3());
+        return MauiProgram.CreateMauiApp();
+
+    }
 }
 

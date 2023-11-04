@@ -1,10 +1,14 @@
 ﻿using Foundation;
 
-namespace FlipZon;
+namespace MauiSampleTest;
 
-[Register(nameof(AppDelegate))]
+[Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
 {
-    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+    protected override MauiApp CreateMauiApp()
+    {
+        SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_sqlite3());
+        return MauiProgram.CreateMauiApp();
+    }
 }
 

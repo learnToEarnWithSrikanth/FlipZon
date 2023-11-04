@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="Custom_Loading_Indicator"
+             x:Class="FlipZon.CustomControls.CustomLoadingIndicator">
+  <Grid VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+        BackgroundColor="#C0C0C0"
+        IsVisible="{Binding Source={x:Reference Custom_Loading_Indicator}, Path=IsBusy}"
+        Opacity="0.5">
+     <VerticalStackLayout
+                         VerticalOptions="CenterAndExpand"
+                         Spacing="10"
+                         HorizontalOptions="CenterAndExpand">
+        <ActivityIndicator IsRunning="{Binding Source={x:Reference Custom_Loading_Indicator}, Path=IsBusy}"
+                           WidthRequest="30"
+                           HeightRequest="30"
+                           Color="Purple"/>
+        <Label 
+            Text="{Binding Source={x:Reference Custom_Loading_Indicator}, Path=LoadingText}"
+            VerticalTextAlignment="Center"
+            TextColor="Purple"
+            FontSize="14"/>
+    </VerticalStackLayout>
+
+  </Grid>
+   
+</ContentView>
+

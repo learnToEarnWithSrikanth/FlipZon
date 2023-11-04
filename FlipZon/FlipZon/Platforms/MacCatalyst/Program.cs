@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace FlipZon;
+namespace MauiSampleTest;
 
 public class Program
 {
