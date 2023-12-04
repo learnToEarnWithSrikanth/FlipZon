@@ -13,16 +13,20 @@ namespace FlipZon.Models
             set { SetProperty(ref quantity, value); }
         }
 
-        public int  SubTotal { get; set; }
-
-        private bool isEditQuantityEnabled;
-        public bool IsEditQuantityEnabled
+        public double  DiscountedSubTotal
         {
-            get => isEditQuantityEnabled;
-            set { SetProperty(ref isEditQuantityEnabled, value); }
+            get
+            {
+                return ProductInfo.DiscountedPrice * quantity;
+            }
         }
-
-
+        public double SubTotal
+        {
+            get
+            {
+                return ProductInfo.Price * quantity;
+            }
+        }
     }
 }
 

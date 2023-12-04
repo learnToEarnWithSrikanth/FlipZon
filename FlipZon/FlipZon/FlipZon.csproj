@@ -101,6 +101,9 @@
     <None Remove="Resources\Images\star.svg" />
     <None Remove="Resources\Images\cart.svg" />
     <None Remove="Resources\Images\search.svg" />
+    <None Remove="Resources\Images\down.svg" />
+    <None Remove="Views\Dialogs\" />
+    <None Remove="ViewModels\Dialogs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\" />
@@ -116,6 +119,8 @@
     <Folder Include="Platforms\iOS\Handlers\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="Resources\Localization\" />
+    <Folder Include="Views\Dialogs\" />
+    <Folder Include="ViewModels\Dialogs\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Localization\MobileLabel.resx">
@@ -127,8 +132,5 @@
     <Compile Update="Resources\Localization\MobileLabel.Designer.cs">
       <DependentUpon>MobileLabel.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images\star.svg" />
   </ItemGroup>
 </Project>

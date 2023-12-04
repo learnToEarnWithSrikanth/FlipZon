@@ -16,6 +16,26 @@ namespace FlipZon.ViewModels
             get => savedForLaterProducts;
             set { SetProperty(ref savedForLaterProducts, value); }
         }
+        private double price;
+        public double Price
+        {
+            get => price;
+            set { SetProperty(ref price, value); }
+        }
+
+        private double deliveryFee;
+        public double DeliveryFee
+        {
+            get => deliveryFee;
+            set { SetProperty(ref deliveryFee, value); }
+        }
+        private double total;
+        public double Total
+        {
+            get => total;
+            set { SetProperty(ref total, value); }
+        }
+        
 
         #endregion
 
@@ -32,10 +52,15 @@ namespace FlipZon.ViewModels
         public DelegateCommand<CartResponseDTO> EditCartQuantityCommand =>
             editCartQuantityCommand ?? (editCartQuantityCommand = new DelegateCommand<CartResponseDTO>(async (CartResponseDTO) => { await ExecuteEditCartQuantityCommand(CartResponseDTO); }));
 
-        private async Task ExecuteEditCartQuantityCommand(CartResponseDTO cartResponseDTO)
-        {
-          
-        }
+
+        private DelegateCommand placeOrderCommand;
+        public DelegateCommand PlaceOrderCommand =>
+            placeOrderCommand ?? (placeOrderCommand = new DelegateCommand(async () => { await ExecutePlaceOrderCommand(); }));
+
+       
+
+
+
 
         #endregion
 
@@ -50,6 +75,15 @@ namespace FlipZon.ViewModels
 
         #region Methods
 
+        private async Task ExecutePlaceOrderCommand()
+        {
+            await NavigationService.NavigateAsync(nameof(AddressListScreen));
+        }
+
+        private async Task ExecuteEditCartQuantityCommand(CartResponseDTO cartResponseDTO)
+        {
+
+        }
         private async Task ExecuteSaveForLaterCommand(CartResponseDTO cartItem)
         {
             if (cartItem != null)
@@ -125,8 +159,7 @@ namespace FlipZon.ViewModels
                     Id = 1,
                     ProductInfo = product1,
                     Quantity = 2,
-                    SubTotal = (int)(product1.DiscountedPrice * 2),
-                    IsEditQuantityEnabled = true
+                    
                 };
 
                 CartResponseDTO cartItem2 = new CartResponseDTO
@@ -134,8 +167,7 @@ namespace FlipZon.ViewModels
                     Id = 2,
                     ProductInfo = product2,
                     Quantity = 3,
-                    SubTotal = (int)(product2.DiscountedPrice * 3),
-                    IsEditQuantityEnabled = false
+                   
                 };
 
                 // Create the ObservableCollection and add mock items
@@ -147,6 +179,14 @@ namespace FlipZon.ViewModels
 
                 // Set the CartItems property
                 CartItems = cartItems;
+                foreach (var product in CartItems)
+                {
+                    Price = Price + product.DiscountedSubTotal;
+                }
+             
+                DeliveryFee = Price >= 1000 ? 0.00 : 10.00;
+                Total = Price + DeliveryFee;
+
             }
             catch (Exception ex)
             {
@@ -172,7 +212,6 @@ namespace FlipZon.ViewModels
                                 Id = item.Id,
                                 ProductInfo = productDetailsResponse.Result,
                                 Quantity = item.Quantity,
-                                SubTotal = item.Quantity * productDetailsResponse.Result.Price
                             };
                             CartItems.Add(cartItem);
                         }

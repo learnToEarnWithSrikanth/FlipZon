@@ -17,7 +17,8 @@
         </Style>
     </ContentPage.Resources>
     <Grid RowDefinitions="Auto,*,Auto"
-          Padding="10">
+          Padding="10"
+          RowSpacing="10">
     <customcontrols:CustomNavigationBar BackCommand="{Binding BackCommand}"
                                         Text="{Binding Title}"/>
     <VerticalStackLayout Grid.Row="1"

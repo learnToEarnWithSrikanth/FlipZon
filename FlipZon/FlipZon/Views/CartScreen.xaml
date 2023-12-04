@@ -9,13 +9,15 @@
              xmlns:models="clr-namespace:FlipZon.Models"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:CartScreenViewModel">
-    <Grid Margin="10"
-          RowDefinitions="Auto,*"
+    <Grid 
+          RowDefinitions="Auto,*,Auto"
           RowSpacing="10">
         <customcontrols:CustomNavigationBar Text="Cart Screen"
+                                            Padding="10,5"
                                             BackCommand="{Binding BackCommand}" />
         <CollectionView ItemsSource="{Binding CartItems}"
                         x:Name="CartCollection"
+                        Margin="10,0"
                         Grid.Row="1">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
@@ -67,27 +69,20 @@
                                            FontSize="12" />
                                     <Grid ColumnDefinitions="*,Auto">
                                         <HorizontalStackLayout VerticalOptions="CenterAndExpand"
-                                                               Spacing="10">
-                                            <Label Text="{Binding ProductInfo.Price,StringFormat='${0}'}"
-                                                   TextColor="Green"
-                                                   FontSize="14"
-                                                   FontAttributes="Bold" />
+                                                               Spacing="8">
+                                            <Label Text="{Binding ProductInfo.DiscountPercentage,StringFormat='{0}% off'}"
+                                                   TextColor="Green"/>
                                             <Label Text="{Binding SubTotal,StringFormat='${0}'}"
                                                    FontSize="14"
+                                                   TextDecorations="Strikethrough"
                                                    Style="{x:StaticResource BoldGray12}" />
+                                            <Label Text="{Binding DiscountedSubTotal,StringFormat='${0}'}"
+                                                   TextColor="Black"
+                                                   FontSize="15"
+                                                   FontAttributes="Bold" />
+                                       
                                         </HorizontalStackLayout>
-                                        <!-- <Border StrokeThickness="1"
-                                     Grid.Column="1"
-                                     Padding="6"
-                                     Stroke="Gray"
-                                     StrokeShape="RoundRectangle 5">
-                        
-                                 <Border.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1"
-                                              Command="{Binding Source={x:Reference CartCollection},Path=BindingContext.UpdateCartCountCommand}"/>
-
-                      </Border.GestureRecognizers>
-                             </Border> -->
+                                     
                                         <HorizontalStackLayout VerticalOptions="CenterAndExpand"
                                                                Grid.Column="1"
                                                                Spacing="10"
@@ -109,10 +104,17 @@
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
+                                                    <Image Source="down.png"
+                                                           WidthRequest="20"
+                                                           HeightRequest="20"/>
                                                 </HorizontalStackLayout>
+                                              <Border.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                      CommandParameter="{Binding .}"
+                                                                      Tapped="TapGestureRecognizer_Tapped"/>
+                                              </Border.GestureRecognizers>
                                             </Border>
-                                            <!-- <Button Text="Edit"
-                                           Command="{Binding Toggle}"/> -->
+                                        
                                         </HorizontalStackLayout>
                                     </Grid>
                                 </VerticalStackLayout>
@@ -122,5 +124,66 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <VerticalStackLayout Grid.Row="2"
+                             Spacing="10">
+          <VerticalStackLayout Padding="10"
+                               Spacing="10">
+             <Grid ColumnDefinitions="*,Auto">
+            <Label Text="Price"
+                   TextColor="Black"/>
+            <Label Text="{Binding Price,StringFormat='${0}'}"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   Grid.Column="1"/>
+          </Grid>
+
+          <Grid ColumnDefinitions="*,Auto">
+            <Label Text="Delivery Fee"
+                   TextColor="Black"/>
+            <Label Text="{Binding DeliveryFee,StringFormat='${0}'}"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   Grid.Column="1"/>
+          </Grid>
+
+          <Grid ColumnDefinitions="*,Auto">
+            <Label Text="Total"
+                   VerticalTextAlignment="Center"
+                   TextColor="Black"/>
+            <Label Text="{Binding Total,StringFormat='${0}'}"
+                   TextColor="Green"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Grid.Column="1"/>
+          </Grid>
+
+          </VerticalStackLayout>
+         
+
+          <VerticalStackLayout Spacing="2">
+
+            <BoxView HeightRequest="0.4"
+                     BackgroundColor="Gray"/>
+            <Grid ColumnDefinitions="*,*"
+                  Padding="10"
+                  ColumnSpacing="5">
+
+            <Label Text="{Binding Total,StringFormat='${0}'}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   TextColor="Black"/>
+              <Button TextColor="White"
+                      Grid.Column="1"
+                      Command="{Binding PlaceOrderCommand}"
+                      Text="Place Order"
+                      BackgroundColor="Orange"/>
+
+            
+          </Grid>
+          </VerticalStackLayout>
+
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

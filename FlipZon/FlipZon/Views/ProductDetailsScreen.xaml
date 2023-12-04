@@ -37,17 +37,25 @@
                            FontSize="14" />
                     <HorizontalStackLayout Spacing="5">
                         <Label Text="{Binding ProductDetails.Price,StringFormat='${0}'}"
+                                Style="{x:StaticResource BoldGray12}"
+                               FontSize="14"
+                               VerticalTextAlignment="Center"
+                               TextDecorations="Strikethrough"
+                               />
+                        <Label Text="{Binding ProductDetails.DiscountedPrice,StringFormat='${0}'}"
                                TextColor="Green"
-                               FontSize="14"
-                               FontAttributes="Bold" />
-                        <Label Text="{Binding ProductDetails.Price,StringFormat='${0}'}"
-                               Style="{x:StaticResource BoldGray12}"
-                               FontSize="14"
-                               TextDecorations="Strikethrough" />
+                                FontAttributes="Bold"
+                               FontSize="16"
+                                />
                     </HorizontalStackLayout>
-                    <HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+
                         <Label Style="{x:StaticResource BoldBlack12}"
+                               VerticalTextAlignment="Center"
                                Text="{Binding ProductDetails.Rating}" />
+                      <Image Source="star.png"
+                             WidthRequest="15"
+                             HeightRequest="15"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </VerticalStackLayout>
@@ -60,7 +68,7 @@
                 <VerticalStackLayout VerticalOptions="CenterAndExpand">
                     <Label Text="Price"
                            Style="{x:StaticResource RegularGray12}" />
-                    <Label Text="{Binding ProductDetails.Price,StringFormat='${0}'}"
+                    <Label Text="{Binding ProductDetails.DiscountedPrice,StringFormat='${0}'}"
                            TextColor="Green"
                            FontSize="25"
                            Style="{x:StaticResource BoldGray12}" />

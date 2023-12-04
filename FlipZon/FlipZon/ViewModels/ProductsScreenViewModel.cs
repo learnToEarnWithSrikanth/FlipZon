@@ -149,6 +149,10 @@
                 {
                     IsAllTabSelected = true;
                     Products = new ObservableCollection<Product>();
+                    ButtonText = "Load More";
+                    IsMoreButtonEnabled = true;
+                    skipCount = 0;
+                    limitCount = 10;
                     await GetProducts(skipCount, limitCount);
                     return;
                 }
