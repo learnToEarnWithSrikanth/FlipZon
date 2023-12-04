@@ -3,28 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlipZon.Views.AddressListScreen"
              xmlns:Vm="clr-namespace:FlipZon.ViewModels"
-             xmlns:models="clr-namespace:FlipZon.Models"
+             xmlns:models="clr-namespace:FlipZon.Models" xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="Vm:AddressListScreenViewModel"
              Title="AddressListScreen">
     <Grid RowDefinitions="*,Auto"
           Margin="10">
         <Grid RowDefinitions="Auto,*"
               RowSpacing="10">
-            <Grid ColumnDefinitions="Auto,*"
-                  ColumnSpacing="10">
-                <ImageButton Source="back_arrow.png"
-                             WidthRequest="25"
-                             HeightRequest="25"
-                             VerticalOptions="Start"
-                             HorizontalOptions="Start"
-                             Command="{Binding BackCommand}"
-                             BackgroundColor="Transparent" />
-                <Label Text="Address List Screen"
-                       Grid.Column="1"
-                       VerticalTextAlignment="Center"
-                       TextColor="Black"
-                       FontSize="14" />
-            </Grid>
+  <customcontrols:CustomNavigationBar BackCommand="{Binding BackCommand}"
+                                        Text="Address List Screen"/>
             <CollectionView ItemsSource="{Binding AddressList}"
                             Grid.Row="1"
                             x:Name="AddressCollection">
@@ -46,6 +33,8 @@
                                                  HeightRequest="25"
                                                  BackgroundColor="Transparent"
                                                  VerticalOptions="Center"
+                                                 Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.AddressSelectionChangedCommand}"
+                                                      CommandParameter="{Binding .}" 
                                                  HorizontalOptions="Center">
                                         <ImageButton.Triggers>
                                             <DataTrigger TargetType="ImageButton"
@@ -61,6 +50,9 @@
                                         <Label Text="{Binding Name}"
                                                TextColor="Black"
                                                FontAttributes="Bold" />
+                                      <Label Text="{Binding Email}"
+                                               TextColor="Black"
+                                              />
                                         <Label Text="{Binding DoorNo}"
                                                TextColor="Black" />
                                         <Label Text="{Binding Address}"
@@ -82,6 +74,8 @@
                                             TextColor="Black"
                                             BorderColor="Gray"
                                             BorderWidth="1"
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.EditAddressCommand}"
                                              FontFamily="OpenSansSemibold"
                                             BackgroundColor="White"
                                             CornerRadius="5"
@@ -100,6 +94,7 @@
         </Grid>
         <Button Text="Address New Address"
                 Grid.Row="1"
+                Command="{Binding AddNewAddressCommand}"
                 TextColor="Black"
                 BorderColor="Gray"
                 BorderWidth="1"

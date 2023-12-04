@@ -1,4 +1,4 @@
-﻿using Controls.UserDialogs.Maui;
+﻿using CommunityToolkit.Maui;
 using FlipZon.CustomRenders;
 #if ANDROID
 using FlipZon.Platforms.Android.Handlers;
@@ -15,10 +15,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UsePrismApp<App>(PrismStartup.Configure)
-            .UseUserDialogs(true,() =>
-            {
-
-            })
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

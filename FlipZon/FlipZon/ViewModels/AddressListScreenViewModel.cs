@@ -62,6 +62,7 @@
                     Address="Sbi Street Podalakur",
                     Pincode="524345",
                     DoorNo="1-23",
+                    Email="Srikath@gmail.com",
                     IsSelected=true,
                 },
                 new AddressModel
@@ -70,6 +71,7 @@
                     Name="Srikanth",
                     PhoneNumber="1234567890",
                     Address="Sbi Street Podalakur",
+                    Email="Srikath@gmail.com",
                     Pincode="524345",
                     DoorNo="1-23",
                 }

@@ -9,6 +9,7 @@ namespace FlipZon.Models
         public string Pincode { get; set; }
         public string Address { get; set; }
         public string DoorNo { get; set; }
+        public string Email { get; set; }
 
         private bool isSelected;
         public bool IsSelected

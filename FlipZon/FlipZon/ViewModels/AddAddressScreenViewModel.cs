@@ -1,4 +1,6 @@
-﻿namespace FlipZon.ViewModels
+﻿using static Android.Icu.Text.CaseMap;
+
+namespace FlipZon.ViewModels
 {
     public class AddAddressScreenViewModel : BaseViewModel
     {
@@ -15,6 +17,18 @@
             get => name;
             set { SetProperty(ref name, value); }
         }
+        private string title = "Add New Address";
+        public string Title
+        {
+            get => title;
+            set { SetProperty(ref title, value); }
+        }
+        private string buttonText = "Save Address";
+        public string ButtonText
+        {
+            get => buttonText;
+            set { SetProperty(ref buttonText, value); }
+        }
         private string phoneNumber;
         public string PhoneNumber
         {
@@ -27,6 +41,13 @@
             get => address;
             set { SetProperty(ref address, value); }
         }
+        private string email;
+        public string Email
+        {
+            get => email;
+            set { SetProperty(ref email, value); }
+        }
+
         private string doorNo;
         public string DoorNo
         {
@@ -73,6 +94,7 @@
         private async Task ExecuteSaveAddressCommand()
         {
             if (
+                string.IsNullOrEmpty(Email)||
                 string.IsNullOrEmpty(Address) ||
                 string.IsNullOrEmpty(Name) ||
                 string.IsNullOrEmpty(PhoneNumber) ||
@@ -89,6 +111,7 @@
                 PhoneNumber = PhoneNumber,
                 DoorNo=DoorNo,
                 Name=Name,
+                Email=Email,
                 Id=Id
             };
             var parameters = new NavigationParameters();
@@ -112,6 +135,9 @@
             {
                 var ediatbaleAddress= parameters.GetValue<AddressModel>("EditableAddress");
                 IsEditAddreesMode = true;
+                Title = "Edit Address";
+                ButtonText = "Update Address";
+                Email = ediatbaleAddress?.Email;
                 Name = ediatbaleAddress?.Name;
                 Pincode = ediatbaleAddress?.Pincode;
                 DoorNo = ediatbaleAddress.DoorNo;
