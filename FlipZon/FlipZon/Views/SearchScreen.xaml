@@ -5,26 +5,44 @@
              BackgroundColor="White"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:models="clr-namespace:FlipZon.Models"
+             xmlns:customrenders="clr-namespace:FlipZon.CustomRenders"
+             xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:SearchScreenViewModel"
              Title="SearchScreen">
-    <Grid RowDefinitions="Auto,*"
+    <Grid RowDefinitions="Auto,Auto,*"
           Margin="10"
           RowSpacing="10">
+        <customcontrols:CustomNavigationBar Text="Search Screen"
+                                            BackCommand="{Binding BackCommand}"/>
         <Frame HasShadow="False"
                BackgroundColor="White"
-               Padding="0"
+               Padding="10,0"
+               Grid.Row="1"
+               CornerRadius="5"
+               HeightRequest="35"
                BorderColor="Gray">
-            <Entry Placeholder="Search Products"
+            <Grid ColumnDefinitions="Auto,*"
+                  ColumnSpacing="5">
+               <Image Source="search.png"
+                      WidthRequest="15"
+                      HeightRequest="15"
+                      />
+               <customrenders:CustomEntry Placeholder="Search Products"
                    PlaceholderColor="Gray"
+                    Grid.Column="1"
+                   VerticalTextAlignment="Center"
                    ClearButtonVisibility="WhileEditing"
                    BackgroundColor="Transparent"
                    Text="{Binding SearchText}"
                    TextColor="Black"
                    Keyboard="Text" />
+
+            </Grid>
+           
         </Frame>
         <CollectionView ItemsSource="{Binding ProductsSearchList}"
                         x:Name="ProductsSearchCollection"
-                        Grid.Row="1">
+                        Grid.Row="2">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  VerticalItemSpacing="10" />
@@ -47,5 +65,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="3"/>
     </Grid>
 </ContentPage>

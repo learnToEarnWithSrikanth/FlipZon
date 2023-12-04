@@ -15,6 +15,7 @@
                       HeightRequest="{Binding Source={x:Reference Custom_Carosuel_View},Path=CarosuelHeight}"
                       x:Name="carouselView"
                       IsScrollAnimated="True"
+                      
                       IndicatorView="indicatorView">
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" />
@@ -22,7 +23,7 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:ThumbNailModel">
                     <Image Source="{Binding Name,Converter={x:StaticResource imageSourceConverter}}"
-                           Aspect="Fill" />
+                           Aspect="AspectFill" />
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>

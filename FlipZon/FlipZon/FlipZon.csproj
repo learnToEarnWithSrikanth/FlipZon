@@ -98,6 +98,8 @@
     <None Remove="Resources\Images\radio_button.svg" />
     <None Remove="Resources\Localization\" />
     <None Remove="Resources\Images\star.svg" />
+    <None Remove="Resources\Images\cart.svg" />
+    <None Remove="Resources\Images\search.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\" />

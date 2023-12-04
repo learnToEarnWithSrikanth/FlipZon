@@ -11,10 +11,10 @@
              x:DataType="vm:ProductsScreenViewModel"
              Title="ProductsScreen">
     <Grid RowDefinitions="Auto,Auto,Auto,*,Auto"
-          RowSpacing="10"
-          Padding="10">
+          RowSpacing="10">
         <Grid ColumnDefinitions="Auto,*"
-              ColumnSpacing="10">
+              ColumnSpacing="10"
+              Padding="10,5">
             <ImageButton Source="back_arrow.png"
                          WidthRequest="25"
                          HeightRequest="25"
@@ -30,7 +30,8 @@
                    FontSize="14" />
         </Grid>
         <Grid ColumnDefinitions="*,Auto"
-              Grid.Row="1">
+              Grid.Row="1"
+              Padding="10,0">
             <Label Text="Products"
                    VerticalTextAlignment="Center"
                    TextColor="Green" />
@@ -69,6 +70,7 @@
         </Grid>
         <CollectionView ItemsSource="{Binding Categories}"
                         HeightRequest="35"
+                        Margin="10,0"
                         x:Name="CategoriesCollection"
                         HorizontalScrollBarVisibility="Never"
                         Grid.Row="2">
@@ -126,6 +128,7 @@
         <CollectionView ItemsSource="{Binding Products}"
                         VerticalScrollBarVisibility="Never"
                         Grid.Row="3"
+                        Margin="10,0"
                         IsVisible="{Binding CanShowListView,Converter={x:StaticResource inverseBoolConverter}}"
                         x:Name="ProductsCollection">
             <CollectionView.ItemsLayout>
@@ -140,13 +143,14 @@
                                                     Title="{Binding Title}"
                                                     Rating="{Binding Rating}"
                                                     OrginalPrice="{Binding Price}"
+                                                    DiscountedPrice="{Binding DiscountedPrice}"
                                                     Description="{Binding Description}"
                                                     ProductTappedCommand="{Binding Source={x:Reference ProductsCollection},Path=BindingContext.NavigateToDetailsScreen}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         <CollectionView ItemsSource="{Binding Products}"
-                        Margin="10"
+                        Margin="10,0"
                         IsVisible="{Binding CanShowListView}"
                         VerticalScrollBarVisibility="Never"
                         Grid.Row="3"
@@ -161,6 +165,7 @@
                                                     Title="{Binding Title}"
                                                     Rating="{Binding Rating}"
                                                     OrginalPrice="{Binding Price}"
+                                                    DiscountedPrice="{Binding DiscountedPrice}"
                                                     Description="{Binding Description}"
                                                     ProductTappedCommand="{Binding Source={x:Reference ProductsCollection},Path=BindingContext.NavigateToDetailsScreen}" />
                 </DataTemplate>
@@ -170,23 +175,29 @@
                              IsVisible="{Binding IsAllTabSelected}">
             <VerticalStackLayout Spacing="10"
                                  Padding="10"
-                                 IsVisible="{Binding IsBusy}"
+                                 IsVisible="{Binding IsLoadingMoreProducts}"
                                  VerticalOptions="FillAndExpand"
                                  HorizontalOptions="FillAndExpand"
                                  BackgroundColor="Gray">
-                <ActivityIndicator IsRunning="{Binding IsBusy}" />
+                <ActivityIndicator IsRunning="{Binding IsLoadingMoreProducts}"
+                                   Color="Purple"
+                                   WidthRequest="30"
+                                   HeightRequest="30"/>
                 <Label Text="Hang on Loading More Products"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"
                        TextColor="Purple" />
             </VerticalStackLayout>
             <Button Text="{Binding ButtonText}"
-                    IsVisible="{Binding IsBusy,Converter={x:StaticResource inverseBoolConverter}}"
+                    IsVisible="{Binding IsLoadingMoreProducts,Converter={x:StaticResource inverseBoolConverter}}"
                     Command="{Binding LoadMoreProducts}"
                     TextColor="Purple"
+                    Margin="0,0,0,6"
                     IsEnabled="{Binding IsMoreButtonEnabled}"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
         </VerticalStackLayout>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="5"/>
     </Grid>
 </ContentPage>

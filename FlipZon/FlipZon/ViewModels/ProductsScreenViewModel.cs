@@ -193,7 +193,6 @@
                 IsBusy = true;
                 await GetProducts(skipCount, limitCount);
                 await GetCategories();
-                IsBusy = false;
             }
             catch (Exception ex)
             {

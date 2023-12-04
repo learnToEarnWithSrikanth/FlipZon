@@ -41,12 +41,23 @@
             togglePasswordVisiblityCommand ?? (togglePasswordVisiblityCommand =
                         new DelegateCommand(ExecuteTogglePasswordVisiblityCommand));
 
+        private DelegateCommand naviagateToCartScreenCommand;
+        public DelegateCommand NaviagateToCartScreenCommand =>
+            naviagateToCartScreenCommand ?? (naviagateToCartScreenCommand =
+                        new DelegateCommand(ExecuteNaviagateToCartScreenCommand));
+
+        private DelegateCommand naviagateToSearchScreenCommand;
+        public DelegateCommand NaviagateToSearchScreenCommand =>
+            naviagateToSearchScreenCommand ?? (naviagateToSearchScreenCommand =
+                        new DelegateCommand(ExecuteNaviagateToSearchScreenCommand));
+
+
         private DelegateCommand backCommand;
         public DelegateCommand BackCommand =>
             backCommand ?? (backCommand =
                         new DelegateCommand(ExecuteBackCommand));
 
-        
+
 
         private DelegateCommand<Product> navigateToDetailsScreen;
         public DelegateCommand<Product> NavigateToDetailsScreen =>
@@ -115,6 +126,15 @@
 
         #region Methods
 
+        private async void ExecuteNaviagateToSearchScreenCommand()
+        {
+            await NavigationService.NavigateAsync(nameof(SearchScreen));
+        }
+
+        private async void ExecuteNaviagateToCartScreenCommand()
+        {
+            await NavigationService.NavigateAsync(nameof(CartScreen));
+        }
         private async void ExecuteBackCommand()
         {
             await NavigationService.GoBackAsync();
@@ -161,7 +181,7 @@
                 {
                     { Constants.PRODUCT_ID, product.Id }
                 };
-                await NavigationService.NavigateAsync(Constants.PRODUCT_DETAILS_SCREEN, parameters);
+                await NavigationService.NavigateAsync(nameof(ProductDetailsScreen), parameters);
             }
         }
         #endregion

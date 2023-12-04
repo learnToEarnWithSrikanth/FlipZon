@@ -7,10 +7,16 @@
              NavigationPage.HasNavigationBar="True"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:models="clr-namespace:FlipZon.Models"
+             xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:CartScreenViewModel">
-    <Grid Margin="10">
+    <Grid Margin="10"
+          RowDefinitions="Auto,*"
+          RowSpacing="10">
+        <customcontrols:CustomNavigationBar Text="Cart Screen"
+                                            BackCommand="{Binding BackCommand}" />
         <CollectionView ItemsSource="{Binding CartItems}"
-                        x:Name="CartCollection">
+                        x:Name="CartCollection"
+                        Grid.Row="1">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  VerticalItemSpacing="10" />
@@ -34,9 +40,9 @@
                                            BackgroundColor="Orange" />
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Frame HeightRequest="100"
-                               BorderColor="Gray"
-                               Padding="10"
+                        <Frame BorderColor="Gray"
+                               Padding="8"
+                               CornerRadius="5"
                                BackgroundColor="White">
                             <Grid ColumnDefinitions="Auto,*"
                                   ColumnSpacing="10"
@@ -60,7 +66,8 @@
                                            LineBreakMode="TailTruncation"
                                            FontSize="12" />
                                     <Grid ColumnDefinitions="*,Auto">
-                                        <HorizontalStackLayout VerticalOptions="CenterAndExpand">
+                                        <HorizontalStackLayout VerticalOptions="CenterAndExpand"
+                                                               Spacing="10">
                                             <Label Text="{Binding ProductInfo.Price,StringFormat='${0}'}"
                                                    TextColor="Green"
                                                    FontSize="14"
@@ -85,20 +92,24 @@
                                                                Grid.Column="1"
                                                                Spacing="10"
                                                                HorizontalOptions="CenterAndExpand">
-                                            <Label Text="Qty"
-                                                   VerticalTextAlignment="Center"
-                                                   TextColor="Black" />
                                             <Border StrokeThickness="1"
                                                     Grid.Column="1"
-                                                    HeightRequest="30"
-                                                    WidthRequest="50"
                                                     Stroke="Gray"
+                                                    Padding="10"
                                                     StrokeShape="RoundRectangle 5">
-                                                <Entry Text="{Binding Quantity}"
-                                                       TextColor="Black"
-                                                       Keyboard="Numeric"
-                                                       IsEnabled="{Binding IsEditQuantityEnabled}"
-                                                       BackgroundColor="Transparent" />
+                                                <HorizontalStackLayout Spacing="5">
+                                                    <Label FontSize="14"
+                                                           VerticalTextAlignment="Center"
+                                                           HorizontalOptions="Center"
+                                                           TextColor="Black">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Qty: " />
+                                                                <Span Text="{Binding Quantity}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </HorizontalStackLayout>
                                             </Border>
                                             <!-- <Button Text="Edit"
                                            Command="{Binding Toggle}"/> -->

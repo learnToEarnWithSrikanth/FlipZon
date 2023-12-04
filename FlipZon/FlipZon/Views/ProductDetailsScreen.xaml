@@ -17,22 +17,10 @@
     <Grid RowDefinitions="*,Auto">
         <Grid RowDefinitions="Auto,*"
               Grid.Row="0"
+              RowSpacing="8"
               Padding="10">
-            <Grid ColumnDefinitions="Auto,*"
-                  ColumnSpacing="10">
-                <ImageButton Source="back_arrow.png"
-                             WidthRequest="25"
-                             HeightRequest="25"
-                             VerticalOptions="Start"
-                             HorizontalOptions="Start"
-                             Command="{Binding BackCommand}"
-                             BackgroundColor="Transparent" />
-                <Label Text="Product Details Screen"
-                       Grid.Column="1"
-                       VerticalTextAlignment="Center"
-                       TextColor="BlueViolet"
-                       FontSize="14" />
-            </Grid>
+            <customcontrols:CustomNavigationBar Text="Product Details Screen"
+                                                BackCommand="{Binding BackCommand}"/>
             <VerticalStackLayout Spacing="10"
                                  Grid.Row="1">
                 <customcontrols:CustomCarosuelView ItemSource="{Binding Images}"
@@ -68,8 +56,7 @@
             <BoxView HeightRequest="1"
                      BackgroundColor="Gray" />
             <Grid ColumnDefinitions="*,Auto"
-                  Padding="10"
-                  HeightRequest="60">
+                  Padding="10">
                 <VerticalStackLayout VerticalOptions="CenterAndExpand">
                     <Label Text="Price"
                            Style="{x:StaticResource RegularGray12}" />
@@ -81,18 +68,13 @@
                 <HorizontalStackLayout Grid.Column="1">
                     <Button Grid.Column="0"
                             BackgroundColor="Black"
-                            WidthRequest="120"
                             Text="Add To Cart"
                             Command="{Binding AddItemToCartCommand}"
-                            TextColor="White" />
-                    <Button Grid.Column="1"
-                            BackgroundColor="Black"
-                            WidthRequest="120"
-                            Text="Go To cart"
-                            Command="{Binding GoToCartCommand}"
                             TextColor="White" />
                 </HorizontalStackLayout>
             </Grid>
         </VerticalStackLayout>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="2"/>
     </Grid>
 </ContentPage>

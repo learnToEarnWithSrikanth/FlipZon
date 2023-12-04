@@ -30,16 +30,23 @@
         }
         private async void ExecuteSearchProductsCommand()
         {
-            if (string.IsNullOrEmpty(searchText))
+            try
             {
-                ProductsSearchList?.Clear();
-                return;
+
+                if (string.IsNullOrEmpty(SearchText))
+                {
+                    ProductsSearchList?.Clear();
+                    return;
+                }
+             
+                var response = await RestService.SearchProducts(searchText);                if (response?.Result != null)
+                {
+                    ProductsSearchList = new ObservableCollection<Product>(response?.Result.Products);
+                }
             }
-  
-            var response = await RestService.SearchProducts(searchText);
-            if (response?.Result != null)
+            catch (Exception ex)
             {
-                ProductsSearchList = new ObservableCollection<Product>(response?.Result.Products);
+
             }
         }
     }

@@ -10,13 +10,29 @@
              x:DataType="Vm:HomeScreenViewModel">
     <Grid RowSpacing="10"
           RowDefinitions="Auto,Auto,Auto,*">
-        <Grid ColumnDefinitions="*,Auto">
+        <Grid ColumnDefinitions="*,Auto"
+              Padding="10,0">
             <Label Text="FlipZon"
                    TextColor="Green"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
                    Style="{x:StaticResource BoldBlack12}"
                    FontSize="20" />
+            <HorizontalStackLayout Grid.Column="1"
+                                   Spacing="15"
+                                   HorizontalOptions="End">
+              <ImageButton Source="cart.png"
+                     WidthRequest="20"
+                           Command="{Binding NaviagateToCartScreenCommand}"
+                           BackgroundColor="Transparent"
+                     HeightRequest="20"/>
+              <ImageButton Source="search.png"
+                     WidthRequest="20"
+                            Command="{Binding NaviagateToSearchScreenCommand}"
+                           BackgroundColor="Transparent"
+                     HeightRequest="20"/>
+
+            </HorizontalStackLayout>
         </Grid>
         <customcontrols:CustomCarosuelView ItemSource="{Binding Images}"
                                            Grid.Row="1"
@@ -55,10 +71,13 @@
                                                     Title="{Binding Title}"
                                                     Rating="{Binding Rating}"
                                                     OrginalPrice="{Binding Price}"
+                                                    DiscountedPrice="{Binding DiscountedPrice}"
                                                     Description="{Binding Description}"
                                                     ProductTappedCommand="{Binding Source={x:Reference ProductsCollection},Path=BindingContext.NavigateToDetailsScreen}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="4"/>
     </Grid>
 </ContentPage>
