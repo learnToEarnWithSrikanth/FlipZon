@@ -192,6 +192,9 @@ namespace FlipZon.ViewModels
         {
             try
             {
+                Price = 0;
+                DeliveryFee = 0;
+                Total = 0;
                 foreach (var product in CartItems)
                 {
                     product.DiscountedSubTotal = product.Quantity * product.ProductInfo.DiscountedPrice;
@@ -200,17 +203,44 @@ namespace FlipZon.ViewModels
                 }
                 DeliveryFee = Price >= 1000 ? 0.00 : 10.00;
                 Total = Price + DeliveryFee;
+                DeliveryFee = Math.Round(DeliveryFee, 2);
+                Price = Math.Round(Price, 2);
+                Total = Math.Round(Total, 2);
             }
             catch (Exception ex)
             {
 
             }
         }
-        private async Task GetCartItems()
+
+        public async Task ExecuteUpdateCartQuantity(CartResponseDTO cartResponse)
         {
             try
             {
-                var response = await DataBase.GetAllCartItems();
+                IsBusy = true;
+                var addToCart = new CartRequestDto
+                {
+                    Id=cartResponse.Id,
+                    UserId = Preferences.Get(Constants.USER_ID, -1),
+                    ProductId = cartResponse.ProductInfo.Id,
+                    Quantity = cartResponse.Quantity,
+                };
+                var recordsInsertedCount = await DataBase.UpdateCartQuantity(addToCart);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+        public async Task GetCartItems()
+        {
+            try
+            {
+                var response = await DataBase.GetAllCartItems(Preferences.Get(Constants.USER_ID, -1));
                 if (response != null)
                 {
                     CartItems = new ObservableCollection<CartResponseDTO>();
@@ -221,14 +251,19 @@ namespace FlipZon.ViewModels
                         {
                             var cartItem = new CartResponseDTO
                             {
+                                UserId=item.UserId,
                                 Id = item.Id,
                                 ProductInfo = productDetailsResponse.Result,
                                 Quantity = item.Quantity,
                             };
                             CartItems.Add(cartItem);
                         }
-                       
                     }
+                    CaluclateCartPrice();
+                }
+                else
+                {
+                    // cart is Empty
                 }
             }
             catch (Exception ex)
@@ -247,8 +282,8 @@ namespace FlipZon.ViewModels
         public override async void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);
-            // await GetCartItems();
-            GetMockData();
+            await GetCartItems();
+            //GetMockData();
         }
         #endregion
     }

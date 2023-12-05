@@ -1,9 +1,24 @@
-﻿namespace FlipZon.ViewModels
+﻿using static Java.Util.Jar.Attributes;
+
+namespace FlipZon.ViewModels
 {
     public class LoginScreenViewModel : BaseViewModel
     {
         #region Properties
-      
+
+        private string email;
+        public string Email
+        {
+            get => email;
+            set { SetProperty(ref email, value); }
+        }
+
+        private string password;
+        public string Password
+        {
+            get => password;
+            set { SetProperty(ref password, value); }
+        }
         #endregion
         #region Commands
         private DelegateCommand signupCommand;
@@ -18,7 +33,33 @@
 
         private async Task ExecuteLoginUserCommand()
         {
-            await NavigationService.NavigateAsync("HomeScreen");
+            try
+            {
+                var isValidAccount = await ValiateAccountInformation();
+                var account = new SignupModel
+                {
+                    Email = Email,
+                    Password = Password,
+                };
+                if (isValidAccount)
+                {
+                    var response= await DataBase.GetAccount(account);
+                    if (response == null)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Invalid Credentials", "InValid Credentails! Please Try again", "Ok");
+                        return;
+                    }
+                    Preferences.Set(Constants.USER_NAME, response.Name);
+                    Preferences.Set(Constants.EMAIL, response.Email);
+                    Preferences.Set(Constants.USER_ID, response.Id);
+                    await Application.Current.MainPage.DisplayAlert("Login Success", "Logged Successfully", "Ok");
+                    await NavigationService.NavigateAsync(nameof(HomeScreen));
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
 
@@ -34,6 +75,27 @@
         private async Task ExecuteSignupCommand()
         {
             await NavigationService.NavigateAsync("SignupScreen");
+        }
+
+        private async Task<bool> ValiateAccountInformation()
+        {
+            bool isValid = true;
+            try
+            {
+                if (string.IsNullOrEmpty(Email) ||
+                   string.IsNullOrEmpty(Password)) 
+                    
+                {
+                    isValid = false;
+                    await Application.Current.MainPage.DisplayAlert("Enter all the Fields", "Please fill all the Required Field", "Ok");
+                    return isValid = false;
+                }
+            }
+            catch
+            {
+
+            }
+            return isValid;
         }
         #endregion
 

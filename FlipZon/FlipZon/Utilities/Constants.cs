@@ -48,6 +48,12 @@
         }
         #endregion
 
+        #region Preferences
+        public const string USER_NAME = "UserName";
+        public const string EMAIL = "Email";
+        public const string USER_ID = "UserId";
+        #endregion
+
     }
 }
 

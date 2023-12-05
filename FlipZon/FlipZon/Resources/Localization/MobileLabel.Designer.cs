@@ -130,6 +130,15 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm Password.
+        /// </summary>
+        internal static string Confirm_Password {
+            get {
+                return ResourceManager.GetString("Confirm_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Details.
         /// </summary>
         internal static string Contact_Details {
@@ -198,6 +207,15 @@ namespace FlipZon.Resources.Localization {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Confirm Password.
+        /// </summary>
+        internal static string Enter_Confirm_Password {
+            get {
+                return ResourceManager.GetString("Enter_Confirm_Password", resourceCulture);
             }
         }
         

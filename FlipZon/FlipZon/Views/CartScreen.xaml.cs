@@ -55,7 +55,8 @@ public partial class CartScreen : ContentPage
                         await toast.Show(cancellationTokenSource.Token);
                     }
                     cartItem.Quantity = int.Parse(result) > maxquantity ? maxquantity : int.Parse(result);
-                    vm?.CaluclateCartPrice();
+                    await vm?.ExecuteUpdateCartQuantity(cartItem);
+                    await vm?.GetCartItems();
                 }
             }
         }

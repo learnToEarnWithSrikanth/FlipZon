@@ -1,6 +1,4 @@
 ﻿using FlipZon.ViewModels;
-using FlipZon.Views;
-
 namespace MauiSampleTest;
 
 internal static class PrismStartup
@@ -8,7 +6,7 @@ internal static class PrismStartup
     public static void Configure(PrismAppBuilder builder)
     {
         builder.RegisterTypes(RegisterTypes)
-                .OnAppStart("NavigationPage/HomeScreen");
+                .OnAppStart("NavigationPage/SignupScreen");
     }
 
     private static void RegisterTypes(IContainerRegistry containerRegistry)

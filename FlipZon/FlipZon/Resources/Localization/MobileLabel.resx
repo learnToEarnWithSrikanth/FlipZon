@@ -192,4 +192,12 @@
           xml:space="preserve">
         <value>Add To cart</value>
     </data>
+     <data name="Confirm_Password"
+          xml:space="preserve">
+        <value>Confirm Password</value>
+    </data>
+     <data name="Enter_Confirm_Password"
+          xml:space="preserve">
+        <value>Enter Confirm Password</value>
+    </data>
 </root>

@@ -69,8 +69,8 @@
                                     <Grid ColumnDefinitions="*,Auto">
                                         <HorizontalStackLayout VerticalOptions="CenterAndExpand"
                                                                Spacing="8">
-                                            <Label Text="{Binding ProductInfo.DiscountPercentage,StringFormat='{0}% off'}"
-                                                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}" />
+                                            <!--<Label Text="{Binding ProductInfo.DiscountPercentage,StringFormat='{0}% off'}"
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}" />-->
                                             <Label Text="{Binding SubTotal,StringFormat='${0}'}"
                                                    FontSize="14"
                                                    TextDecorations="Strikethrough"

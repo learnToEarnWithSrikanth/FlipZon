@@ -65,9 +65,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="AppActions.Icons.Maui" Version="1.0.0" />
     <PackageReference Include="Controls.UserDialogs.Maui" Version="1.3.0" />
-    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.2" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.2" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
   </ItemGroup>
 

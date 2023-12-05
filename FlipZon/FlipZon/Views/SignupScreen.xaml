@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:customRenders="clr-namespace:FlipZon.CustomRenders"
              x:DataType="vm:SignupScreenViewModel"
+                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              Title="SignupScreen">
     <VerticalStackLayout Margin="10"
@@ -41,6 +42,8 @@
             <Frame Style="{x:StaticResource FrameStyle}">
                 <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_your_Name}"
                                            Margin="5,0"
+                                           Text="{Binding Name}"
+                                                toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference EmailEntry}"
                                            PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
             </Frame>
         </VerticalStackLayout>
@@ -50,7 +53,10 @@
             <Frame Style="{x:StaticResource FrameStyle}">
                 <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_Your_Email}"
                                            Margin="5,0"
+                                           Text="{Binding Email}"
+                                           x:Name="EmailEntry"
                                            Keyboard="Email"
+                                               toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}"
                                            PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
             </Frame>
         </VerticalStackLayout>
@@ -64,6 +70,40 @@
                     <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_your_Password}"
                                                IsPassword="{Binding CanShowPassword,Converter={x:StaticResource inverseBoolConverter}}"
                                                Grid.Column="0"
+                                               Text="{Binding Password}"
+                                               x:Name="PasswordEntry"
+                                                toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference ConfirmPasswordEntry}"
+                                               PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
+                    <ImageButton Source="eye_close.png"
+                                 WidthRequest="20"
+                                 HeightRequest="20"
+                                 Grid.Column="1"
+                                 Command="{Binding TogglePasswordVisiblityCommand}"
+                                 VerticalOptions="Center">
+                        <ImageButton.Triggers>
+                            <DataTrigger TargetType="ImageButton"
+                                         Binding="{Binding CanShowPassword}"
+                                         Value="True">
+                                <Setter Property="Source"
+                                        Value="eye_open.png" />
+                            </DataTrigger>
+                        </ImageButton.Triggers>
+                    </ImageButton>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+      <VerticalStackLayout Spacing="5">
+            <Label Text="{x:Static resx:MobileLabel.Confirm_Password}"
+                   FontAttributes="Bold" />
+            <Frame Style="{x:StaticResource FrameStyle}">
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="5"
+                      Padding="5,0">
+                    <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_Confirm_Password}"
+                                               IsPassword="{Binding CanShowPassword,Converter={x:StaticResource inverseBoolConverter}}"
+                                               Grid.Column="0"
+                                               Text="{Binding Confirmpassword}"
+                                               x:Name="ConfirmPasswordEntry"
                                                PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
                     <ImageButton Source="eye_close.png"
                                  WidthRequest="20"
@@ -87,6 +127,7 @@
             <Button Text="{x:Static resx:MobileLabel.Signup}"
                     CornerRadius="20"
                     HeightRequest="40"
+                    Command="{Binding SignupCommand}"
                     BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
                     TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                     FontAttributes="Bold" />

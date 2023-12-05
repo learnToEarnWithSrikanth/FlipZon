@@ -5,7 +5,7 @@ namespace FlipZon.Models
     {
         public int Id { get; set; }
         public Product ProductInfo { get; set; }
-
+        public int UserId { get; set; }
         private int quantity;
         public int Quantity
         {

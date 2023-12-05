@@ -1,6 +1,4 @@
-﻿using static Android.Icu.Text.CaseMap;
-
-namespace FlipZon.ViewModels
+﻿namespace FlipZon.ViewModels
 {
     public class AddAddressScreenViewModel : BaseViewModel
     {

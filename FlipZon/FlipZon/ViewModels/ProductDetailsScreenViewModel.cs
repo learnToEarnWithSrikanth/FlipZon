@@ -50,14 +50,15 @@
                 IsBusy = true;
                 var addToCart = new CartRequestDto
                 {
-                    UserId = 1,
+                    UserId = Preferences.Get(Constants.USER_ID, -1),
                     ProductId = ProductDetails.Id,
                     Quantity = 1,
                 };
                 var recordsInsertedCount= await DataBase.AddItemToCart(addToCart);
                 if(recordsInsertedCount==0)
                 {
-                   return;
+                    await Application.Current.MainPage.DisplayAlert("Success", "Product Added To cart", "Ok");
+                    return;
                 }
             }
             catch (Exception ex)

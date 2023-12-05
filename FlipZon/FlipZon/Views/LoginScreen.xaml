@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlipZon.Views.LoginScreen"
              Title="LoginScreen"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:customRenders="clr-namespace:FlipZon.CustomRenders"
@@ -20,6 +21,8 @@
                 <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_Your_Email}"
                                            Margin="5,0"
                                            Keyboard="Email"
+                                           Text="{Binding Email}"
+                                           toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}"
                                            PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
             </Frame>
         </VerticalStackLayout>
@@ -33,6 +36,8 @@
                     <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_your_Password}"
                                                IsPassword="{Binding CanShowPassword,Converter={x:StaticResource inverseBoolConverter}}"
                                                Grid.Column="0"
+                                                Text="{Binding Password}"
+                                               x:Name="PasswordEntry"
                                                PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
                     <ImageButton Source="eye_close.png"
                                  WidthRequest="20"
