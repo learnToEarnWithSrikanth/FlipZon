@@ -179,13 +179,7 @@ namespace FlipZon.ViewModels
 
                 // Set the CartItems property
                 CartItems = cartItems;
-                foreach (var product in CartItems)
-                {
-                    Price = Price + product.DiscountedSubTotal;
-                }
-             
-                DeliveryFee = Price >= 1000 ? 0.00 : 10.00;
-                Total = Price + DeliveryFee;
+                CaluclateCartPrice();
 
             }
             catch (Exception ex)
@@ -193,6 +187,24 @@ namespace FlipZon.ViewModels
 
             }
 
+        }
+        public void CaluclateCartPrice()
+        {
+            try
+            {
+                foreach (var product in CartItems)
+                {
+                    product.DiscountedSubTotal = product.Quantity * product.ProductInfo.DiscountedPrice;
+                    product.SubTotal = product.Quantity * product.ProductInfo.Price;
+                    Price = Price + product.DiscountedSubTotal;
+                }
+                DeliveryFee = Price >= 1000 ? 0.00 : 10.00;
+                Total = Price + DeliveryFee;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         private async Task GetCartItems()
         {

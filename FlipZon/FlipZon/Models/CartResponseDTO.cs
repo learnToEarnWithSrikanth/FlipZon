@@ -10,21 +10,27 @@ namespace FlipZon.Models
         public int Quantity
         {
             get => quantity;
-            set { SetProperty(ref quantity, value); }
-        }
-
-        public double  DiscountedSubTotal
-        {
-            get
+            set
             {
-                return ProductInfo.DiscountedPrice * quantity;
+                SetProperty(ref quantity, value);
             }
         }
+        private double discountedSubTotal;
+        public double  DiscountedSubTotal
+        {
+            get => discountedSubTotal;
+            set
+            {
+                SetProperty(ref discountedSubTotal, value);
+            }
+        }
+        private double subTotal;
         public double SubTotal
         {
-            get
+            get => subTotal;
+            set
             {
-                return ProductInfo.Price * quantity;
+                SetProperty(ref subTotal, value);
             }
         }
     }

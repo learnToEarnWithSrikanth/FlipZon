@@ -80,11 +80,7 @@
                                                    FontSize="15"
                                                    FontAttributes="Bold" />
                                         </HorizontalStackLayout>
-                                        <HorizontalStackLayout VerticalOptions="CenterAndExpand"
-                                                               Grid.Column="1"
-                                                               Spacing="10"
-                                                               HorizontalOptions="CenterAndExpand">
-                                            <Border StrokeThickness="1"
+                                         <Border StrokeThickness="1"
                                                     Grid.Column="1"
                                                     Stroke="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
                                                     Padding="10"
@@ -111,7 +107,6 @@
                                                                           Tapped="TapGestureRecognizer_Tapped" />
                                                 </Border.GestureRecognizers>
                                             </Border>
-                                        </HorizontalStackLayout>
                                     </Grid>
                                 </VerticalStackLayout>
                             </Grid>

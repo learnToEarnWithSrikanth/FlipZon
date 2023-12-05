@@ -4,11 +4,14 @@
              x:Class="FlipZon.Views.HomeScreen"
              xmlns:Vm="clr-namespace:FlipZon.ViewModels"
              xmlns:models="clr-namespace:FlipZon.Models"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
-             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization" xmlns:contentviews="clr-namespace:FlipZon.Views.ContentViews"
              NavigationPage.HasNavigationBar="False"
              x:DataType="Vm:HomeScreenViewModel">
-    <Grid RowSpacing="10"
+    <Grid>
+        <Grid RowSpacing="10"
+              IsVisible="{Binding IsInternetConnectionAvailable}"
           RowDefinitions="Auto,Auto,Auto,*">
         <Grid ColumnDefinitions="*,Auto"
               Padding="10,0">
@@ -78,5 +81,10 @@
         </CollectionView>
         <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
                                                Grid.RowSpan="4" />
+        
     </Grid>
+        <contentviews:NoInternetAccessScreen 
+                                             IsVisible="{Binding IsInternetConnectionAvailable,Converter={toolkit:InvertedBoolConverter}}"/>
+    </Grid>
+  
 </ContentPage>

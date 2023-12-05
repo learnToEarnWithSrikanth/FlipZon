@@ -33,6 +33,12 @@
             get => isBusy;
             set { SetProperty(ref isBusy, value); }
         }
+        private bool isInternetConnectionAvailable=false;
+        public bool IsInternetConnectionAvailable
+        {
+            get => isInternetConnectionAvailable;
+            set { SetProperty(ref isInternetConnectionAvailable, value); }
+        }
         #endregion
 
         #region Commands
@@ -125,6 +131,14 @@
         #endregion
 
         #region Methods
+
+        public bool CheckNetworkConnection()
+        {
+            NetworkAccess accessType = Connectivity.Current.NetworkAccess;
+            if (accessType == NetworkAccess.Internet)
+                return true;
+            return false;
+        }
 
         private async void ExecuteNaviagateToSearchScreenCommand()
         {

@@ -104,6 +104,8 @@
     <None Remove="Resources\Images\down.svg" />
     <None Remove="Views\Dialogs\" />
     <None Remove="ViewModels\Dialogs\" />
+    <None Remove="Views\ContentViews\" />
+    <None Remove="Resources\Images\dog.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\" />
@@ -121,6 +123,7 @@
     <Folder Include="Resources\Localization\" />
     <Folder Include="Views\Dialogs\" />
     <Folder Include="ViewModels\Dialogs\" />
+    <Folder Include="Views\ContentViews\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Localization\MobileLabel.resx">

@@ -19,6 +19,15 @@
         public DelegateCommand NavigateToProductsScreen =>
             navigateToProductsScreen ?? (navigateToProductsScreen = new DelegateCommand(async () => { await ExecuteNavigatToProductsScreen(); }));
 
+        private DelegateCommand tryAgainCommand;
+        public DelegateCommand TryAgainCommand =>
+            tryAgainCommand ?? (tryAgainCommand = new DelegateCommand(async () => { await ExecuteTryAgainCommand(); }));
+
+        private async Task ExecuteTryAgainCommand()
+        {
+            await LoadData();
+        }
+
         #endregion
 
         #region CTOR
@@ -52,10 +61,27 @@
             try
             {
                 base.Initialize(parameters);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private async Task LoadData()
+        {
+            try
+            {
                 IsBusy = true;
+                if (!CheckNetworkConnection())
+                {
+                    IsInternetConnectionAvailable = false;
+                    return;
+                }
+                IsInternetConnectionAvailable = true;
                 await GetProducts(skipCount, limitCount);
                 GetThumbnails();
-                
             }
             catch (Exception ex)
             {
@@ -66,6 +92,7 @@
                 IsBusy = false;
             }
         }
+        
 
         private void GetThumbnails()
         {
