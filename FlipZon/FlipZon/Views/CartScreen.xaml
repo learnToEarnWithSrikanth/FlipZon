@@ -3,16 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlipZon.Views.CartScreen"
              Title="CartScreen"
-             BackgroundColor="White"
              NavigationPage.HasNavigationBar="True"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:models="clr-namespace:FlipZon.Models"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:CartScreenViewModel">
-    <Grid 
-          RowDefinitions="Auto,*,Auto"
+    <Grid RowDefinitions="Auto,*,Auto"
           RowSpacing="10">
-        <customcontrols:CustomNavigationBar Text="Cart Screen"
+        <customcontrols:CustomNavigationBar Text="{x:Static resx:MobileLabel.Cart_Screen}"
                                             Padding="10,5"
                                             BackCommand="{Binding BackCommand}" />
         <CollectionView ItemsSource="{Binding CartItems}"
@@ -28,24 +27,24 @@
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
-                                <SwipeItem Text="Delete"
+                                <SwipeItem Text="{x:Static resx:MobileLabel.Delete}"
                                            Command="{Binding Source={x:Reference CartCollection},Path=BindingContext.DeleteCommand}"
                                            CommandParameter="{Binding .}"
-                                           BackgroundColor="Red" />
+                                           BackgroundColor="{AppThemeBinding Light={x:StaticResource RedColor},Dark={x:StaticResource DarkRedColor}}" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
                         <SwipeView.RightItems>
                             <SwipeItems Mode="Execute">
-                                <SwipeItem Text="Save For Later"
+                                <SwipeItem Text="{x:Static resx:MobileLabel.Save_For_Later}"
                                            Command="{Binding Source={x:Reference CartCollection},Path=BindingContext.SaveForLaterCommand}"
                                            CommandParameter="{Binding .}"
-                                           BackgroundColor="Orange" />
+                                           BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}" />
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Frame BorderColor="Gray"
+                        <Frame BorderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
                                Padding="8"
                                CornerRadius="5"
-                               BackgroundColor="White">
+                               BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}">
                             <Grid ColumnDefinitions="Auto,*"
                                   ColumnSpacing="10"
                                   RowSpacing="10">
@@ -71,32 +70,30 @@
                                         <HorizontalStackLayout VerticalOptions="CenterAndExpand"
                                                                Spacing="8">
                                             <Label Text="{Binding ProductInfo.DiscountPercentage,StringFormat='{0}% off'}"
-                                                   TextColor="Green"/>
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}" />
                                             <Label Text="{Binding SubTotal,StringFormat='${0}'}"
                                                    FontSize="14"
                                                    TextDecorations="Strikethrough"
                                                    Style="{x:StaticResource BoldGray12}" />
                                             <Label Text="{Binding DiscountedSubTotal,StringFormat='${0}'}"
-                                                   TextColor="Black"
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                                                    FontSize="15"
                                                    FontAttributes="Bold" />
-                                       
                                         </HorizontalStackLayout>
-                                     
                                         <HorizontalStackLayout VerticalOptions="CenterAndExpand"
                                                                Grid.Column="1"
                                                                Spacing="10"
                                                                HorizontalOptions="CenterAndExpand">
                                             <Border StrokeThickness="1"
                                                     Grid.Column="1"
-                                                    Stroke="Gray"
+                                                    Stroke="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
                                                     Padding="10"
                                                     StrokeShape="RoundRectangle 5">
                                                 <HorizontalStackLayout Spacing="5">
                                                     <Label FontSize="14"
                                                            VerticalTextAlignment="Center"
                                                            HorizontalOptions="Center"
-                                                           TextColor="Black">
+                                                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}">
                                                         <Label.FormattedText>
                                                             <FormattedString>
                                                                 <Span Text="Qty: " />
@@ -106,15 +103,14 @@
                                                     </Label>
                                                     <Image Source="down.png"
                                                            WidthRequest="20"
-                                                           HeightRequest="20"/>
+                                                           HeightRequest="20" />
                                                 </HorizontalStackLayout>
-                                              <Border.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                                      CommandParameter="{Binding .}"
-                                                                      Tapped="TapGestureRecognizer_Tapped"/>
-                                              </Border.GestureRecognizers>
+                                                <Border.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                          CommandParameter="{Binding .}"
+                                                                          Tapped="TapGestureRecognizer_Tapped" />
+                                                </Border.GestureRecognizers>
                                             </Border>
-                                        
                                         </HorizontalStackLayout>
                                     </Grid>
                                 </VerticalStackLayout>
@@ -124,66 +120,55 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
         <VerticalStackLayout Grid.Row="2"
                              Spacing="10">
-          <VerticalStackLayout Padding="10"
-                               Spacing="10">
-             <Grid ColumnDefinitions="*,Auto">
-            <Label Text="Price"
-                   TextColor="Black"/>
-            <Label Text="{Binding Price,StringFormat='${0}'}"
-                   TextColor="Black"
-                   FontAttributes="Bold"
-                   Grid.Column="1"/>
-          </Grid>
-
-          <Grid ColumnDefinitions="*,Auto">
-            <Label Text="Delivery Fee"
-                   TextColor="Black"/>
-            <Label Text="{Binding DeliveryFee,StringFormat='${0}'}"
-                   TextColor="Black"
-                   FontAttributes="Bold"
-                   Grid.Column="1"/>
-          </Grid>
-
-          <Grid ColumnDefinitions="*,Auto">
-            <Label Text="Total"
-                   VerticalTextAlignment="Center"
-                   TextColor="Black"/>
-            <Label Text="{Binding Total,StringFormat='${0}'}"
-                   TextColor="Green"
-                   FontSize="18"
-                   FontAttributes="Bold"
-                   Grid.Column="1"/>
-          </Grid>
-
-          </VerticalStackLayout>
-         
-
-          <VerticalStackLayout Spacing="2">
-
-            <BoxView HeightRequest="0.4"
-                     BackgroundColor="Gray"/>
-            <Grid ColumnDefinitions="*,*"
-                  Padding="10"
-                  ColumnSpacing="5">
-
-            <Label Text="{Binding Total,StringFormat='${0}'}"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   VerticalTextAlignment="Center"
-                   TextColor="Black"/>
-              <Button TextColor="White"
-                      Grid.Column="1"
-                      Command="{Binding PlaceOrderCommand}"
-                      Text="Place Order"
-                      BackgroundColor="Orange"/>
-
-            
-          </Grid>
-          </VerticalStackLayout>
-
+            <VerticalStackLayout Padding="10"
+                                 Spacing="10">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="{x:Static resx:MobileLabel.Price}"
+                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                    <Label Text="{Binding Price,StringFormat='${0}'}"
+                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
+                           FontAttributes="Bold"
+                           Grid.Column="1" />
+                </Grid>
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="{x:Static resx:MobileLabel.Delivery_Fee}"
+                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                    <Label Text="{Binding DeliveryFee,StringFormat='${0}'}"
+                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
+                           FontAttributes="Bold"
+                           Grid.Column="1" />
+                </Grid>
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="{x:Static resx:MobileLabel.Total}"
+                           VerticalTextAlignment="Center"
+                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                    <Label Text="{Binding Total,StringFormat='${0}'}"
+                           TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           Grid.Column="1" />
+                </Grid>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="2">
+                <BoxView HeightRequest="0.4"
+                         BackgroundColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
+                <Grid ColumnDefinitions="*,*"
+                      Padding="10"
+                      ColumnSpacing="5">
+                    <Label Text="{Binding Total,StringFormat='${0}'}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           VerticalTextAlignment="Center"
+                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                    <Button TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
+                            Grid.Column="1"
+                            Command="{Binding PlaceOrderCommand}"
+                            Text="{x:Static resx:MobileLabel.Place_Order}"
+                            BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}" />
+                </Grid>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </Grid>
 </ContentPage>

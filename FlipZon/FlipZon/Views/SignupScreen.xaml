@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlipZon.Views.SignupScreen"
-             xmlns:FAIcons="clr-namespace:FlipZon.Utilities.Helpers"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:customRenders="clr-namespace:FlipZon.CustomRenders"
              x:DataType="vm:SignupScreenViewModel"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              Title="SignupScreen">
     <VerticalStackLayout Margin="10"
                          Spacing="15">
@@ -18,15 +18,15 @@
                      BackgroundColor="Transparent" />
         <VerticalStackLayout Spacing="3"
                              Margin="0,20,0,0">
-            <Label Text="Sign Up!"
-                   TextColor="Black"
+            <Label Text="{x:Static resx:MobileLabel.Signup}"
+                   TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                    FontAttributes="Bold"
                    FontSize="30" />
             <HorizontalStackLayout Spacing="3">
-                <Label Text="Already have an Account?"
+                <Label Text="{x:Static resx:MobileLabel.Already_have_an_Account}"
                        FontAttributes="Bold" />
-                <Label Text="Sign in"
-                       TextColor="Orange"
+                <Label Text="{x:Static resx:MobileLabel.Sign_In}"
+                       TextColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
                        TextDecorations="Underline">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"
@@ -36,44 +36,35 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
         <VerticalStackLayout Spacing="5">
-            <Label Text="Name"
+            <Label Text="{x:Static resx:MobileLabel.Name}"
                    FontAttributes="Bold" />
-            <Frame HasShadow="False"
-                   Padding="0"
-                   CornerRadius="5"
-                   BorderColor="Gray">
-                <customRenders:CustomEntry Placeholder="Enter your Name"
+            <Frame Style="{x:StaticResource FrameStyle}">
+                <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_your_Name}"
                                            Margin="5,0"
-                                           PlaceholderColor="Gray" />
+                                           PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
             </Frame>
         </VerticalStackLayout>
         <VerticalStackLayout Spacing="5">
-            <Label Text="Email"
+            <Label Text="{x:Static resx:MobileLabel.Email}"
                    FontAttributes="Bold" />
-            <Frame HasShadow="False"
-                   Padding="0"
-                   CornerRadius="5"
-                   BorderColor="Gray">
-                <customRenders:CustomEntry Placeholder="Enter your Email"
+            <Frame Style="{x:StaticResource FrameStyle}">
+                <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_Your_Email}"
                                            Margin="5,0"
                                            Keyboard="Email"
-                                           PlaceholderColor="Gray" />
+                                           PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
             </Frame>
         </VerticalStackLayout>
         <VerticalStackLayout Spacing="5">
-            <Label Text="Password"
+            <Label Text="{x:Static resx:MobileLabel.Password}"
                    FontAttributes="Bold" />
-            <Frame HasShadow="False"
-                   Padding="0"
-                   CornerRadius="5"
-                   BorderColor="Gray">
+            <Frame Style="{x:StaticResource FrameStyle}">
                 <Grid ColumnDefinitions="*,Auto"
                       ColumnSpacing="5"
                       Padding="5,0">
-                    <customRenders:CustomEntry Placeholder="Enter your Password"
+                    <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_your_Password}"
                                                IsPassword="{Binding CanShowPassword,Converter={x:StaticResource inverseBoolConverter}}"
                                                Grid.Column="0"
-                                               PlaceholderColor="Gray" />
+                                               PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
                     <ImageButton Source="eye_close.png"
                                  WidthRequest="20"
                                  HeightRequest="20"
@@ -93,11 +84,11 @@
             </Frame>
         </VerticalStackLayout>
         <VerticalStackLayout Margin="0,20,0,0">
-            <Button Text="Signup"
+            <Button Text="{x:Static resx:MobileLabel.Signup}"
                     CornerRadius="20"
                     HeightRequest="40"
-                    BackgroundColor="Orange"
-                    TextColor="White"
+                    BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
+                    TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                     FontAttributes="Bold" />
         </VerticalStackLayout>
     </VerticalStackLayout>

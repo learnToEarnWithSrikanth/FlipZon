@@ -67,11 +67,47 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Address Screen.
+        /// </summary>
+        internal static string Add_Address_Screen {
+            get {
+                return ResourceManager.GetString("Add_Address_Screen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Address.
+        /// </summary>
+        internal static string Add_New_Address {
+            get {
+                return ResourceManager.GetString("Add_New_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add To cart.
+        /// </summary>
+        internal static string Add_To_cart {
+            get {
+                return ResourceManager.GetString("Add_To_cart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Address {
             get {
                 return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address List Screen.
+        /// </summary>
+        internal static string Address_List_Screen {
+            get {
+                return ResourceManager.GetString("Address_List_Screen", resourceCulture);
             }
         }
         
@@ -85,11 +121,29 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cart Screen.
+        /// </summary>
+        internal static string Cart_Screen {
+            get {
+                return ResourceManager.GetString("Cart_Screen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Details.
         /// </summary>
         internal static string Contact_Details {
             get {
                 return ResourceManager.GetString("Contact Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -103,11 +157,20 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delivery Fee.
+        /// </summary>
+        internal static string Delivery_Fee {
+            get {
+                return ResourceManager.GetString("Delivery_Fee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t have the Account.
         /// </summary>
-        internal static string Don_t_have_the_Account {
+        internal static string Dont_have_the_Account {
             get {
-                return ResourceManager.GetString("Don\'t have the Account", resourceCulture);
+                return ResourceManager.GetString("Dont_have_the_Account", resourceCulture);
             }
         }
         
@@ -211,6 +274,24 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hang on Loading More Products.
+        /// </summary>
+        internal static string Hang_on_Loading_More_Products {
+            get {
+                return ResourceManager.GetString("Hang_on_Loading_More_Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile No.
         /// </summary>
         internal static string Mobile_No {
@@ -256,6 +337,51 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Place Order.
+        /// </summary>
+        internal static string Place_Order {
+            get {
+                return ResourceManager.GetString("Place_Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        internal static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Details Screen.
+        /// </summary>
+        internal static string Product_Details_Screen {
+            get {
+                return ResourceManager.GetString("Product_Details_Screen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        internal static string Products {
+            get {
+                return ResourceManager.GetString("Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products Screen.
+        /// </summary>
+        internal static string Products_Screen {
+            get {
+                return ResourceManager.GetString("Products_Screen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Address.
         /// </summary>
         internal static string Save_Address {
@@ -265,11 +391,29 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save For Later.
+        /// </summary>
+        internal static string Save_For_Later {
+            get {
+                return ResourceManager.GetString("Save_For_Later", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search Products.
         /// </summary>
         internal static string Search_Products {
             get {
                 return ResourceManager.GetString("Search_Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Screen.
+        /// </summary>
+        internal static string Search_Screen {
+            get {
+                return ResourceManager.GetString("Search_Screen", resourceCulture);
             }
         }
         
@@ -297,6 +441,15 @@ namespace FlipZon.Resources.Localization {
         internal static string Signup {
             get {
                 return ResourceManager.GetString("Signup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         

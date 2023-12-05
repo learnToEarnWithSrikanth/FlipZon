@@ -5,33 +5,32 @@
              xmlns:Vm="clr-namespace:FlipZon.ViewModels"
              xmlns:models="clr-namespace:FlipZon.Models"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
-             BackgroundColor="White"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              NavigationPage.HasNavigationBar="False"
              x:DataType="Vm:HomeScreenViewModel">
     <Grid RowSpacing="10"
           RowDefinitions="Auto,Auto,Auto,*">
         <Grid ColumnDefinitions="*,Auto"
               Padding="10,0">
-            <Label Text="FlipZon"
-                   TextColor="Green"
-                VerticalTextAlignment="Center"
+            <Label Text="{x:Static resx:MobileLabel.FlipZon}"
+                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
+                   VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    Style="{x:StaticResource BoldBlack12}"
                    FontSize="20" />
             <HorizontalStackLayout Grid.Column="1"
                                    Spacing="15"
                                    HorizontalOptions="End">
-              <ImageButton Source="cart.png"
-                     WidthRequest="20"
-                           Command="{Binding NaviagateToCartScreenCommand}"
-                           BackgroundColor="Transparent"
-                     HeightRequest="20"/>
-              <ImageButton Source="search.png"
-                     WidthRequest="20"
-                            Command="{Binding NaviagateToSearchScreenCommand}"
-                           BackgroundColor="Transparent"
-                     HeightRequest="20"/>
-
+                <ImageButton Source="cart.png"
+                             WidthRequest="20"
+                             Command="{Binding NaviagateToCartScreenCommand}"
+                             BackgroundColor="Transparent"
+                             HeightRequest="20" />
+                <ImageButton Source="search.png"
+                             WidthRequest="20"
+                             Command="{Binding NaviagateToSearchScreenCommand}"
+                             BackgroundColor="Transparent"
+                             HeightRequest="20" />
             </HorizontalStackLayout>
         </Grid>
         <customcontrols:CustomCarosuelView ItemSource="{Binding Images}"
@@ -40,15 +39,15 @@
         <Grid ColumnDefinitions="*,Auto"
               Grid.Row="2"
               Margin="10,0">
-            <Label Text="Most Popular"
+            <Label Text="{x:Static resx:MobileLabel.Most_Popular}"
                    FontSize="14"
                    VerticalTextAlignment="Center"
                    Style="{x:StaticResource BoldBlack12}" />
-            <Label Text="See More"
+            <Label Text="{x:Static resx:MobileLabel.See_More}"
                    Grid.Column="1"
                    VerticalTextAlignment="Center"
                    FontSize="12"
-                   TextColor="Green">
+                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1"
                                           Command="{Binding NavigateToProductsScreen}" />
@@ -78,6 +77,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
-                                               Grid.RowSpan="4"/>
+                                               Grid.RowSpan="4" />
     </Grid>
 </ContentPage>

@@ -7,7 +7,7 @@
 
   <converter:InverseBoolConverter x:Key="inverseBoolConverter"/>
   <Style x:Key="RegularBlack12" TargetType="Label">
-    <Setter Property="TextColor" Value="{x:StaticResource BlackColor}"/>
+    <Setter Property="TextColor" Value="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"/>
     <Setter Property="FontSize" Value="12"/>
   </Style>
 
@@ -16,7 +16,7 @@
   </Style>
 
    <Style x:Key="RegularGray12" TargetType="Label" BasedOn="{x:StaticResource RegularBlack12}" >
-       <Setter Property="TextColor" Value="{x:StaticResource GrayColor}"/>
+       <Setter Property="TextColor" Value="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"/>
   </Style>
 
    <Style x:Key="BoldGray12" TargetType="Label" BasedOn="{x:StaticResource RegularGray12}" >
@@ -27,7 +27,7 @@
        <Setter Property="HasShadow" Value="False"/>
        <Setter Property="Padding" Value="0"/>
      <Setter Property="CornerRadius" Value="5"/>
-      <Setter Property="BorderColor" Value="{x:StaticResource GrayColor}"/>
+      <Setter Property="BorderColor" Value="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"/>
   </Style>
 
 </ResourceDictionary>
