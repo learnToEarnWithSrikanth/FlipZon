@@ -102,7 +102,11 @@ namespace FlipZon.ViewModels
                     };
                     var response = await DataBase.DeleteCartItem(cart);
                     if (response != 0)
+                    {
+                        DisplayToast(string.Format("{0} delted from the cart", cartItem.ProductInfo.Title), MessageType.Postive);
                         await GetCartItems();
+                    }
+                        
                 }
             }
             catch (Exception ex)

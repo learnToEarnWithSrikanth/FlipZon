@@ -1,4 +1,6 @@
-﻿namespace MauiSampleTest.ViewModels
+﻿using Controls.UserDialogs.Maui;
+
+namespace MauiSampleTest.ViewModels
 {
     public class BaseViewModel : BindableBase, IDestructible, IPageLifecycleAware, INavigationAware, IInitialize, INavigationPageOptions
     {
@@ -138,6 +140,16 @@
             if (accessType == NetworkAccess.Internet)
                 return true;
             return false;
+        }
+
+        public void DisplayToast(string message,MessageType messageType)
+        {
+            var icon = messageType == MessageType.Postive ? "tick.png" : "wrong.png";
+            UserDialogs.Instance.ShowToast(new ToastConfig()
+            {
+                Icon = icon,
+                Message = message,
+            });
         }
 
         private async void ExecuteNaviagateToSearchScreenCommand()

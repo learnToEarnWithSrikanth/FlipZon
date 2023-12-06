@@ -75,12 +75,12 @@
                     var response = await DataBase.CreateAccount(account);
                     if (response == 1)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Account Creation Success", "Account Created Successfully, Please login to use the app", "Ok");
+                        DisplayToast("Account Created Successfully, Please login to use the app",MessageType.Postive);
                         await NavigationService.NavigateAsync(nameof(LoginScreen));
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Account Creation Failed", "Some Error Occured While Creating the account, Please login to use the app", "Ok");
+                        DisplayToast("Account Created Failed, Please try again Later",MessageType.Negative);
                     }
                 }
             }
@@ -108,7 +108,7 @@
                 if (Password != Confirmpassword)
                 {
                     isValid = false;
-                    await Application.Current.MainPage.DisplayAlert("Password Mistach", "Password and confirm password not matched", "Ok");
+                    DisplayToast("Password and confirm password not matched",MessageType.Negative);
                     return isValid=false;
                 }
                 

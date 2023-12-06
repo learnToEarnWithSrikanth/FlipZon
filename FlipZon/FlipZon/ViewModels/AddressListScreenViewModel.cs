@@ -1,4 +1,6 @@
-﻿namespace FlipZon.ViewModels
+﻿using Controls.UserDialogs.Maui;
+
+namespace FlipZon.ViewModels
 {
     public class AddressListScreenViewModel : BaseViewModel
     {
@@ -109,7 +111,11 @@
                 var response = await DataBase.DeleteAddress(addressModel);
                 if (response==1)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Success", "Address Deleted Succesfully", "Ok");
+                    UserDialogs.Instance.ShowToast(new ToastConfig()
+                    {
+                        Icon = "bin.png",
+                        Message = "Address Deleted Successfully",
+                    });
                     await GetAddressList();
                 }
             }

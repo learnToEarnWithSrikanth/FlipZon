@@ -125,13 +125,13 @@
                 {
                     var response = await DataBase.UpdateAddress(addNewAddress);
                     if (response == 1)
-                        await Application.Current.MainPage.DisplayAlert("Success", "Address Updated successfully", "Ok");
+                        DisplayToast("Address Updated successfully", MessageType.Postive);
                 }
                 else
                 {
                     var response = await DataBase.AddAddress(addNewAddress);
                     if (response == 1)
-                        await Application.Current.MainPage.DisplayAlert("Success", "Address added successfully", "Ok");
+                        DisplayToast("Address added successfully", MessageType.Postive);
                 }
                 await NavigationService.NavigateAsync(nameof(AddressListScreen));
             }

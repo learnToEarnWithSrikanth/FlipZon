@@ -44,13 +44,13 @@
                     var response= await DataBase.GetAccount(account);
                     if (response == null)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Invalid Credentials", "InValid Credentails! Please Try again", "Ok");
+                        DisplayToast("InValid Credentails! Please Try again", MessageType.Negative);
                         return;
                     }
                     Preferences.Set(Constants.USER_NAME, response.Name);
                     Preferences.Set(Constants.EMAIL, response.Email);
                     Preferences.Set(Constants.USER_ID, response.Id);
-                    await Application.Current.MainPage.DisplayAlert("Login Success", "Logged Successfully", "Ok");
+                    DisplayToast("Login Success", MessageType.Postive);
                     await NavigationService.NavigateAsync(nameof(HomeScreen));
                 }
             }

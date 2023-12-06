@@ -82,7 +82,7 @@
                 if(recordsInsertedCount==1)
                 {
                     IsProductExistsInCart = true;
-                    await Application.Current.MainPage.DisplayAlert("Success", "Product Added To cart", "Ok");
+                    DisplayToast(string.Format("{0} added to cart",productDetails.Title), MessageType.Postive);
                     return;
                 }
             }

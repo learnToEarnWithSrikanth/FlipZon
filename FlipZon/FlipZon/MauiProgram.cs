@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Controls.UserDialogs.Maui;
 using FlipZon.CustomRenders;
 #if ANDROID
 using FlipZon.Platforms.Android.Handlers;
@@ -16,6 +17,10 @@ public static class MauiProgram
         builder
             .UsePrismApp<App>(PrismStartup.Configure)
             .UseMauiCommunityToolkit()
+            .UseUserDialogs(() =>
+            {
+                 ToastConfig.DefaultCornerRadius = 15;
+            })
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
