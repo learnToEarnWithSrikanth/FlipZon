@@ -6,92 +6,115 @@
              xmlns:models="clr-namespace:FlipZon.Models"
              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="Vm:AddressListScreenViewModel"
              Title="AddressListScreen">
     <Grid RowDefinitions="*,Auto"
-          Margin="10">
+          Padding="10">
         <Grid RowDefinitions="Auto,*"
               RowSpacing="10">
             <customcontrols:CustomNavigationBar BackCommand="{Binding BackCommand}"
                                                 Text="{x:Static resx:MobileLabel.Address_List_Screen}" />
-            <CollectionView ItemsSource="{Binding AddressList}"
-                            Grid.Row="1"
-                            x:Name="AddressCollection">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                     VerticalItemSpacing="10" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:AddressModel">
-                        <Border Stroke="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
-                                StrokeThickness="1"
-                                StrokeShape="RoundRectangle 5">
-                            <VerticalStackLayout Spacing="10"
-                                                 Padding="10">
-                                <Grid ColumnDefinitions="Auto,*"
-                                      ColumnSpacing="20">
-                                    <ImageButton Source="radio_button.png"
-                                                 WidthRequest="25"
-                                                 HeightRequest="25"
-                                                 BackgroundColor="Transparent"
-                                                 VerticalOptions="Center"
-                                                 Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.AddressSelectionChangedCommand}"
-                                                 CommandParameter="{Binding .}"
-                                                 HorizontalOptions="Center">
-                                        <ImageButton.Triggers>
-                                            <DataTrigger TargetType="ImageButton"
-                                                         Binding="{Binding IsSelected}"
-                                                         Value="True">
-                                                <Setter Property="Source"
-                                                        Value="radio_button_active.png" />
-                                            </DataTrigger>
-                                        </ImageButton.Triggers>
-                                    </ImageButton>
-                                    <VerticalStackLayout Grid.Column="1"
-                                                         Spacing="5">
-                                        <Label Text="{Binding Name}"
-                                               TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
-                                               FontAttributes="Bold" />
-                                        <Label Text="{Binding Email}"
-                                               TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                                        <Label Text="{Binding DoorNo}"
-                                               TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                                        <Label Text="{Binding Address}"
-                                               TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                                        <Label Text="{Binding Pincode}"
-                                               TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                                        <Label Text="{Binding PhoneNumber,StringFormat='Phone Number :{0}'}"
-                                               TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                                    </VerticalStackLayout>
-                                </Grid>
+            <Grid IsVisible="{Binding IsAddressListEmpty,Converter={toolkit:InvertedBoolConverter}}"
+                  Grid.Row="1">
+                <CollectionView ItemsSource="{Binding AddressList}"
+                                x:Name="AddressCollection">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:AddressModel">
+                            <Border Stroke="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 5">
                                 <VerticalStackLayout Spacing="10"
-                                                     IsVisible="{Binding IsSelected}">
-                                    <Button Text="{x:Static resx:MobileLabel.Deliver_to_this_addrees}"
-                                            BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
-                                            TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
-                                            CornerRadius="5"
-                                            Padding="10" />
-                                    <Button Text="{x:Static resx:MobileLabel.Edit_Address}"
-                                            TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
-                                            BorderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
-                                            BorderWidth="1"
-                                            CommandParameter="{Binding .}"
-                                            Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.EditAddressCommand}"
-                                            FontFamily="OpenSansSemibold"
-                                            BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
-                                            CornerRadius="5"
-                                            Padding="10" />
+                                                     Padding="10">
+                                    <Grid ColumnDefinitions="Auto,*"
+                                          ColumnSpacing="20">
+                                        <ImageButton Source="radio_button.png"
+                                                     WidthRequest="25"
+                                                     HeightRequest="25"
+                                                     BackgroundColor="Transparent"
+                                                     VerticalOptions="Center"
+                                                     Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.AddressSelectionChangedCommand}"
+                                                     CommandParameter="{Binding .}"
+                                                     HorizontalOptions="Center">
+                                            <ImageButton.Triggers>
+                                                <DataTrigger TargetType="ImageButton"
+                                                             Binding="{Binding IsSelected}"
+                                                             Value="True">
+                                                    <Setter Property="Source"
+                                                            Value="radio_button_active.png" />
+                                                </DataTrigger>
+                                            </ImageButton.Triggers>
+                                        </ImageButton>
+                                        <VerticalStackLayout Grid.Column="1"
+                                                             Spacing="5">
+                                            <Grid ColumnDefinitions="*,Auto"
+                                                  ColumnSpacing="10">
+                                                <Label Text="{Binding Name}"
+                                                       TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
+                                                       FontAttributes="Bold" />
+                                                <ImageButton Grid.Column="1"
+                                                             BackgroundColor="Transparent"
+                                                             Source="bin.png"
+                                                             WidthRequest="20"
+                                                             HeightRequest="20"
+                                                             IsVisible="{Binding IsSelected}"
+                                                             Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.DeleteAddressCommand}"
+                                                             CommandParameter="{Binding .}"
+                                                             HorizontalOptions="EndAndExpand"
+                                                             VerticalOptions="CenterAndExpand" />
+                                            </Grid>
+                                            <Label Text="{Binding Email}"
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                                            <Label Text="{Binding DoorNo}"
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                                            <Label Text="{Binding Address}"
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                                            <Label Text="{Binding Pincode}"
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                                            <Label Text="{Binding PhoneNumber,StringFormat='Phone Number :{0}'}"
+                                                   TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                    <VerticalStackLayout Spacing="10"
+                                                         IsVisible="{Binding IsSelected}">
+                                        <Button Text="{x:Static resx:MobileLabel.Deliver_to_this_addrees}"
+                                                BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
+                                                TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
+                                                CornerRadius="5"
+                                                Padding="10" />
+                                        <Button Text="{x:Static resx:MobileLabel.Edit_Address}"
+                                                TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
+                                                BorderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
+                                                BorderWidth="1"
+                                                CommandParameter="{Binding .}"
+                                                Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.EditAddressCommand}"
+                                                FontFamily="OpenSansSemibold"
+                                                BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
+                                                CornerRadius="5"
+                                                Padding="10" />
+                                    </VerticalStackLayout>
                                 </VerticalStackLayout>
-                            </VerticalStackLayout>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                      Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.AddressSelectionChangedCommand}"
-                                                      CommandParameter="{Binding .}" />
-                            </Border.GestureRecognizers>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                          Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.AddressSelectionChangedCommand}"
+                                                          CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <Grid Grid.Row="1"
+                  IsVisible="{Binding IsAddressListEmpty}">
+                <Label Text="OOPS!! No Address found please add new address by clicking the below button"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       FontSize="20" />
+            </Grid>
         </Grid>
         <Button Text="{x:Static resx:MobileLabel.Add_New_Address}"
                 Grid.Row="1"
@@ -102,5 +125,7 @@
                 BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                 CornerRadius="5"
                 Padding="10" />
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="2" />
     </Grid>
 </ContentPage>

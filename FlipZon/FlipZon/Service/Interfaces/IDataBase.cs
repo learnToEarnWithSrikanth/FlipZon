@@ -1,4 +1,6 @@
-﻿namespace FlipZon.Service.Interfaces
+﻿using Android.Database.Sqlite;
+
+namespace FlipZon.Service.Interfaces
 {
     public interface IDataBase
     {
@@ -16,7 +18,19 @@
         Task<SignupModel> GetAccount(SignupModel signupModel);
         #endregion
 
+        #region Address operations
 
+        Task<List<AddressModel>> GetAllAddressByUserId(int userId);
+
+        Task<int> AddAddress(AddressModel addressModel);
+
+        Task<int> DeleteAddress(AddressModel addressModel);
+
+        Task<int> UpdateAddress(AddressModel addressModel);
+
+        Task<int> UpdateAllAddress();
+
+        #endregion
     }
 }
 

@@ -200,4 +200,14 @@
           xml:space="preserve">
         <value>Enter Confirm Password</value>
     </data>
+     <data name="Edit_Address"
+          xml:space="preserve">
+        <value>Edit Address</value>
+    </data>
+     <data name="Update_Address"
+          xml:space="preserve">
+        <value>Update Address</value>
+    </data>
+   
+    
 </root>

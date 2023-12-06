@@ -8,7 +8,13 @@
         {
             get => addressList;
             set { SetProperty(ref addressList, value); }
-        }   
+        }
+        private bool isAddressListEmpty;
+        public bool IsAddressListEmpty
+        {
+            get => isAddressListEmpty;
+            set { SetProperty(ref isAddressListEmpty, value); }
+        }
         #endregion
 
         #region CTOR
@@ -31,51 +37,26 @@
         public DelegateCommand<AddressModel> EditAddressCommand =>
             editAddressCommand ?? (editAddressCommand = new DelegateCommand<AddressModel>( async (AddressModel) => await ExecuteEditAddressCommand(AddressModel)));
 
+        private DelegateCommand<AddressModel> deleteAddressCommand;
+        public DelegateCommand<AddressModel> DeleteAddressCommand =>
+            deleteAddressCommand ?? (deleteAddressCommand = new DelegateCommand<AddressModel>(async (AddressModel) => await ExecuteDeleteAddressCommand(AddressModel)));
+
+
         private async Task ExecuteEditAddressCommand(AddressModel editableAddressModel)
         {
             var parameters = new NavigationParameters
             {
-                { "EditableAddress", editableAddressModel }
+                { Constants.EDITABLE_ADDRESS, editableAddressModel }
             };
             await NavigationService.NavigateAsync(nameof(AddAddressScreen),parameters);
         }
-
-
         #endregion
 
         #region Methods
 
         private async void ExecuteAddNewAddressCommand()
         {
-            await NavigationService.NavigateAsync("AddAddressScreen");
-        }
-
-        public void GetAddressList()
-        {
-            AddressList = new ObservableCollection<AddressModel>
-            {
-                new AddressModel
-                {
-                    Id=1,
-                    Name="Srikanth",
-                    PhoneNumber="1234567890",
-                    Address="Sbi Street Podalakur",
-                    Pincode="524345",
-                    DoorNo="1-23",
-                    Email="Srikath@gmail.com",
-                    IsSelected=true,
-                },
-                new AddressModel
-                {
-                    Id=2,
-                    Name="Srikanth",
-                    PhoneNumber="1234567890",
-                    Address="Sbi Street Podalakur",
-                    Email="Srikath@gmail.com",
-                    Pincode="524345",
-                    DoorNo="1-23",
-                }
-            };
+            await NavigationService.NavigateAsync(nameof(AddAddressScreen));
         }
 
         private void ExecuteAddressSelectionChangedCommand(AddressModel addressModel)
@@ -90,22 +71,51 @@
         #endregion
 
         #region Overriding Methods
-        public override void Initialize(INavigationParameters parameters)
+        public override async void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);
-            GetAddressList();
-            if (parameters.ContainsKey("NewAddress"))
+
+            try
             {
-                var addedAddress= parameters.GetValue<AddressModel>("NewAddress");
-                AddressList.Add(addedAddress);
-                ExecuteAddressSelectionChangedCommand(addedAddress);
+                IsBusy = true;
+                await GetAddressList();
             }
-            if (parameters.ContainsKey("EditedAddress"))
+            catch (Exception ex)
             {
-                var addedAddress = parameters.GetValue<AddressModel>("EditedAddress");
-                var selectedAddress = AddressList.Where(x => x.Id == addedAddress.Id).FirstOrDefault();
-                AddressList[AddressList.IndexOf(selectedAddress)] = addedAddress;
-                ExecuteAddressSelectionChangedCommand(addedAddress);
+
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+        public async Task GetAddressList()
+        {
+            try
+            {
+                var response = await DataBase.GetAllAddressByUserId(Preferences.Get(Constants.USER_ID, -1));
+                AddressList = new ObservableCollection<AddressModel>(response);
+                IsAddressListEmpty = AddressList?.Count > 0 ? false : true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public async Task ExecuteDeleteAddressCommand(AddressModel addressModel)
+        {
+            try
+            {
+                var response = await DataBase.DeleteAddress(addressModel);
+                if (response==1)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Success", "Address Deleted Succesfully", "Ok");
+                    await GetAddressList();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
         #endregion

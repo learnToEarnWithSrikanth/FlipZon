@@ -15,13 +15,13 @@
             get => name;
             set { SetProperty(ref name, value); }
         }
-        private string title = "Add New Address";
+        private string title = MobileLabel.Add_New_Address;
         public string Title
         {
             get => title;
             set { SetProperty(ref title, value); }
         }
-        private string buttonText = "Save Address";
+        private string buttonText = MobileLabel.Save_Address;
         public string ButtonText
         {
             get => buttonText;
@@ -91,37 +91,58 @@
         #region Methods
         private async Task ExecuteSaveAddressCommand()
         {
-            if (
-                string.IsNullOrEmpty(Email)||
-                string.IsNullOrEmpty(Address) ||
-                string.IsNullOrEmpty(Name) ||
-                string.IsNullOrEmpty(PhoneNumber) ||
-                string.IsNullOrEmpty(DoorNo) ||
-                string.IsNullOrEmpty(Pincode))
+            try
             {
-                await Application.Current.MainPage.DisplayAlert("Enter all the Fields", "Please fill all the Required Field", "Ok");
-                return;
+                if (string.IsNullOrEmpty(Email) ||
+                    string.IsNullOrEmpty(Address) ||
+                    string.IsNullOrEmpty(Name) ||
+                    string.IsNullOrEmpty(PhoneNumber) ||
+                    string.IsNullOrEmpty(DoorNo) ||
+                    string.IsNullOrEmpty(Pincode))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Enter all the Fields", "Please fill all the Required Field", "Ok");
+                    return;
+                }
+                var addNewAddress = new AddressModel
+                {
+                    Address = Address,
+                    Pincode = Pincode,
+                    PhoneNumber = PhoneNumber,
+                    DoorNo = DoorNo,
+                    Name = Name,
+                    IsSelected = true,
+                    UserId = Preferences.Get(Constants.USER_ID, -1),
+                    Email = Email,
+                    Id = Id
+                };
+                IsBusy = true;
+                var result = await DataBase.GetAllAddressByUserId(Preferences.Get(Constants.USER_ID, -1));
+                if (result != null && result.Count > 0)
+                {
+                    await DataBase.UpdateAllAddress();
+                }
+                if (isEditAddreesMode == true)
+                {
+                    var response = await DataBase.UpdateAddress(addNewAddress);
+                    if (response == 1)
+                        await Application.Current.MainPage.DisplayAlert("Success", "Address Updated successfully", "Ok");
+                }
+                else
+                {
+                    var response = await DataBase.AddAddress(addNewAddress);
+                    if (response == 1)
+                        await Application.Current.MainPage.DisplayAlert("Success", "Address added successfully", "Ok");
+                }
+                await NavigationService.NavigateAsync(nameof(AddressListScreen));
             }
-            var addNewAddress = new AddressModel
+            catch (Exception ex)
             {
-                Address=Address,
-                Pincode=Pincode,
-                PhoneNumber = PhoneNumber,
-                DoorNo=DoorNo,
-                Name=Name,
-                Email=Email,
-                Id=Id
-            };
-            var parameters = new NavigationParameters();
-            if (isEditAddreesMode == true)
-            {
-                parameters.Add("EditedAddress", addNewAddress);
+
             }
-            else
+            finally
             {
-                parameters.Add("NewAddress", addNewAddress);
+                IsBusy = false;
             }
-            await NavigationService.NavigateAsync(nameof(AddressListScreen), parameters);
         }
         #endregion
 
@@ -129,12 +150,12 @@
         public override void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);
-            if (parameters.ContainsKey("EditableAddress"))
+            if (parameters.ContainsKey(Constants.EDITABLE_ADDRESS))
             {
-                var ediatbaleAddress= parameters.GetValue<AddressModel>("EditableAddress");
+                var ediatbaleAddress= parameters.GetValue<AddressModel>(Constants.EDITABLE_ADDRESS);
                 IsEditAddreesMode = true;
-                Title = "Edit Address";
-                ButtonText = "Update Address";
+                Title = MobileLabel.Edit_Address;
+                ButtonText = MobileLabel.Update_Address;
                 Email = ediatbaleAddress?.Email;
                 Name = ediatbaleAddress?.Name;
                 Pincode = ediatbaleAddress?.Pincode;

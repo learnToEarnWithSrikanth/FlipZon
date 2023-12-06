@@ -13,7 +13,7 @@
                 sqliteDatabase = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
                 sqliteDatabase.CreateTableAsync<CartRequestDto>().Wait();
                 sqliteDatabase.CreateTableAsync<SignupModel>().Wait();
-
+                sqliteDatabase.CreateTableAsync<AddressModel>().Wait();
             }
             catch (Exception ex)
             {
@@ -92,6 +92,38 @@
 
 
 
+        #endregion
+
+        #region Address operations
+        public async Task<List<AddressModel>> GetAllAddressByUserId(int userId)
+        {
+            return await sqliteDatabase.Table<AddressModel>().Where(x => x.UserId == userId).ToListAsync();
+        }
+        public async Task<int> AddAddress(AddressModel addressModel)
+        {
+            return await sqliteDatabase.InsertAsync(addressModel);
+        }
+        public async Task<int> DeleteAddress(AddressModel addressModel)
+        {
+            return await sqliteDatabase.DeleteAsync(addressModel);
+        }
+        public async Task<int> UpdateAddress(AddressModel addressModel)
+        {
+            var response = await sqliteDatabase.Table<AddressModel>().Where(x => x.Id == addressModel.Id).FirstOrDefaultAsync();
+            if(response!=null)
+                return await sqliteDatabase.UpdateAsync(addressModel);
+            return 0;
+        }
+        public async Task<int> UpdateAllAddress()
+        {
+            var resposne= await GetAllAddressByUserId(Preferences.Get(Constants.USER_ID, -1));
+            if (resposne != null & resposne.Count>0)
+            {
+                resposne.ForEach(x => x.IsSelected = false);
+                return await sqliteDatabase.UpdateAllAsync(resposne);
+            }
+            return 0;
+        }
         #endregion
     }
 }

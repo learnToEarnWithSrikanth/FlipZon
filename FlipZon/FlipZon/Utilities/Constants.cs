@@ -25,6 +25,7 @@
 
         #region Navigation Parameters
         public const string PRODUCT_ID = "ProductId";
+        public const string EDITABLE_ADDRESS= "EditableAddress";
         #endregion
 
         #region Database Configuration

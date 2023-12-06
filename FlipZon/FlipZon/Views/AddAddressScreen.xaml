@@ -131,5 +131,6 @@
                 Command="{Binding SaveAddressCommand}"
                 TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                 Text="{Binding ButtonText}" />
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"/>
     </Grid>
 </ContentPage>

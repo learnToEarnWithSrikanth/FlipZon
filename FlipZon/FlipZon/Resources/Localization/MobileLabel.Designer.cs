@@ -472,6 +472,15 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Address.
+        /// </summary>
+        internal static string Update_Address {
+            get {
+                return ResourceManager.GetString("Update_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome.
         /// </summary>
         internal static string Welcome {

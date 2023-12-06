@@ -10,4 +10,5 @@ global using MauiSampleTest.ViewModels;
 global using FlipZon.Service.Interfaces;
 global using System.Net.Http.Headers;
 global using SQLite;
+global using FlipZon.Resources.Localization;
 

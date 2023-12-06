@@ -104,6 +104,7 @@
     <None Remove="ViewModels\Dialogs\" />
     <None Remove="Views\ContentViews\" />
     <None Remove="Resources\Images\dog.png" />
+    <None Remove="Resources\Images\bin.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\" />
