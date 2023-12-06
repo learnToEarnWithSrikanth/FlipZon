@@ -6,18 +6,21 @@
              NavigationPage.HasNavigationBar="True"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:models="clr-namespace:FlipZon.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:CartScreenViewModel">
-    <Grid RowDefinitions="Auto,*,Auto"
+    <Grid RowDefinitions="Auto,*"
           RowSpacing="10">
         <customcontrols:CustomNavigationBar Text="{x:Static resx:MobileLabel.Cart_Screen}"
                                             Padding="10,5"
                                             BackCommand="{Binding BackCommand}" />
-        <CollectionView ItemsSource="{Binding CartItems}"
+        <Grid RowDefinitions="*,Auto"
+              Grid.Row="1"
+              IsVisible="{Binding IsCartEmpty,Converter={toolkit:InvertedBoolConverter}}">
+           <CollectionView ItemsSource="{Binding CartItems}"
                         x:Name="CartCollection"
-                        Margin="10,0"
-                        Grid.Row="1">
+                        Margin="10,0">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  VerticalItemSpacing="10" />
@@ -71,14 +74,15 @@
                                                                Spacing="8">
                                             <!--<Label Text="{Binding ProductInfo.DiscountPercentage,StringFormat='{0}% off'}"
                                                    TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}" />-->
-                                            <Label Text="{Binding SubTotal,StringFormat='${0}'}"
+                                            <Label Text="{Binding SubTotal,StringFormat='${0:F2}'}"
                                                    FontSize="14"
                                                    TextDecorations="Strikethrough"
                                                    Style="{x:StaticResource BoldGray12}" />
-                                            <Label Text="{Binding DiscountedSubTotal,StringFormat='${0}'}"
+                                            <Label Text="{Binding DiscountedSubTotal, StringFormat='${0:F2}'}"
                                                    TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                                                    FontSize="15"
                                                    FontAttributes="Bold" />
+
                                         </HorizontalStackLayout>
                                          <Border StrokeThickness="1"
                                                     Grid.Column="1"
@@ -115,14 +119,14 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <VerticalStackLayout Grid.Row="2"
+           <VerticalStackLayout Grid.Row="1"
                              Spacing="10">
             <VerticalStackLayout Padding="10"
                                  Spacing="10">
                 <Grid ColumnDefinitions="*,Auto">
                     <Label Text="{x:Static resx:MobileLabel.Price}"
                            TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                    <Label Text="{Binding Price,StringFormat='${0}'}"
+                    <Label Text="{Binding Price,StringFormat='${0:F2}'}"
                            TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                            FontAttributes="Bold"
                            Grid.Column="1" />
@@ -130,7 +134,7 @@
                 <Grid ColumnDefinitions="*,Auto">
                     <Label Text="{x:Static resx:MobileLabel.Delivery_Fee}"
                            TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                    <Label Text="{Binding DeliveryFee,StringFormat='${0}'}"
+                    <Label Text="{Binding DeliveryFee,StringFormat='${0:F2}'}"
                            TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                            FontAttributes="Bold"
                            Grid.Column="1" />
@@ -139,7 +143,7 @@
                     <Label Text="{x:Static resx:MobileLabel.Total}"
                            VerticalTextAlignment="Center"
                            TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
-                    <Label Text="{Binding Total,StringFormat='${0}'}"
+                    <Label Text="{Binding Total,StringFormat='${0:F2}'}"
                            TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
                            FontSize="18"
                            FontAttributes="Bold"
@@ -152,7 +156,7 @@
                 <Grid ColumnDefinitions="*,*"
                       Padding="10"
                       ColumnSpacing="5">
-                    <Label Text="{Binding Total,StringFormat='${0}'}"
+                    <Label Text="{Binding Total,StringFormat='${0:F2}'}"
                            FontSize="20"
                            FontAttributes="Bold"
                            VerticalTextAlignment="Center"
@@ -165,5 +169,19 @@
                 </Grid>
             </VerticalStackLayout>
         </VerticalStackLayout>
+
+        </Grid>
+        <Grid Grid.Row="1"
+              IsVisible="{Binding IsCartEmpty}">
+
+            <Label Text="OOPS!! Cart Is Empty,Please add items to the cart"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="20"/>
+
+
+        </Grid>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="2"/>
     </Grid>
 </ContentPage>

@@ -37,12 +37,12 @@
                            Style="{x:StaticResource BoldBlack12}"
                            FontSize="14" />
                     <HorizontalStackLayout Spacing="5">
-                        <Label Text="{Binding ProductDetails.Price,StringFormat='${0}'}"
+                        <Label Text="{Binding ProductDetails.Price,StringFormat='${0:F2}'}"
                                Style="{x:StaticResource BoldGray12}"
                                FontSize="14"
                                VerticalTextAlignment="Center"
                                TextDecorations="Strikethrough" />
-                        <Label Text="{Binding ProductDetails.DiscountedPrice,StringFormat='${0}'}"
+                        <Label Text="{Binding ProductDetails.DiscountedPrice,StringFormat='${0:F2}'}"
                                TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
                                FontAttributes="Bold"
                                FontSize="16" />
@@ -66,7 +66,7 @@
                 <VerticalStackLayout VerticalOptions="CenterAndExpand">
                     <Label Text="Price"
                            Style="{x:StaticResource RegularGray12}" />
-                    <Label Text="{Binding ProductDetails.DiscountedPrice,StringFormat='${0}'}"
+                    <Label Text="{Binding ProductDetails.DiscountedPrice,StringFormat='${0:F2}'}"
                            TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
                            FontSize="25"
                            Style="{x:StaticResource BoldGray12}" />
@@ -76,7 +76,14 @@
                             BackgroundColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                             Text="{x:Static resx:MobileLabel.Add_To_cart}"
                             Command="{Binding AddItemToCartCommand}"
-                            TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}" />
+                            TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}">
+                      <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsProductExistsInCart}"
+                                     Value="True">
+                            <Setter Property="Text" Value="Go To Cart"/>
+                        </DataTrigger>
+                      </Button.Triggers>
+                    </Button>
                 </HorizontalStackLayout>
             </Grid>
         </VerticalStackLayout>

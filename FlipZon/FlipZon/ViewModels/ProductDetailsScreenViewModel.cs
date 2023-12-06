@@ -17,6 +17,13 @@
             set { SetProperty(ref images, value); }
         }
 
+        private bool isProductExistsInCart;
+        public bool IsProductExistsInCart
+        {
+            get => isProductExistsInCart;
+            set { SetProperty(ref isProductExistsInCart, value); }
+        }
+
 
 
         #endregion
@@ -42,11 +49,28 @@
         #endregion
 
         #region Methods
+        private async Task ValidateItemExistsInCart(int productId,int userId)
+        {
+            try
+            {
+                var response = await DataBase.GetUserCartItem(productId, userId);
+                IsProductExistsInCart = response != null ? true : false;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
 
         private async Task ExecuteAddItemToCartCommand()
         {
             try
             {
+                if (IsProductExistsInCart)
+                {
+                    await NavigationService.NavigateAsync(nameof(CartScreen));
+                    return;
+                }
                 IsBusy = true;
                 var addToCart = new CartRequestDto
                 {
@@ -55,8 +79,9 @@
                     Quantity = 1,
                 };
                 var recordsInsertedCount= await DataBase.AddItemToCart(addToCart);
-                if(recordsInsertedCount==0)
+                if(recordsInsertedCount==1)
                 {
+                    IsProductExistsInCart = true;
                     await Application.Current.MainPage.DisplayAlert("Success", "Product Added To cart", "Ok");
                     return;
                 }
@@ -101,6 +126,7 @@
                             Images.Add(thumbnail);
                         }
                     }
+                    await ValidateItemExistsInCart(productDetails.Id, Preferences.Get(Constants.USER_ID, -1));
                 }
             }
             catch (Exception ex)

@@ -35,7 +35,14 @@ namespace FlipZon.ViewModels
             get => total;
             set { SetProperty(ref total, value); }
         }
-        
+
+        private bool isCartEmpty;
+        public bool IsCartEmpty
+        {
+            get => isCartEmpty;
+            set { SetProperty(ref isCartEmpty, value); }
+        }
+
 
         #endregion
 
@@ -48,19 +55,10 @@ namespace FlipZon.ViewModels
         public DelegateCommand<CartResponseDTO> DeleteCommand =>
             deleteCommand ?? (deleteCommand = new DelegateCommand<CartResponseDTO>(async (CartResponseDTO) => { await ExecuteDeleteCommand(CartResponseDTO); }));
 
-        private DelegateCommand<CartResponseDTO> editCartQuantityCommand;
-        public DelegateCommand<CartResponseDTO> EditCartQuantityCommand =>
-            editCartQuantityCommand ?? (editCartQuantityCommand = new DelegateCommand<CartResponseDTO>(async (CartResponseDTO) => { await ExecuteEditCartQuantityCommand(CartResponseDTO); }));
-
 
         private DelegateCommand placeOrderCommand;
         public DelegateCommand PlaceOrderCommand =>
             placeOrderCommand ?? (placeOrderCommand = new DelegateCommand(async () => { await ExecutePlaceOrderCommand(); }));
-
-       
-
-
-
 
         #endregion
 
@@ -80,10 +78,7 @@ namespace FlipZon.ViewModels
             await NavigationService.NavigateAsync(nameof(AddressListScreen));
         }
 
-        private async Task ExecuteEditCartQuantityCommand(CartResponseDTO cartResponseDTO)
-        {
-
-        }
+       
         private async Task ExecuteSaveForLaterCommand(CartResponseDTO cartItem)
         {
             if (cartItem != null)
@@ -95,6 +90,7 @@ namespace FlipZon.ViewModels
         {
             try
             {
+                IsBusy = true;
                 if (cartItem != null)
                 {
                     var cart = new CartRequestDto
@@ -113,81 +109,14 @@ namespace FlipZon.ViewModels
             {
 
             }
+            finally
+            {
+                IsBusy = false;
+            }
 
                 
         }
-        private void GetMockData()
-        {
-            try
-            {
-               // Assuming this code is in a method or constructor
-
-                // Create some mock products
-                Product product1 = new Product
-                {
-                    Id = 1,
-                    Title = "Product 1",
-                    Description = "Description 1",
-                    Price = 100,
-                    DiscountPercentage = 10,
-                    Rating = 4.5,
-                    Stock = 50,
-                    Brand = "Brand 1",
-                    Category = "Category 1",
-                    Thumbnail = "thumbnail1.jpg",
-                    Images = new List<string> { "image1.jpg", "image2.jpg" }
-                };
-
-                Product product2 = new Product
-                {
-                    Id = 2,
-                    Title = "Product 2",
-                    Description = "Description 2",
-                    Price = 150,
-                    DiscountPercentage = 15,
-                    Rating = 4.0,
-                    Stock = 30,
-                    Brand = "Brand 2",
-                    Category = "Category 2",
-                    Thumbnail = "thumbnail2.jpg",
-                    Images = new List<string> { "image3.jpg", "image4.jpg" }
-                };
-
-                // Create some mock CartResponseDTO items
-                CartResponseDTO cartItem1 = new CartResponseDTO
-                {
-                    Id = 1,
-                    ProductInfo = product1,
-                    Quantity = 2,
-                    
-                };
-
-                CartResponseDTO cartItem2 = new CartResponseDTO
-                {
-                    Id = 2,
-                    ProductInfo = product2,
-                    Quantity = 3,
-                   
-                };
-
-                // Create the ObservableCollection and add mock items
-                ObservableCollection<CartResponseDTO> cartItems = new ObservableCollection<CartResponseDTO>
-                {
-                    cartItem1,
-                    cartItem2
-                };
-
-                // Set the CartItems property
-                CartItems = cartItems;
-                CaluclateCartPrice();
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-        }
+       
         public void CaluclateCartPrice()
         {
             try
@@ -241,7 +170,7 @@ namespace FlipZon.ViewModels
             try
             {
                 var response = await DataBase.GetAllCartItems(Preferences.Get(Constants.USER_ID, -1));
-                if (response != null)
+                if (response!=null && response.Count >0)
                 {
                     CartItems = new ObservableCollection<CartResponseDTO>();
                     foreach (var item in response)
@@ -259,22 +188,18 @@ namespace FlipZon.ViewModels
                             CartItems.Add(cartItem);
                         }
                     }
+                    IsCartEmpty = false;
                     CaluclateCartPrice();
                 }
                 else
                 {
-                    // cart is Empty
+                    IsCartEmpty = true;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            finally
-            {
-                //  UserDialogs.Instance.HideLoading();
-            }
-
         }
         #endregion
 
@@ -282,8 +207,19 @@ namespace FlipZon.ViewModels
         public override async void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);
-            await GetCartItems();
-            //GetMockData();
+            try
+            {
+                IsBusy = true;
+                await GetCartItems();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
         #endregion
     }

@@ -47,7 +47,11 @@
             return await sqliteDatabase.Table<CartRequestDto>().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-      
+        public async Task<CartRequestDto> GetUserCartItem(int productId,int userId)
+        {
+            return await sqliteDatabase.Table<CartRequestDto>().Where(x => x.ProductId == productId && x.UserId == userId).FirstOrDefaultAsync();
+        }
+
         public async Task<int> UpdateCartQuantity(CartRequestDto cart)
         {
            

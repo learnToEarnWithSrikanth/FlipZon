@@ -1,6 +1,4 @@
-﻿using static Java.Util.Jar.Attributes;
-
-namespace FlipZon.ViewModels
+﻿namespace FlipZon.ViewModels
 {
     public class LoginScreenViewModel : BaseViewModel
     {

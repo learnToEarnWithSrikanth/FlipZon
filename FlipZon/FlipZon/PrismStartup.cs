@@ -6,7 +6,7 @@ internal static class PrismStartup
     public static void Configure(PrismAppBuilder builder)
     {
         builder.RegisterTypes(RegisterTypes)
-                .OnAppStart("NavigationPage/SignupScreen");
+                .OnAppStart("NavigationPage/HomeScreen");
     }
 
     private static void RegisterTypes(IContainerRegistry containerRegistry)

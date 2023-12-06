@@ -8,6 +8,7 @@
         Task<int> UpdateCartQuantity(CartRequestDto cart);
         Task<CartRequestDto> GetCartItemById(int id);
         Task<int> DeleteCartItem(CartRequestDto cart);
+        Task<CartRequestDto> GetUserCartItem(int productId, int userId);
         #endregion
 
         #region Account Operations
