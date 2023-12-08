@@ -33,7 +33,7 @@ namespace MauiSampleTest
         public override async void OnBackPressed()
         {
             var currentScreen =  App.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
-            if (currentScreen is HomeScreen)
+            if (currentScreen is HomeScreen || currentScreen is LoginScreen)
                 await ShowCloseAppConfirmationScreen();
             else
                 await App.Current.MainPage.Navigation.PopAsync();

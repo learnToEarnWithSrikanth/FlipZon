@@ -32,7 +32,6 @@
         {
             try
             {
-
                 if (string.IsNullOrEmpty(SearchText))
                 {
                     ProductsSearchList?.Clear();

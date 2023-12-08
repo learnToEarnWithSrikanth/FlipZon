@@ -51,6 +51,48 @@ public partial class CustomCarosuelView : ContentView
         if (ItemSource != null)
             carouselView.HeightRequest = CarosuelHeight;
     }
+
+
+
     #endregion
+
+
+    void SwipeGestureRecognizer_Swiped(System.Object sender, Microsoft.Maui.Controls.SwipedEventArgs e)
+    {
+        switch (e.Direction)
+        {
+            case SwipeDirection.Left:
+                MoveCarousel(-1); 
+                break;
+            case SwipeDirection.Right:
+                MoveCarousel(1);
+                break;
+        }
+    }
+
+    private void MoveCarousel(int direction)
+    {
+
+        try
+        {
+            int newPosition = carouselView.Position + direction;
+
+            if (newPosition < 0)
+            {
+                newPosition = ItemSource.Count - 1;
+            }
+            else if (newPosition >= ItemSource.Count)
+            {
+                newPosition = 0;
+            }
+
+            carouselView.Position = newPosition;
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
 }
 

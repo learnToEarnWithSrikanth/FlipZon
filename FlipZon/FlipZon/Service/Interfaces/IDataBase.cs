@@ -1,6 +1,4 @@
-﻿using Android.Database.Sqlite;
-
-namespace FlipZon.Service.Interfaces
+﻿namespace FlipZon.Service.Interfaces
 {
     public interface IDataBase
     {

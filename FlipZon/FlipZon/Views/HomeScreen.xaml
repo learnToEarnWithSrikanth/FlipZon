@@ -6,22 +6,29 @@
              xmlns:models="clr-namespace:FlipZon.Models"
               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
-             xmlns:resx="clr-namespace:FlipZon.Resources.Localization" xmlns:contentviews="clr-namespace:FlipZon.Views.ContentViews"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
+             xmlns:contentviews="clr-namespace:FlipZon.Views.ContentViews"
              NavigationPage.HasNavigationBar="False"
              x:DataType="Vm:HomeScreenViewModel">
     <Grid>
         <Grid RowSpacing="10"
               IsVisible="{Binding IsInternetConnectionAvailable}"
           RowDefinitions="Auto,Auto,Auto,*">
-        <Grid ColumnDefinitions="*,Auto"
+        <Grid ColumnDefinitions="Auto,*,Auto"
               Padding="10,0">
-            <Label Text="{x:Static resx:MobileLabel.FlipZon}"
+            <ImageButton Source="menu.png"
+                             WidthRequest="20"
+                             Command="{Binding NaviagateToMenuScreenCommand}"
+                             BackgroundColor="Transparent"
+                             HeightRequest="20" />
+            <Label Grid.Column="1"
+                    Text="{x:Static resx:MobileLabel.FlipZon}"
                    TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    Style="{x:StaticResource BoldBlack12}"
                    FontSize="20" />
-            <HorizontalStackLayout Grid.Column="1"
+            <HorizontalStackLayout Grid.Column="2"
                                    Spacing="15"
                                    HorizontalOptions="End">
                 <ImageButton Source="cart.png"
@@ -38,6 +45,8 @@
         </Grid>
         <customcontrols:CustomCarosuelView ItemSource="{Binding Images}"
                                            Grid.Row="1"
+                                           Margin="10,0"
+                                           
                                            CarosuelHeight="200" />
         <Grid ColumnDefinitions="*,Auto"
               Grid.Row="2"

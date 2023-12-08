@@ -67,6 +67,7 @@
     <PackageReference Include="Controls.UserDialogs.Maui" Version="1.2.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+    <PackageReference Include="Mopups" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>

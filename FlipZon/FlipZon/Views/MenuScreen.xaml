@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mopup:PopupPage  xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
+                  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FlipZon.ViewModels"
+             x:DataType="vm:MenuScreenViewModel"
+                  BackgroundColor="Transparent"
+                  CloseWhenBackgroundIsClicked="True"
+             x:Class="FlipZon.Views.MenuScreen">
+
+    <Grid ColumnDefinitions="60*,30*"
+           BackgroundColor="Transparent">
+         <Grid BackgroundColor="Black"
+               Grid.Column="0"
+               >
+              
+         </Grid>
+         <Grid Grid.Column="1"
+               BackgroundColor="Transparent"
+               Opacity="1">
+           <Grid.GestureRecognizers>
+             <TapGestureRecognizer NumberOfTapsRequired="1"
+                                   Tapped="TapGestureRecognizer_Tapped"/>
+           </Grid.GestureRecognizers>
+         </Grid>
+
+     </Grid>
+</mopup:PopupPage>
+

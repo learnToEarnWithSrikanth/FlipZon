@@ -1,5 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-namespace FlipZon.ViewModels
+﻿namespace FlipZon.ViewModels
 {
     public class CartScreenViewModel : BaseViewModel
     {
@@ -78,7 +77,7 @@ namespace FlipZon.ViewModels
             await NavigationService.NavigateAsync(nameof(AddressListScreen));
         }
 
-       
+      
         private async Task ExecuteSaveForLaterCommand(CartResponseDTO cartItem)
         {
             if (cartItem != null)
@@ -86,6 +85,7 @@ namespace FlipZon.ViewModels
             savedForLaterProducts?.Add(cartItem);
 
         }
+
         private async Task ExecuteDeleteCommand(CartResponseDTO cartItem)
         {
             try
@@ -169,6 +169,7 @@ namespace FlipZon.ViewModels
                 IsBusy = false;
             }
         }
+
         public async Task GetCartItems()
         {
             try
