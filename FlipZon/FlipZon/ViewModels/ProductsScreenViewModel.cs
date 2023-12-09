@@ -1,15 +1,15 @@
-﻿namespace FlipZon.ViewModels
+﻿using Mopups.Interfaces;
+
+namespace FlipZon.ViewModels
 {
     public class ProductsScreenViewModel : BaseViewModel
     {
-    
-        public ProductsScreenViewModel(INavigationService navigationService,
-                                        IDataService dataService,
-                                        IRestService restService,
-                                        IDataBase dataBase) :
-                                        base(navigationService, dataService, restService, dataBase)
+        #region CTOR
+        public ProductsScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
         }
+        #endregion
+
 
         #region Commands
 

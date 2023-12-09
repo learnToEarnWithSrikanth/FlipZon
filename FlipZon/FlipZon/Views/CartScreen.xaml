@@ -10,13 +10,15 @@
              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:CartScreenViewModel">
-    <Grid RowDefinitions="Auto,*"
+    <Grid RowDefinitions="Auto,Auto,*"
           RowSpacing="10">
+        <customcontrols:CustomHeader/>
         <customcontrols:CustomNavigationBar Text="{x:Static resx:MobileLabel.Cart_Screen}"
                                             Padding="10,5"
+                                            Grid.Row="1"
                                             BackCommand="{Binding BackCommand}" />
         <Grid RowDefinitions="*,Auto"
-              Grid.Row="1"
+              Grid.Row="2"
               IsVisible="{Binding IsCartEmpty,Converter={toolkit:InvertedBoolConverter}}">
             <CollectionView ItemsSource="{Binding CartItems}"
                             x:Name="CartCollection"
@@ -160,14 +162,14 @@
                                TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
                         <Button TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                                 Grid.Column="1"
-                                Command="{Binding PlaceOrderCommand}"
+                                Command="{Binding NaviagateToAddressScreenCommand}"
                                 Text="{x:Static resx:MobileLabel.Place_Order}"
                                 BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}" />
                     </Grid>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Grid>
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="2"
               IsVisible="{Binding IsCartEmpty}">
             <Label Text="OOPS!! Cart Is Empty,Please add items to the cart"
                    VerticalTextAlignment="Center"
@@ -175,6 +177,6 @@
                    FontSize="20" />
         </Grid>
         <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
-                                               Grid.RowSpan="2" />
+                                               Grid.RowSpan="3" />
     </Grid>
 </ContentPage>

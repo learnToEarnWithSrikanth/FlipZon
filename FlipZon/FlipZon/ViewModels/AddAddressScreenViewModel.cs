@@ -82,9 +82,8 @@
         #endregion
 
         #region CTOR
-        public AddAddressScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase) : base(navigationService, dataService, restService, dataBase)
+        public AddAddressScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
-
         }
         #endregion
 

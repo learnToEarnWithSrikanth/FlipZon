@@ -16,14 +16,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid RowDefinitions="*,Auto">
-        <Grid RowDefinitions="Auto,*"
+        <Grid RowDefinitions="Auto,Auto,*"
               Grid.Row="0"
               RowSpacing="8"
               Padding="10">
+            <customcontrols:CustomHeader/>
             <customcontrols:CustomNavigationBar Text="{x:Static resx:MobileLabel.Product_Details_Screen}"
+                                                Grid.Row="1"
                                                 BackCommand="{Binding BackCommand}" />
             <VerticalStackLayout Spacing="10"
-                                 Grid.Row="1">
+                                 Grid.Row="2">
                 <customcontrols:CustomCarosuelView ItemSource="{Binding Images}"
                                                    CarosuelHeight="400" />
                 <VerticalStackLayout Padding="10"

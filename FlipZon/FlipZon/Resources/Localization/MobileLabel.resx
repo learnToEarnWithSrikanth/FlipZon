@@ -212,6 +212,9 @@
           xml:space="preserve">
         <value>No Search Results Found</value>
     </data>
-   
+      <data name="No_Products_Found"
+          xml:space="preserve">
+        <value>No Products Found</value>
+    </data>
     
 </root>

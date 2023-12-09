@@ -1,6 +1,4 @@
-﻿using Controls.UserDialogs.Maui;
-
-namespace MauiSampleTest.ViewModels
+﻿namespace MauiSampleTest.ViewModels
 {
     public class BaseViewModel : BindableBase, IDestructible, IPageLifecycleAware, INavigationAware, IInitialize, INavigationPageOptions
     {
@@ -9,6 +7,7 @@ namespace MauiSampleTest.ViewModels
         public IDataService DataService { get; }
         public IRestService RestService { get; }
         public IDataBase DataBase { get; }
+        public IPopupNavigation  PopupNavigation { get; }
         public bool ClearNavigationStackOnNavigation => DataService.ClearDetailPageStack;
         public int skipCount=0;
         public int productsExistsInCollection=0;
@@ -44,6 +43,11 @@ namespace MauiSampleTest.ViewModels
         #endregion
 
         #region Commands
+        private DelegateCommand navigateToProductsScreen;
+        public DelegateCommand NavigateToProductsScreen =>
+            navigateToProductsScreen ?? (navigateToProductsScreen =
+                        new DelegateCommand(async () => { await ExecuteNavigatToProductsScreen(); }));
+
         private DelegateCommand togglePasswordVisiblityCommand;
         public DelegateCommand TogglePasswordVisiblityCommand =>
             togglePasswordVisiblityCommand ?? (togglePasswordVisiblityCommand =
@@ -59,12 +63,32 @@ namespace MauiSampleTest.ViewModels
             naviagateToSearchScreenCommand ?? (naviagateToSearchScreenCommand =
                         new DelegateCommand(ExecuteNaviagateToSearchScreenCommand));
 
+        private DelegateCommand naviagateToHomeScreenCommand;
+        public DelegateCommand NaviagateToHomeScreenCommand =>
+            naviagateToHomeScreenCommand ?? (naviagateToHomeScreenCommand =
+                        new DelegateCommand(async() => await ExecuteNaviagateToHomeScreenCommand()));
+
+        private DelegateCommand logoutCommand;
+        public DelegateCommand LogoutCommand =>
+            logoutCommand ?? (logoutCommand =
+                        new DelegateCommand(async () => await ExecuteLogoutCommand()));
+
+  
+
+        private DelegateCommand naviagateToAddressScreenCommand;
+        public DelegateCommand NaviagateToAddressScreenCommand =>
+            naviagateToAddressScreenCommand ?? (naviagateToAddressScreenCommand =
+                        new DelegateCommand(async () => await ExcecuteNavigateToAddressListScreen()));
+
 
         private DelegateCommand backCommand;
         public DelegateCommand BackCommand =>
             backCommand ?? (backCommand =
                         new DelegateCommand(ExecuteBackCommand));
 
+        private DelegateCommand naviagateToMenuScreenCommand;
+        public DelegateCommand NaviagateToMenuScreenCommand =>
+            naviagateToMenuScreenCommand ?? (naviagateToMenuScreenCommand = new DelegateCommand(async () => { await ExecuteNaviagateToMenuScreenCommand(); }));
 
 
         private DelegateCommand<Product> navigateToDetailsScreen;
@@ -77,7 +101,17 @@ namespace MauiSampleTest.ViewModels
             INavigationService navigationService,
             IDataService dataService,
             IRestService restService,
-            IDataBase dataBase)
+            IDataBase dataBase,
+            IPopupNavigation popupNavigation)
+        {
+            NavigationService = navigationService;
+            DataService = dataService;
+            RestService = restService;
+            DataBase = dataBase;
+            PopupNavigation = popupNavigation;
+        }
+
+        public BaseViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase)
         {
             NavigationService = navigationService;
             DataService = dataService;
@@ -152,16 +186,68 @@ namespace MauiSampleTest.ViewModels
             });
         }
 
-        private async void ExecuteNaviagateToSearchScreenCommand()
+        private async Task ExecuteLogoutCommand()
         {
+            var response= await  UserDialogs.Instance.ConfirmAsync("Would you like Logout?", "Logout", "Yes", "No");
+            if(response)
+            {
+                Preferences.Clear(Constants.USER_ID);
+                Preferences.Clear(Constants.USER_NAME);
+                Preferences.Clear(Constants.EMAIL);
+                await NavigationService.NavigateAsync(nameof(LoginScreen));
+            }
+        }
+
+        public async Task ExcecuteNavigateToAddressListScreen()
+        {
+            var currentPage = GetCurrentScreen();
+            if (currentPage is AddressListScreen)
+                return;
+            await NavigationService.NavigateAsync(nameof(AddressListScreen));
+        }
+
+        private async Task ExecuteNaviagateToMenuScreenCommand()
+        {
+            await PopupNavigation.PushAsync(new MenuScreen(), true);
+        }
+
+        public Page GetCurrentScreen()
+        {
+           return  App.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
+        }
+
+        private async Task ExecuteNaviagateToHomeScreenCommand()
+        {
+            var currentPage = GetCurrentScreen();
+            if (currentPage is HomeScreen)
+                return;
+            await NavigationService.NavigateAsync(nameof(HomeScreen));
+        }
+
+        public async Task ExecuteNavigatToProductsScreen()
+        {
+            var currentPage = GetCurrentScreen();
+            if (currentPage is ProductsScreen)
+                return;
+            await NavigationService.NavigateAsync(nameof(ProductsScreen));
+        }
+
+        public async void ExecuteNaviagateToSearchScreenCommand()
+        {
+            var currentPage = GetCurrentScreen();
+            if (currentPage is SearchScreen)
+                return;
             await NavigationService.NavigateAsync(nameof(SearchScreen));
         }
 
-        private async void ExecuteNaviagateToCartScreenCommand()
+        public async void ExecuteNaviagateToCartScreenCommand()
         {
+            var currentPage = GetCurrentScreen();
+            if (currentPage is CartScreen)
+                return;
             await NavigationService.NavigateAsync(nameof(CartScreen));
         }
-        private async void ExecuteBackCommand()
+        public async void ExecuteBackCommand()
         {
             await NavigationService.GoBackAsync();
         }

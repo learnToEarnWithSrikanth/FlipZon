@@ -13,36 +13,9 @@
     <Grid>
         <Grid RowSpacing="10"
               IsVisible="{Binding IsInternetConnectionAvailable}"
-          RowDefinitions="Auto,Auto,Auto,*">
-        <Grid ColumnDefinitions="Auto,*,Auto"
-              Padding="10,0">
-            <ImageButton Source="menu.png"
-                             WidthRequest="20"
-                             Command="{Binding NaviagateToMenuScreenCommand}"
-                             BackgroundColor="Transparent"
-                             HeightRequest="20" />
-            <Label Grid.Column="1"
-                    Text="{x:Static resx:MobileLabel.FlipZon}"
-                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   Style="{x:StaticResource BoldBlack12}"
-                   FontSize="20" />
-            <HorizontalStackLayout Grid.Column="2"
-                                   Spacing="15"
-                                   HorizontalOptions="End">
-                <ImageButton Source="cart.png"
-                             WidthRequest="20"
-                             Command="{Binding NaviagateToCartScreenCommand}"
-                             BackgroundColor="Transparent"
-                             HeightRequest="20" />
-                <ImageButton Source="search.png"
-                             WidthRequest="20"
-                             Command="{Binding NaviagateToSearchScreenCommand}"
-                             BackgroundColor="Transparent"
-                             HeightRequest="20" />
-            </HorizontalStackLayout>
-        </Grid>
+              RowDefinitions="Auto,Auto,Auto,*">
+
+        <customcontrols:CustomHeader/>
         <customcontrols:CustomCarosuelView ItemSource="{Binding Images}"
                                            Grid.Row="1"
                                            Margin="10,0"
@@ -87,7 +60,18 @@
                                                     ProductTappedCommand="{Binding Source={x:Reference ProductsCollection},Path=BindingContext.NavigateToDetailsScreen}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+          <CollectionView.EmptyView>
+            <Grid Grid.Row="3">
+              <Label Text="{x:Static resx:MobileLabel.No_Products_Found}"
+                         FontSize="20"
+                         VerticalTextAlignment="Center"
+                         HorizontalTextAlignment="Center"/>
+
+            </Grid>
+
+          </CollectionView.EmptyView>
         </CollectionView>
+        
         <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
                                                Grid.RowSpan="4" />
         

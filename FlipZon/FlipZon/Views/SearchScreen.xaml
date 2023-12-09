@@ -10,15 +10,17 @@
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:SearchScreenViewModel"
              Title="SearchScreen">
-    <Grid RowDefinitions="Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,Auto,*"
           Margin="10"
           RowSpacing="10">
+        <customcontrols:CustomHeader/>
         <customcontrols:CustomNavigationBar Text="{x:Static resx:MobileLabel.Search_Screen}"
+                                            Grid.Row="1"
                                             BackCommand="{Binding BackCommand}" />
         <Frame HasShadow="False"
                BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                Padding="10,0"
-               Grid.Row="1"
+               Grid.Row="2"
                CornerRadius="5"
                HeightRequest="35"
                BorderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}">
@@ -40,7 +42,7 @@
         </Frame>
         <CollectionView ItemsSource="{Binding ProductsSearchList}"
                         x:Name="ProductsSearchCollection"
-                        Grid.Row="2">
+                        Grid.Row="3">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  VerticalItemSpacing="10" />
@@ -76,6 +78,6 @@
             </CollectionView.EmptyView>
         </CollectionView>
         <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
-                                               Grid.RowSpan="3" />
+                                               Grid.RowSpan="4" />
     </Grid>
 </ContentPage>

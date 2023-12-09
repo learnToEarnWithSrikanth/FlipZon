@@ -13,6 +13,7 @@
   <Color x:Key="ToreaBayColor">#14139A</Color>
   <Color x:Key="PurpleColor">Purple</Color>
   <Color x:Key="RedColor">red</Color>
+  <Color x:Key="SkyBlueColor">SkyBlue</Color>
 
   <!--dark Mode-->
   <Color x:Key="DarkGreenColor">green</Color>
@@ -23,5 +24,6 @@
   <Color x:Key="DarkToreaBayColor">#14139A</Color>
   <Color x:Key="DarkPurpleColor">Purple</Color>
    <Color x:Key="DarkRedColor">red</Color>
+   <Color x:Key="DarkSkyBlueColor">SkyBlue</Color>
 </ResourceDictionary>
 

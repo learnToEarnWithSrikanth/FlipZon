@@ -337,6 +337,15 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Products Found.
+        /// </summary>
+        internal static string No_Products_Found {
+            get {
+                return ResourceManager.GetString("No_Products_Found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Search Results Found.
         /// </summary>
         internal static string No_Search_Results_Found {

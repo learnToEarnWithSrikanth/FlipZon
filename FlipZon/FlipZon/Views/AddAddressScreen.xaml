@@ -21,12 +21,13 @@
                     Value="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
         </Style>
     </ContentPage.Resources>
-    <Grid RowDefinitions="Auto,*,Auto"
+    <Grid RowDefinitions="Auto,Auto,*,Auto"
           Padding="10"
           RowSpacing="10">
+        <customcontrols:CustomHeader/>
         <customcontrols:CustomNavigationBar BackCommand="{Binding BackCommand}"
                                             Text="{x:Static resx:MobileLabel.Add_Address_Screen}" />
-        <VerticalStackLayout Grid.Row="1"
+        <VerticalStackLayout Grid.Row="2"
                              Spacing="10">
             <VerticalStackLayout Spacing="10">
                 <Label Text="{x:Static resx:MobileLabel.Contact_Details}"
@@ -125,12 +126,13 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </VerticalStackLayout>
-        <Button Grid.Row="2"
+        <Button Grid.Row="3"
                 BackgroundColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                 CornerRadius="5"
                 Command="{Binding SaveAddressCommand}"
                 TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                 Text="{Binding ButtonText}" />
-        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"/>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="4"/>
     </Grid>
 </ContentPage>

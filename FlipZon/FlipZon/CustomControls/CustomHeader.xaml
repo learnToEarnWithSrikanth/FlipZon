@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
+             x:Class="FlipZon.CustomControls.CustomHeader">
+    <Grid ColumnDefinitions="Auto,*,Auto"
+              Padding="10,10"
+          BackgroundColor="{AppThemeBinding Light={x:StaticResource SkyBlueColor},Dark={x:StaticResource DarkSkyBlueColor}}"
+
+          >
+            <ImageButton Source="menu.png"
+                             WidthRequest="25"
+                             Command="{Binding NaviagateToMenuScreenCommand}"
+                             BackgroundColor="Transparent"
+                             HeightRequest="25" />
+            <Label Grid.Column="1"
+                    Text="{x:Static resx:MobileLabel.FlipZon}"
+                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Style="{x:StaticResource BoldBlack12}"
+                   FontSize="20" />
+            <HorizontalStackLayout Grid.Column="2"
+                                   Spacing="15"
+                                   HorizontalOptions="End">
+                <ImageButton Source="cart.png"
+                             WidthRequest="25"
+                             Command="{Binding NaviagateToCartScreenCommand}"
+                             BackgroundColor="Transparent"
+                             HeightRequest="25" />
+                <ImageButton Source="search.png"
+                             WidthRequest="25"
+                             Command="{Binding NaviagateToSearchScreenCommand}"
+                             BackgroundColor="Transparent"
+                             HeightRequest="25" />
+            </HorizontalStackLayout>
+        </Grid>
+</ContentView>
+

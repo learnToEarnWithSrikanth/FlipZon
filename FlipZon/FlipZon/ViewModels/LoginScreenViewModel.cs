@@ -1,4 +1,6 @@
-﻿namespace FlipZon.ViewModels
+﻿using Mopups.Interfaces;
+
+namespace FlipZon.ViewModels
 {
     public class LoginScreenViewModel : BaseViewModel
     {
@@ -18,6 +20,7 @@
             set { SetProperty(ref password, value); }
         }
         #endregion
+
         #region Commands
         private DelegateCommand signupCommand;
         public DelegateCommand SignupCommand =>
@@ -28,6 +31,21 @@
         public DelegateCommand LoginUserCommand =>
             loginUserCommand ?? (loginUserCommand =
                         new DelegateCommand(async () => { await ExecuteLoginUserCommand(); }));
+
+        #endregion
+
+        #region CTOR
+        public LoginScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
+        {
+        }
+        #endregion
+
+        #region Methods
+
+        private async Task ExecuteSignupCommand()
+        {
+            await NavigationService.NavigateAsync("SignupScreen");
+        }
 
         private async Task ExecuteLoginUserCommand()
         {
@@ -41,7 +59,7 @@
                 };
                 if (isValidAccount)
                 {
-                    var response= await DataBase.GetAccount(account);
+                    var response = await DataBase.GetAccount(account);
                     if (response == null)
                     {
                         DisplayToast("InValid Credentails! Please Try again", MessageType.Negative);
@@ -58,21 +76,6 @@
             {
 
             }
-        }
-
-
-
-
-        #endregion
-        public LoginScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase) : base(navigationService, dataService, restService, dataBase)
-        {
-        }
-
-        #region Methods
-
-        private async Task ExecuteSignupCommand()
-        {
-            await NavigationService.NavigateAsync("SignupScreen");
         }
 
         private async Task<bool> ValiateAccountInformation()

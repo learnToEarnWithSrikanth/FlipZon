@@ -11,12 +11,14 @@
              Title="AddressListScreen">
     <Grid RowDefinitions="*,Auto"
           Padding="10">
-        <Grid RowDefinitions="Auto,*"
+        <Grid RowDefinitions="Auto,Auto,*"
               RowSpacing="10">
-            <customcontrols:CustomNavigationBar BackCommand="{Binding BackCommand}"
+            <customcontrols:CustomHeader/>
+            <customcontrols:CustomNavigationBar  Grid.Row="1"
+                                                 BackCommand="{Binding BackCommand}"
                                                 Text="{x:Static resx:MobileLabel.Address_List_Screen}" />
             <Grid IsVisible="{Binding IsAddressListEmpty,Converter={toolkit:InvertedBoolConverter}}"
-                  Grid.Row="1">
+                  Grid.Row="2">
                 <CollectionView ItemsSource="{Binding AddressList}"
                                 x:Name="AddressCollection">
                     <CollectionView.ItemsLayout>
@@ -108,7 +110,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </Grid>
-            <Grid Grid.Row="1"
+            <Grid Grid.Row="2"
                   IsVisible="{Binding IsAddressListEmpty}">
                 <Label Text="OOPS!! No Address found please add new address by clicking the below button"
                        VerticalTextAlignment="Center"

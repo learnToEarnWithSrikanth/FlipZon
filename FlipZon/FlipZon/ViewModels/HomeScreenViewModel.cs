@@ -1,11 +1,8 @@
-﻿using Mopups.Interfaces;
-using Mopups.Services;
-
-namespace FlipZon.ViewModels
+﻿namespace FlipZon.ViewModels
 {
     public class HomeScreenViewModel : BaseViewModel
     {
-        private IPopupNavigation popupNavigation;
+       
         #region Properties
         private ObservableCollection<ThumbNailModel> images;
         public ObservableCollection<ThumbNailModel> Images
@@ -16,51 +13,20 @@ namespace FlipZon.ViewModels
         #endregion
 
         #region Commands
-
-
-        private DelegateCommand navigateToProductsScreen;
-        public DelegateCommand NavigateToProductsScreen =>
-            navigateToProductsScreen ?? (navigateToProductsScreen = new DelegateCommand(async () => { await ExecuteNavigatToProductsScreen(); }));
-
-        private DelegateCommand naviagateToMenuScreenCommand;
-        public DelegateCommand NaviagateToMenuScreenCommand =>
-            naviagateToMenuScreenCommand ?? (naviagateToMenuScreenCommand = new DelegateCommand(async () => { await ExecuteNaviagateToMenuScreenCommand(); }));
-
-      
-
         private DelegateCommand tryAgainCommand;
         public DelegateCommand TryAgainCommand =>
             tryAgainCommand ?? (tryAgainCommand = new DelegateCommand(async () => { await ExecuteTryAgainCommand(); }));
 
-      
-
         #endregion
 
         #region CTOR
-        public HomeScreenViewModel(INavigationService navigationService,
-                                   IDataService dataService,
-                                   IRestService restService,
-                                   IDataBase dataBase,
-                                   IPopupNavigation popupNavigation)
-                                   : base(navigationService, dataService, restService,dataBase)
+        public HomeScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
-
-            this.popupNavigation = popupNavigation;
         }
+
         #endregion
 
         #region Methods
-
-        private async Task ExecuteNaviagateToMenuScreenCommand()
-        {
-            await popupNavigation.PushAsync(new MenuScreen(),true);
-        }
-
-        private async Task ExecuteNavigatToProductsScreen()
-        {
-            await NavigationService.NavigateAsync(nameof(ProductsScreen));
-        }
-
         private async Task ExecuteTryAgainCommand()
         {
             await LoadData();

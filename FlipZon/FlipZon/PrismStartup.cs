@@ -38,9 +38,8 @@ internal static class PrismStartup
         containerRegistry.RegisterForNavigation<SignupScreen, SignupScreenViewModel>();
         containerRegistry.RegisterForNavigation<AddressListScreen, AddressListScreenViewModel>();
         containerRegistry.RegisterForNavigation<AddAddressScreen, AddAddressScreenViewModel>();
-      //  containerRegistry.RegisterForNavigation<MenuScreen, MenuScreenViewModel>();
+        containerRegistry.RegisterForNavigation<MenuScreen, MenuScreenViewModel>();
 
-       // containerRegistry.Reg
     }
     
 }

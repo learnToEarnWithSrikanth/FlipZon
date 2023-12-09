@@ -1,4 +1,6 @@
-﻿namespace FlipZon.ViewModels
+﻿using Mopups.Interfaces;
+
+namespace FlipZon.ViewModels
 {
     public class CartScreenViewModel : BaseViewModel
     {
@@ -55,29 +57,16 @@
             deleteCommand ?? (deleteCommand = new DelegateCommand<CartResponseDTO>(async (CartResponseDTO) => { await ExecuteDeleteCommand(CartResponseDTO); }));
 
 
-        private DelegateCommand placeOrderCommand;
-        public DelegateCommand PlaceOrderCommand =>
-            placeOrderCommand ?? (placeOrderCommand = new DelegateCommand(async () => { await ExecutePlaceOrderCommand(); }));
-
         #endregion
 
         #region CTOR
-        public CartScreenViewModel(INavigationService navigationService,
-                                   IDataService dataService, IRestService restService,IDataBase dataBase)
-                                   : base(navigationService, dataService, restService,dataBase)
+
+        public CartScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
-            SavedForLaterProducts = new ObservableCollection<CartResponseDTO>();
         }
         #endregion
 
         #region Methods
-
-        private async Task ExecutePlaceOrderCommand()
-        {
-            await NavigationService.NavigateAsync(nameof(AddressListScreen));
-        }
-
-      
         private async Task ExecuteSaveForLaterCommand(CartResponseDTO cartItem)
         {
             if (cartItem != null)
@@ -103,7 +92,7 @@
                     var response = await DataBase.DeleteCartItem(cart);
                     if (response != 0)
                     {
-                        DisplayToast(string.Format("{0} delted from the cart", cartItem.ProductInfo.Title), MessageType.Postive);
+                        DisplayToast(string.Format("{0} deleted from the cart", cartItem.ProductInfo.Title), MessageType.Postive);
                         await GetCartItems();
                     }
                         

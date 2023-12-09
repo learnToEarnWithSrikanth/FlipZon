@@ -1,4 +1,6 @@
-﻿namespace FlipZon.ViewModels
+﻿using Mopups.Interfaces;
+
+namespace FlipZon.ViewModels
 {
     public class SignupScreenViewModel : BaseViewModel
     {
@@ -32,6 +34,7 @@
         }
 
         #endregion
+
         #region Commands
         private DelegateCommand loginCommad;
         public DelegateCommand LoginCommad =>
@@ -46,7 +49,7 @@
         #endregion
 
         #region CTOR
-        public SignupScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase) : base(navigationService, dataService, restService, dataBase)
+        public SignupScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
         }
         #endregion 

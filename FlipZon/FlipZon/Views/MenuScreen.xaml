@@ -1,29 +1,119 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<mopup:PopupPage  xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
-                  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:FlipZon.ViewModels"
-             x:DataType="vm:MenuScreenViewModel"
-                  BackgroundColor="Transparent"
-                  CloseWhenBackgroundIsClicked="True"
-             x:Class="FlipZon.Views.MenuScreen">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mopup:PopupPage xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
+                 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:vm="clr-namespace:FlipZon.ViewModels"
+                 
+                 x:DataType="vm:MenuScreenViewModel"
+                 BackgroundColor="Transparent"
+                 CloseWhenBackgroundIsClicked="True"
+                 x:Class="FlipZon.Views.MenuScreen">
     <Grid ColumnDefinitions="60*,30*"
-           BackgroundColor="Transparent">
-         <Grid BackgroundColor="Black"
-               Grid.Column="0"
-               >
+          BackgroundColor="Transparent">
+        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
+                             Padding="30"
+                             Spacing="30">
+            <Border WidthRequest="100"
+                    HeightRequest="100">
+                <Image Source="user.png"
+                       Aspect="Fill" />
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="50" />
+                </Border.StrokeShape>
+            </Border>
+            <Label Text="Srikanth Rachaputi"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="24"
+                   FontAttributes="Bold" />
+            <VerticalStackLayout Spacing="30">
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="10">
+                    <Image Source="home.png"
+                           WidthRequest="20"
+                           HeightRequest="20" />
+                    <Label Text="Home"
+                           Style="{x:StaticResource RegularBlack12}"
+                           Grid.Column="1" />
+                  <Grid.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding NaviagateToHomeScreenCommand}"/>
+
+                  </Grid.GestureRecognizers>
+               
+                </Grid>
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="10">
+                    <Image Source="cart.png"
+                           WidthRequest="20"
+                           HeightRequest="20" />
+                    <Label Text="My Cart"
+                           Style="{x:StaticResource RegularBlack12}"
+                           Grid.Column="1" />
+                   <Grid.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding NaviagateToCartScreenCommand}"/>
+
+                  </Grid.GestureRecognizers>
+                
+
+                </Grid>
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="10">
+                    <Image Source="search.png"
+                           WidthRequest="20"
+                           HeightRequest="20" />
+                    <Label Text="Search Products"
+                           Style="{x:StaticResource RegularBlack12}"
+                           Grid.Column="1" />
+                   <Grid.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding NaviagateToSearchScreenCommand}"/>
+
+                  </Grid.GestureRecognizers>
+               
+               
+                </Grid>
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="10">
+                    <Image Source="address.png"
+                           WidthRequest="20"
+                           HeightRequest="20" />
+                    <Label Text="Address Screen"
+                           Style="{x:StaticResource RegularBlack12}"
+                           Grid.Column="1" />
+                   <Grid.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding NaviagateToHomeScreenCommand}"/>
+
+                  </Grid.GestureRecognizers>
+                 
+                </Grid>
               
-         </Grid>
-         <Grid Grid.Column="1"
-               BackgroundColor="Transparent"
-               Opacity="1">
-           <Grid.GestureRecognizers>
-             <TapGestureRecognizer NumberOfTapsRequired="1"
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="10">
+                    <Image Source="logout.png"
+                           WidthRequest="20"
+                           HeightRequest="20" />
+                    <Label Text="Logout"
+                           Style="{x:StaticResource RegularBlack12}"
+                           Grid.Column="1" />
+               <Grid.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                      Command="{Binding LogoutCommand}"/>
+                                      
+              </Grid.GestureRecognizers>
+                </Grid>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+        <Grid Grid.Column="1"
+              BackgroundColor="Transparent"
+              Opacity="1">
+            <Grid.GestureRecognizers>
+               <TapGestureRecognizer NumberOfTapsRequired="1"
                                    Tapped="TapGestureRecognizer_Tapped"/>
-           </Grid.GestureRecognizers>
-         </Grid>
-
-     </Grid>
+              </Grid.GestureRecognizers>
+         
+        </Grid>
+    </Grid>
 </mopup:PopupPage>
-

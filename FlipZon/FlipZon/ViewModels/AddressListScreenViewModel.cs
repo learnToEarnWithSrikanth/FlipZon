@@ -1,6 +1,4 @@
-﻿using Controls.UserDialogs.Maui;
-
-namespace FlipZon.ViewModels
+﻿namespace FlipZon.ViewModels
 {
     public class AddressListScreenViewModel : BaseViewModel
     {
@@ -20,9 +18,9 @@ namespace FlipZon.ViewModels
         #endregion
 
         #region CTOR
-        public AddressListScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase) : base(navigationService, dataService, restService, dataBase)
-        {
 
+        public AddressListScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
+        {
         }
         #endregion
 
@@ -40,9 +38,15 @@ namespace FlipZon.ViewModels
             editAddressCommand ?? (editAddressCommand = new DelegateCommand<AddressModel>( async (AddressModel) => await ExecuteEditAddressCommand(AddressModel)));
 
         private DelegateCommand<AddressModel> deleteAddressCommand;
+
         public DelegateCommand<AddressModel> DeleteAddressCommand =>
             deleteAddressCommand ?? (deleteAddressCommand = new DelegateCommand<AddressModel>(async (AddressModel) => await ExecuteDeleteAddressCommand(AddressModel)));
 
+
+
+        #endregion
+
+        #region Methods
 
         private async Task ExecuteEditAddressCommand(AddressModel editableAddressModel)
         {
@@ -50,11 +54,8 @@ namespace FlipZon.ViewModels
             {
                 { Constants.EDITABLE_ADDRESS, editableAddressModel }
             };
-            await NavigationService.NavigateAsync(nameof(AddAddressScreen),parameters);
+            await NavigationService.NavigateAsync(nameof(AddAddressScreen), parameters);
         }
-        #endregion
-
-        #region Methods
 
         private async void ExecuteAddNewAddressCommand()
         {
