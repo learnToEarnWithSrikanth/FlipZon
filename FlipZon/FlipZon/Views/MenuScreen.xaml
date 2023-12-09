@@ -1,18 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<mopup:PopupPage xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
+<ContentPage xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
                  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:vm="clr-namespace:FlipZon.ViewModels"
-                 
                  x:DataType="vm:MenuScreenViewModel"
-                 BackgroundColor="Transparent"
-                 CloseWhenBackgroundIsClicked="True"
+              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
                  x:Class="FlipZon.Views.MenuScreen">
-    <Grid ColumnDefinitions="60*,30*"
-          BackgroundColor="Transparent">
+    <Grid BackgroundColor="White">
         <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                              Padding="30"
                              Spacing="30">
+            <ImageButton Source="Wrong.png"
+                         HorizontalOptions="EndAndExpand"
+                         WidthRequest="25"
+                         Command="{Binding BackCommand}"
+                         BackgroundColor="Transparent"
+                         HeightRequest="25"/>
             <Border WidthRequest="100"
                     HeightRequest="100">
                 <Image Source="user.png"
@@ -21,18 +24,29 @@
                     <RoundRectangle CornerRadius="50" />
                 </Border.StrokeShape>
             </Border>
-            <Label Text="Srikanth Rachaputi"
+              <VerticalStackLayout Spacing="10">
+                    <Label Text="Welcome"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
-                   FontSize="24"
+                   FontSize="18"
                    FontAttributes="Bold" />
+              <Label Text="{Binding UserName}"
+                     VerticalTextAlignment="Center"
+                     HorizontalTextAlignment="Center"
+                     FontSize="24"
+                     TextColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
+                     FontAttributes="Bold" />
+
+              </VerticalStackLayout>
+            
             <VerticalStackLayout Spacing="30">
                 <Grid ColumnDefinitions="Auto,*"
                       ColumnSpacing="10">
                     <Image Source="home.png"
                            WidthRequest="20"
                            HeightRequest="20" />
-                    <Label Text="Home"
+                    <Label Text="{x:Static resx:MobileLabel.Home}"
+                           FontSize="14"
                            Style="{x:StaticResource RegularBlack12}"
                            Grid.Column="1" />
                   <Grid.GestureRecognizers>
@@ -47,7 +61,8 @@
                     <Image Source="cart.png"
                            WidthRequest="20"
                            HeightRequest="20" />
-                    <Label Text="My Cart"
+                    <Label Text="{x:Static resx:MobileLabel.My_Cart}"
+                           FontSize="14"
                            Style="{x:StaticResource RegularBlack12}"
                            Grid.Column="1" />
                    <Grid.GestureRecognizers>
@@ -63,7 +78,8 @@
                     <Image Source="search.png"
                            WidthRequest="20"
                            HeightRequest="20" />
-                    <Label Text="Search Products"
+                    <Label Text="{x:Static resx:MobileLabel.Search_Products}"
+                           FontSize="14"
                            Style="{x:StaticResource RegularBlack12}"
                            Grid.Column="1" />
                    <Grid.GestureRecognizers>
@@ -79,12 +95,13 @@
                     <Image Source="address.png"
                            WidthRequest="20"
                            HeightRequest="20" />
-                    <Label Text="Address Screen"
+                    <Label Text="{x:Static resx:MobileLabel.My_Address}"
+                           FontSize="14"
                            Style="{x:StaticResource RegularBlack12}"
                            Grid.Column="1" />
                    <Grid.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1"
-                                          Command="{Binding NaviagateToHomeScreenCommand}"/>
+                                          Command="{Binding NaviagateToAddressScreenCommand}"/>
 
                   </Grid.GestureRecognizers>
                  
@@ -95,7 +112,8 @@
                     <Image Source="logout.png"
                            WidthRequest="20"
                            HeightRequest="20" />
-                    <Label Text="Logout"
+                    <Label Text="{x:Static resx:MobileLabel.Logout}"
+                           FontSize="14"
                            Style="{x:StaticResource RegularBlack12}"
                            Grid.Column="1" />
                <Grid.GestureRecognizers>
@@ -106,14 +124,5 @@
                 </Grid>
             </VerticalStackLayout>
         </VerticalStackLayout>
-        <Grid Grid.Column="1"
-              BackgroundColor="Transparent"
-              Opacity="1">
-            <Grid.GestureRecognizers>
-               <TapGestureRecognizer NumberOfTapsRequired="1"
-                                   Tapped="TapGestureRecognizer_Tapped"/>
-              </Grid.GestureRecognizers>
-         
-        </Grid>
     </Grid>
-</mopup:PopupPage>
+</ContentPage>

@@ -80,13 +80,13 @@
                                              Binding="{Binding IsActive}"
                                              Value="True">
                                     <Setter Property="TextColor"
-                                            Value="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}" />
+                                            Value="{x:StaticResource WhiteColor}" />
                                 </DataTrigger>
                                 <DataTrigger TargetType="Label"
                                              Binding="{Binding IsActive}"
                                              Value="False">
                                     <Setter Property="TextColor"
-                                            Value="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                                            Value="{x:StaticResource BlackColor}" />
                                 </DataTrigger>
                             </Label.Triggers>
                         </Label>
@@ -95,13 +95,13 @@
                                          Binding="{Binding IsActive}"
                                          Value="True">
                                 <Setter Property="BackgroundColor"
-                                        Value="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}" />
+                                      Value="{x:StaticResource BlackColor}" />
                             </DataTrigger>
                             <DataTrigger TargetType="Frame"
                                          Binding="{Binding IsActive}"
                                          Value="False">
                                 <Setter Property="BackgroundColor"
-                                        Value="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
+                                         Value="{x:StaticResource GrayColor}" />
                             </DataTrigger>
                         </Frame.Triggers>
                         <Frame.GestureRecognizers>

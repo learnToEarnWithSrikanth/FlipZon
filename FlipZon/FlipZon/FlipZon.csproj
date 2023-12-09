@@ -45,9 +45,6 @@
   </PropertyGroup>-->
   <ItemGroup>
     <!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FFFFFF" />
-
-    <!-- Splash Screen -->
     <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" />
 
     <!-- Images -->
@@ -106,6 +103,8 @@
     <None Remove="Views\ContentViews\" />
     <None Remove="Resources\Images\dog.png" />
     <None Remove="Resources\Images\bin.svg" />
+    <None Remove="Resources\AppIcon\" />
+    <None Remove="Resources\AppIcon\appIcon.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\" />
@@ -124,6 +123,7 @@
     <Folder Include="Views\Dialogs\" />
     <Folder Include="ViewModels\Dialogs\" />
     <Folder Include="Views\ContentViews\" />
+    <Folder Include="Resources\AppIcon\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Localization\MobileLabel.resx">
@@ -135,5 +135,8 @@
     <Compile Update="Resources\Localization\MobileLabel.Designer.cs">
       <DependentUpon>MobileLabel.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" BaseSize="128,128" Resize="false"/>
   </ItemGroup>
 </Project>

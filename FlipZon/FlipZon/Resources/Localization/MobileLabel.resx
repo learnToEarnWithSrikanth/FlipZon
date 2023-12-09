@@ -216,5 +216,25 @@
           xml:space="preserve">
         <value>No Products Found</value>
     </data>
+      <data name="Home"
+          xml:space="preserve">
+        <value>Home</value>
+    </data>
+      <data name="My_Cart"
+          xml:space="preserve">
+        <value>My Cart</value>
+    </data>
+     <data name="Logout"
+          xml:space="preserve">
+        <value>Logout</value>
+    </data>
+     <data name="Search_Products"
+          xml:space="preserve">
+        <value>Search Products</value>
+    </data>
+    <data name="My_Address"
+          xml:space="preserve">
+        <value>My Address</value>
+    </data>
     
 </root>

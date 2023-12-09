@@ -9,16 +9,17 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="Vm:AddressListScreenViewModel"
              Title="AddressListScreen">
-    <Grid RowDefinitions="*,Auto"
-          Padding="10">
+    <Grid RowDefinitions="*,Auto">
         <Grid RowDefinitions="Auto,Auto,*"
               RowSpacing="10">
             <customcontrols:CustomHeader/>
             <customcontrols:CustomNavigationBar  Grid.Row="1"
+                                                 Padding="10,0"
                                                  BackCommand="{Binding BackCommand}"
                                                 Text="{x:Static resx:MobileLabel.Address_List_Screen}" />
             <Grid IsVisible="{Binding IsAddressListEmpty,Converter={toolkit:InvertedBoolConverter}}"
-                  Grid.Row="2">
+                  Grid.Row="2"
+                  Padding="10">
                 <CollectionView ItemsSource="{Binding AddressList}"
                                 x:Name="AddressCollection">
                     <CollectionView.ItemsLayout>
@@ -111,6 +112,7 @@
                 </CollectionView>
             </Grid>
             <Grid Grid.Row="2"
+                  Padding="10"
                   IsVisible="{Binding IsAddressListEmpty}">
                 <Label Text="OOPS!! No Address found please add new address by clicking the below button"
                        VerticalTextAlignment="Center"
@@ -120,6 +122,7 @@
         </Grid>
         <Button Text="{x:Static resx:MobileLabel.Add_New_Address}"
                 Grid.Row="1"
+                Margin="10"
                 Command="{Binding AddNewAddressCommand}"
                 TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                 BorderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"

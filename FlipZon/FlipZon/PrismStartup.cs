@@ -7,25 +7,28 @@ internal static class PrismStartup
     {
        
         builder.RegisterTypes(RegisterTypes)
-              .OnAppStart("NavigationPage/HomeScreen");
+              .OnAppStart(OnAppStart);
       
 
     }
-    //private static Page DetermineMainPage()
-    //{
-    //    if (Preferences.ContainsKey(Constants.USER_ID))
-    //    {
-    //        var id = Preferences.Get(Constants.USER_ID, -1);
-    //        if (id != -1)
-    //        {
-    //            // User is logged in, navigate to HomeScreen using Prism
-    //            return new NavigationPage(new HomeScreen());
-    //        }
-    //    }
+    private static void OnAppStart(IContainerProvider containerProvider, INavigationService navigationService)
+    {
+        if (Preferences.ContainsKey(Constants.USER_ID))
+        {
+            var id = Preferences.Get(Constants.USER_ID, -1);
+            if (id != -1)
+            {
+                // User is logged in, navigate to HomeScreen 
+                navigationService.NavigateAsync("NavigationPage/HomeScreen");
+            }
+        }
+        else
+        {
+            // User is not logged navigate to LoginScreen
+            navigationService.NavigateAsync("NavigationPage/LoginScreen");
+        }
+    }
 
-    //    // User is not logged in or user ID is not found, navigate to LoginScreen using Prism
-    //    return new NavigationPage(new LoginScreen());
-    //}
 
     private static void RegisterTypes(IContainerRegistry containerRegistry)
     {

@@ -110,14 +110,6 @@
             DataBase = dataBase;
             PopupNavigation = popupNavigation;
         }
-
-        public BaseViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase)
-        {
-            NavigationService = navigationService;
-            DataService = dataService;
-            RestService = restService;
-            DataBase = dataBase;
-        }
         #endregion
 
         #region Overriding Methods 
@@ -208,7 +200,8 @@
 
         private async Task ExecuteNaviagateToMenuScreenCommand()
         {
-            await PopupNavigation.PushAsync(new MenuScreen(), true);
+            await NavigationService.NavigateAsync(nameof(MenuScreen));
+            // await PopupNavigation.PushAsync(new MenuScreen(), true);
         }
 
         public Page GetCurrentScreen()

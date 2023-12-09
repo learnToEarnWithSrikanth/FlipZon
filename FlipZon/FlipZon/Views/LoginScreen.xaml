@@ -8,14 +8,22 @@
              xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:customRenders="clr-namespace:FlipZon.CustomRenders"
              x:DataType="vm:LoginScreenViewModel">
-    <VerticalStackLayout Margin="10"
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Padding="10"
                          Spacing="10">
-        <Label Text="{x:Static resx:MobileLabel.Welcome}"
+          <Image Source="lock.png"
+                 WidthRequest="100"
+                 Margin="0,120,0,0"
+                 HeightRequest="100"/>
+        <Label Text="{x:Static resx:MobileLabel.Login}"
                TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                FontAttributes="Bold"
+                 VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
                FontSize="30" />
         <VerticalStackLayout Spacing="5">
             <Label Text="{x:Static resx:MobileLabel.Email}"
+                 
                    FontAttributes="Bold" />
             <Frame Style="{x:StaticResource FrameStyle}">
                 <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_Your_Email}"
@@ -82,4 +90,5 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

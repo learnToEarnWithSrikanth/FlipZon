@@ -60,16 +60,6 @@
                                                     ProductTappedCommand="{Binding Source={x:Reference ProductsCollection},Path=BindingContext.NavigateToDetailsScreen}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-          <CollectionView.EmptyView>
-            <Grid Grid.Row="3">
-              <Label Text="{x:Static resx:MobileLabel.No_Products_Found}"
-                         FontSize="20"
-                         VerticalTextAlignment="Center"
-                         HorizontalTextAlignment="Center"/>
-
-            </Grid>
-
-          </CollectionView.EmptyView>
         </CollectionView>
         
         <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
