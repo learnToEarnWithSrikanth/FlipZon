@@ -4,14 +4,14 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 
 
 ## Navigate to Sections
-- [Features](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Features)
-- [Screens](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Screens)
-- [Screenshots](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Screenshots)
-- [UI Controls](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/UI-Controls)
-- [Tech Stack](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Tech-Stack)
-- [3rd Party Libraries](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/3rd-Party-Libraries)
-- [Challenges Faced and Solutions](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Challenges-and-Solutions)
-- [Getting Started](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Getting-Started)
+- [Features](#features)
+- [Screens](#screens)
+- [Screenshots](#screenshots)
+- [UI Controls](#ui-controls)
+- [Tech Stack](#tech-stack)
+- [3rd Party Libraries](#3rd-party-libraries)
+- [Challenges Faced and Solutions](#challenges-faced-and-solutions)
+- [Getting Started](#getting-started)
 
 
 ## Features {#features}
