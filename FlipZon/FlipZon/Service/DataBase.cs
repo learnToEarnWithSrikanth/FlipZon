@@ -42,6 +42,25 @@
             return await sqliteDatabase.DeleteAsync(cart);
         }
 
+        public async Task DeleteAllCartItemsForUser(int userId)
+        {
+            try
+            {
+                var response = await GetAllCartItems(userId);
+                if (response?.Count >= 1)
+                {
+                    foreach (var item in response)
+                    {
+                        await sqliteDatabase.DeleteAsync(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+        }
         public async Task<CartRequestDto> GetCartItemById(int id)
         {
             return await sqliteDatabase.Table<CartRequestDto>().Where(x => x.Id == id).FirstOrDefaultAsync();

@@ -43,7 +43,8 @@
         </Frame>
         <CollectionView ItemsSource="{Binding ProductsSearchList}"
                         x:Name="ProductsSearchCollection"
-                        Grid.Row="3">
+                        Grid.Row="3"
+                        Margin="10">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  VerticalItemSpacing="10" />

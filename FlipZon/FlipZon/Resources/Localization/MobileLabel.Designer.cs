@@ -148,6 +148,15 @@ namespace FlipZon.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue Shopping.
+        /// </summary>
+        internal static string Continue_Shopping {
+            get {
+                return ResourceManager.GetString("Continue_Shopping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {
@@ -387,6 +396,15 @@ namespace FlipZon.Resources.Localization {
         internal static string No_Search_Results_Found {
             get {
                 return ResourceManager.GetString("No_Search_Results_Found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Placed Successfully!.
+        /// </summary>
+        internal static string Order_Placed_Successfully_ {
+            get {
+                return ResourceManager.GetString("Order_Placed_Successfully!", resourceCulture);
             }
         }
         

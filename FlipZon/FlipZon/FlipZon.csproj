@@ -137,6 +137,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" BaseSize="128,128" Resize="false"/>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" BaseSize="128,128" Resize="false" />
   </ItemGroup>
 </Project>

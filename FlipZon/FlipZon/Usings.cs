@@ -13,4 +13,5 @@ global using SQLite;
 global using FlipZon.Resources.Localization;
 global using Mopups.Interfaces;
 global using Controls.UserDialogs.Maui;
+global using FlipZon.ViewModels;
 

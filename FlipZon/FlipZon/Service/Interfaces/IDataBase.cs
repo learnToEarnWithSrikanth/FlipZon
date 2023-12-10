@@ -9,6 +9,7 @@
         Task<CartRequestDto> GetCartItemById(int id);
         Task<int> DeleteCartItem(CartRequestDto cart);
         Task<CartRequestDto> GetUserCartItem(int productId, int userId);
+        Task DeleteAllCartItemsForUser(int userId);
         #endregion
 
         #region Account Operations
