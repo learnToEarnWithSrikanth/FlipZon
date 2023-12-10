@@ -22,12 +22,14 @@
         </Style>
     </ContentPage.Resources>
     <Grid RowDefinitions="Auto,Auto,*,Auto"
-          Padding="10"
           RowSpacing="10">
         <customcontrols:CustomHeader/>
         <customcontrols:CustomNavigationBar BackCommand="{Binding BackCommand}"
+                                            Grid.Row="1"
+                                            Margin="10,0"
                                             Text="{x:Static resx:MobileLabel.Add_Address_Screen}" />
         <VerticalStackLayout Grid.Row="2"
+                             Margin="10,0"
                              Spacing="10">
             <VerticalStackLayout Spacing="10">
                 <Label Text="{x:Static resx:MobileLabel.Contact_Details}"
@@ -127,6 +129,7 @@
             </VerticalStackLayout>
         </VerticalStackLayout>
         <Button Grid.Row="3"
+                Margin="10,20"
                 BackgroundColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                 CornerRadius="5"
                 Command="{Binding SaveAddressCommand}"

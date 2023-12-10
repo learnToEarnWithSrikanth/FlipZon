@@ -1,5 +1,4 @@
-﻿using FlipZon.ViewModels;
-namespace MauiSampleTest;
+﻿namespace MauiSampleTest;
 
 internal static class PrismStartup
 {
@@ -8,7 +7,6 @@ internal static class PrismStartup
        
         builder.RegisterTypes(RegisterTypes)
               .OnAppStart(OnAppStart);
-      
 
     }
     private static void OnAppStart(IContainerProvider containerProvider, INavigationService navigationService)
@@ -42,6 +40,7 @@ internal static class PrismStartup
         containerRegistry.RegisterForNavigation<AddressListScreen, AddressListScreenViewModel>();
         containerRegistry.RegisterForNavigation<AddAddressScreen, AddAddressScreenViewModel>();
         containerRegistry.RegisterForNavigation<MenuScreen, MenuScreenViewModel>();
+        containerRegistry.RegisterForNavigation<OrderConfirmationScreen, OrderConfirmationScreenViewModel>();
 
     }
     

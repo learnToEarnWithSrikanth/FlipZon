@@ -28,10 +28,6 @@
           xml:space="preserve">
         <value>Add Address</value>
     </data>
-    <data name="Edit_Address"
-          xml:space="preserve">
-        <value>Edit Address</value>
-    </data>
     <data name="Enter_your_Name"
           xml:space="preserve">
         <value>Enter your Name</value>
@@ -228,13 +224,18 @@
           xml:space="preserve">
         <value>Logout</value>
     </data>
-     <data name="Search_Products"
-          xml:space="preserve">
-        <value>Search Products</value>
-    </data>
     <data name="My_Address"
           xml:space="preserve">
         <value>My Address</value>
     </data>
+     <data name="Continue_Shopping"
+          xml:space="preserve">
+        <value>Continue Shopping</value>
+    </data>
+      <data name="Order_Placed_Successfully!"
+          xml:space="preserve">
+        <value>Order Placed Successfully!</value>
+    </data>
+    
     
 </root>

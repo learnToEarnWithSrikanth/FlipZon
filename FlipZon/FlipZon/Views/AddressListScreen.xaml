@@ -86,6 +86,8 @@
                                                          IsVisible="{Binding IsSelected}">
                                         <Button Text="{x:Static resx:MobileLabel.Deliver_to_this_addrees}"
                                                 BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
+                                                                                                CommandParameter="{Binding .}"
+                                                Command="{Binding Source={x:Reference AddressCollection},Path=BindingContext.PlaceOrderCommand}"
                                                 TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                                                 CornerRadius="5"
                                                 Padding="10" />

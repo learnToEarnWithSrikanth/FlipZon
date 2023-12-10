@@ -38,15 +38,22 @@
             editAddressCommand ?? (editAddressCommand = new DelegateCommand<AddressModel>( async (AddressModel) => await ExecuteEditAddressCommand(AddressModel)));
 
         private DelegateCommand<AddressModel> deleteAddressCommand;
-
         public DelegateCommand<AddressModel> DeleteAddressCommand =>
             deleteAddressCommand ?? (deleteAddressCommand = new DelegateCommand<AddressModel>(async (AddressModel) => await ExecuteDeleteAddressCommand(AddressModel)));
 
-
+        private DelegateCommand placeOrderCommand;
+        public DelegateCommand PlaceOrderCommand =>
+            placeOrderCommand ?? (placeOrderCommand = new DelegateCommand(async () => await ExecutePlaceOrderCommand()));
 
         #endregion
 
         #region Methods
+
+        private async Task ExecutePlaceOrderCommand()
+        {
+            await DataBase.DeleteAllCartItemsForUser(Preferences.Get(Constants.USER_ID, -1));
+            await NavigationService.NavigateAsync(nameof(OrderConfirmationScreen));
+        }
 
         private async Task ExecuteEditAddressCommand(AddressModel editableAddressModel)
         {
