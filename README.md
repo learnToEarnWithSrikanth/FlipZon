@@ -53,19 +53,28 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 - Profile Screen
 - Order Confirmation Screen
 
+
+
 ## Screenshots {#screenshots}
 
-- [Login Screen](#)
-- [SignUp Screen](#)
-- [Home Screen](#)
-- [Product Details Screen](#)
-- [Products Screen](#)
-- [Search Screen](#)
-- [Cart Screen](#)
-- [Address List Screen](#)
-- [Add Address Screen](#)
-- [Profile Screen](#)
-- [Order Confirmation Screen](#)
+
+
+| ![Login Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/login.png) | ![SignUp Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/signup.png) | ![Home Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/home.png) |
+|:---:|:---:|:---:|
+| Login Screen | SignUp Screen | Home Screen |
+
+| ![Product Details Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/details.png) | ![Products Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/products.png) | ![Search Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/search.png) |
+|:---:|:---:|:---:|
+| Product Details Screen | Products Screen | Search Screen |
+
+| ![Cart Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/cart.png) | ![Address List Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/addressList.png) | ![Add Address Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/addAddress.png) |
+|:---:|:---:|:---:|
+| Cart Screen | Address List Screen | Add Address Screen |
+
+| ![Profile Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/profile.png)
+|:---:|
+| Profile Screen |
+
 
 ## UI Controls {#ui-controls}
 
