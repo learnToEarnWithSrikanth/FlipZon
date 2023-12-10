@@ -2,15 +2,17 @@
 
 Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI. Inspired by the best features of Amazon and Flipkart, FLIPZON brings a seamless shopping experience to users. Leveraging the power of .NET 7, Prism Framework, and MVVM design pattern, FLIPZON integrates various UI controls, custom renders, and third-party libraries for a robust and user-friendly application.
 
+
 ## Navigate to Sections
-- [Features](#features)
-- [Screens](#screens)
-- [Screenshots](#screenshots)
-- [UI Controls](#ui-controls)
-- [Tech Stack](#tech-stack)
-- [3rd Party Libraries](#3rd-party-libraries)
-- [Challenges Faced and Solutions](#challenges-faced-and-solutions)
-- [Getting Started](#getting-started)
+- [Features](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Features)
+- [Screens](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Screens)
+- [Screenshots](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Screenshots)
+- [UI Controls](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/UI-Controls)
+- [Tech Stack](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Tech-Stack)
+- [3rd Party Libraries](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/3rd-Party-Libraries)
+- [Challenges Faced and Solutions](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Challenges-and-Solutions)
+- [Getting Started](https://github.com/learnToEarnWithSrikanth/FlipZon/wiki/Getting-Started)
+
 
 ## Features {#features}
 
