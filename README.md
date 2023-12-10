@@ -3,18 +3,7 @@
 Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI. Inspired by the best features of Amazon and Flipkart, FLIPZON brings a seamless shopping experience to users. Leveraging the power of .NET 7, Prism Framework, and MVVM design pattern, FLIPZON integrates various UI controls, custom renders, and third-party libraries for a robust and user-friendly application.
 
 
-## Navigate to Sections
-- [Features](#features)
-- [Screens](#screens)
-- [Screenshots](#screenshots)
-- [UI Controls](#ui-controls)
-- [Tech Stack](#tech-stack)
-- [3rd Party Libraries](#3rd-party-libraries)
-- [Challenges Faced and Solutions](#challenges-faced-and-solutions)
-- [Getting Started](#getting-started)
-
-
-## Features {#features}
+## Features
 
 - **Authentication:**
   - Secure and seamless login and signup screens.
@@ -41,7 +30,7 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 - **Address Management:**
   - Address list screen and an option to add new addresses.
 
-## Screens {#screens}
+## Screens
 
 - Login Screen
 - SignUp Screen
@@ -57,7 +46,7 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 
 
 
-## Screenshots {#screenshots}
+## Screenshots
 
 
 
@@ -78,7 +67,7 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 | Profile Screen |
 
 
-## UI Controls {#ui-controls}
+## UI Controls 
 
 - Collection View
 - Carousel View
@@ -88,7 +77,7 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 - Custom Renders
 - Pagination for products
 
-## Tech Stack {#tech-stack}
+## Tech Stack 
 
 - **.NET MAUI:**
   - Cutting-edge framework for cross-platform app development.
@@ -102,7 +91,7 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 - **Database Integration:**
   - Utilizing SQLite PCL for efficient and reliable data storage.
 
-## 3rd Party Libraries {#3rd-party-libraries}
+## 3rd Party Libraries
 
 1. **User Dialogs:**
    - For Alerts and confirmations Popups.
@@ -116,18 +105,18 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 4. **SQLite PCL:**
    - For Database support
 
-## Challenges Faced and Solutions {#challenges-faced-and-solutions}
+## Challenges Faced and Solutions
 
-1. **Database Connection Error:**
-   - Solved by uninstalling conflicting packages and using only SQLite PCL.
+1. Getting the Error Database Connection Failed while using SQL lite DataBase
+-  This is the wiered error while using the prism framework with .net 7 ,solved this issue by Unistalling other packages Related sqllite and installed only SqlLitePCl
 
-2. **UserDialogs Loading Issue:**
-   - Overcame by implementing custom loading indicators as per documentation.
+2. UserDialogs Loading indicators are working when using them in onAppearing
+- As per the documentation the UserDialogs will not work in the onAppearing or Constructor, hence created the Custom Loading Indicator
 
-3. **Incompatibility with .NET 7 and Prism:**
-   - Resolved by downgrading 3rd party libraries to compatible versions.
+3. Some of the 3rd party libraries are incompactable with .net 7 and Prism
+- When I am trying use  3rd party libraries like UserDialogs ,Mopups, Community Toolkit it says the library is incompactable, the solution is install the dowmgrade version instead of latest.
 
-## Getting Started {#getting-started}
+## Getting Started 
 
 1. Clone the repository.
 2. Ensure .NET 7 is installed.
