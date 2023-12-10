@@ -11,14 +11,15 @@
              x:DataType="vm:SearchScreenViewModel"
              Title="SearchScreen">
     <Grid RowDefinitions="Auto,Auto,Auto,*"
-          Margin="10"
           RowSpacing="10">
         <customcontrols:CustomHeader/>
         <customcontrols:CustomNavigationBar Text="{x:Static resx:MobileLabel.Search_Screen}"
                                             Grid.Row="1"
+                                            Padding="10,0"
                                             BackCommand="{Binding BackCommand}" />
         <Frame HasShadow="False"
                BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
+               Margin="10"
                Padding="10,0"
                Grid.Row="2"
                CornerRadius="5"
