@@ -1,112 +1,240 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="FlipZon" xml:space="preserve">
-    <value>Flip Zon</value>
-  </data>
-   <data name="Most_Popular" xml:space="preserve">
-    <value>Most Popular</value>
-  </data>
-   <data name="See_More" xml:space="preserve">
-    <value>See More</value>
-  </data>
-  <data name="Add_Address" xml:space="preserve">
-    <value>Add Address</value>
-  </data>
-    <data name="Edit_Address" xml:space="preserve">
-    <value>Edit Address</value>
-  </data>
-      <data name="Enter_your_Name" xml:space="preserve">
-    <value>Enter your Name</value>
-  </data>
-   <data name="Enter_Mobile_No" xml:space="preserve">
-    <value>Enter Mobile No</value>
-  </data>
-  <data name="Mobile_No" xml:space="preserve">
-    <value>Mobile No</value>
-  </data>
-    <data name="Address" xml:space="preserve">
-    <value>Address</value>
-  </data>
-    <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-      <data name="Door_No" xml:space="preserve">
-    <value>Door No</value>
-  </data>
-        <data name="Pincode" xml:space="preserve">
-    <value>Pincode</value>
-  </data>
-      <data name="Enter_Your_Door_No" xml:space="preserve">
-    <value>Enter Your Door No</value>
-  </data>
-       <data name="Enter_Your_Pincode" xml:space="preserve">
-    <value>Enter Your Pincode</value>
-  </data>
-     <data name="Enter_Your_Address" xml:space="preserve">
-    <value>Enter Your Address</value>
-  </data>
-   <data name="Contact Details" xml:space="preserve">
-    <value>Contact Details</value>
-  </data>
-     <data name="Enter_Your_Email" xml:space="preserve">
-    <value>Enter Your Email</value>
-  </data>
-    <data name="Save_Address" xml:space="preserve">
-    <value>Save Address</value>
-  </data>
-   <data name="Deliver_to_this_addrees" xml:space="preserve">
-    <value>Deliver to this addrees</value>
-  </data>
-     <data name="Signup" xml:space="preserve">
-    <value>Sign up</value>
-  </data>
-    <data name="Sign_In" xml:space="preserve">
-    <value>Sign In</value>
-  </data>
-     <data name="Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-    <data name="Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-     <data name="Enter_your_Password" xml:space="preserve">
-    <value>Enter your Password</value>
-  </data>
-     <data name="Already_have_an_Account" xml:space="preserve">
-    <value>Already have an Account?</value>
-  </data>
-     <data name="Search_Products" xml:space="preserve">
-    <value>Search Products</value>
-  </data>
-      <data name="Welcome" xml:space="preserve">
-    <value>Welcome</value>
-  </data>
-   <data name="Don't have the Account" xml:space="preserve">
-    <value>Don't have the Account</value>
-  </data>
-  
-  
- 
-
- 
-  
-  
-
-
-  
-  
-  
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="FlipZon"
+          xml:space="preserve">
+        <value>Flip Zon</value>
+    </data>
+    <data name="Most_Popular"
+          xml:space="preserve">
+        <value>Most Popular</value>
+    </data>
+    <data name="See_More"
+          xml:space="preserve">
+        <value>See More</value>
+    </data>
+    <data name="Add_Address"
+          xml:space="preserve">
+        <value>Add Address</value>
+    </data>
+    <data name="Edit_Address"
+          xml:space="preserve">
+        <value>Edit Address</value>
+    </data>
+    <data name="Enter_your_Name"
+          xml:space="preserve">
+        <value>Enter your Name</value>
+    </data>
+    <data name="Enter_Mobile_No"
+          xml:space="preserve">
+        <value>Enter Mobile No</value>
+    </data>
+    <data name="Mobile_No"
+          xml:space="preserve">
+        <value>Mobile No</value>
+    </data>
+    <data name="Address"
+          xml:space="preserve">
+        <value>Address</value>
+    </data>
+    <data name="Name"
+          xml:space="preserve">
+        <value>Name</value>
+    </data>
+    <data name="Door_No"
+          xml:space="preserve">
+        <value>Door No</value>
+    </data>
+    <data name="Pincode"
+          xml:space="preserve">
+        <value>Pincode</value>
+    </data>
+    <data name="Enter_Your_Door_No"
+          xml:space="preserve">
+        <value>Enter Your Door No</value>
+    </data>
+    <data name="Enter_Your_Pincode"
+          xml:space="preserve">
+        <value>Enter Your Pincode</value>
+    </data>
+    <data name="Enter_Your_Address"
+          xml:space="preserve">
+        <value>Enter Your Address</value>
+    </data>
+    <data name="Contact Details"
+          xml:space="preserve">
+        <value>Contact Details</value>
+    </data>
+    <data name="Enter_Your_Email"
+          xml:space="preserve">
+        <value>Enter Your Email</value>
+    </data>
+    <data name="Save_Address"
+          xml:space="preserve">
+        <value>Save Address</value>
+    </data>
+    <data name="Deliver_to_this_addrees"
+          xml:space="preserve">
+        <value>Deliver to this addrees</value>
+    </data>
+    <data name="Signup"
+          xml:space="preserve">
+        <value>Sign up</value>
+    </data>
+    <data name="Sign_In"
+          xml:space="preserve">
+        <value>Sign In</value>
+    </data>
+    <data name="Password"
+          xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="Email"
+          xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="Enter_your_Password"
+          xml:space="preserve">
+        <value>Enter your Password</value>
+    </data>
+    <data name="Already_have_an_Account"
+          xml:space="preserve">
+        <value>Already have an Account?</value>
+    </data>
+    <data name="Search_Products"
+          xml:space="preserve">
+        <value>Search Products</value>
+    </data>
+    <data name="Welcome"
+          xml:space="preserve">
+        <value>Welcome</value>
+    </data>
+    <data name="Dont_have_the_Account"
+          xml:space="preserve">
+        <value>Don't have the Account</value>
+    </data>
+    <data name="Search_Screen"
+          xml:space="preserve">
+        <value>Search Screen</value>
+    </data>
+    <data name="Add_Address_Screen"
+          xml:space="preserve">
+        <value>Add Address Screen</value>
+    </data>
+    <data name="Add_New_Address"
+          xml:space="preserve">
+        <value>Add New Address</value>
+    </data>
+    <data name="Address_List_Screen"
+          xml:space="preserve">
+        <value>Address List Screen</value>
+    </data>
+    <data name="Cart_Screen"
+          xml:space="preserve">
+        <value>Cart Screen</value>
+    </data>
+    <data name="Delete"
+          xml:space="preserve">
+        <value>Delete</value>
+    </data>
+    <data name="Save_For_Later"
+          xml:space="preserve">
+        <value>Save For Later</value>
+    </data>
+    <data name="Price"
+          xml:space="preserve">
+        <value>Price</value>
+    </data>
+    <data name="Delivery_Fee"
+          xml:space="preserve">
+        <value>Delivery Fee</value>
+    </data>
+    <data name="Total"
+          xml:space="preserve">
+        <value>Total</value>
+    </data>
+    <data name="Place_Order"
+          xml:space="preserve">
+        <value>Place Order</value>
+    </data>
+    <data name="Login"
+          xml:space="preserve">
+        <value>Login</value>
+    </data>
+    <data name="Product_Details_Screen"
+          xml:space="preserve">
+        <value>Product Details Screen</value>
+    </data>
+    <data name="Products_Screen"
+          xml:space="preserve">
+        <value>Products Screen</value>
+    </data>
+    <data name="Products"
+          xml:space="preserve">
+        <value>Products</value>
+    </data>
+    <data name="Hang_on_Loading_More_Products"
+          xml:space="preserve">
+        <value>Hang on Loading More Products</value>
+    </data>
+    <data name="Add_To_cart"
+          xml:space="preserve">
+        <value>Add To cart</value>
+    </data>
+     <data name="Confirm_Password"
+          xml:space="preserve">
+        <value>Confirm Password</value>
+    </data>
+     <data name="Enter_Confirm_Password"
+          xml:space="preserve">
+        <value>Enter Confirm Password</value>
+    </data>
+     <data name="Edit_Address"
+          xml:space="preserve">
+        <value>Edit Address</value>
+    </data>
+     <data name="Update_Address"
+          xml:space="preserve">
+        <value>Update Address</value>
+    </data>
+     <data name="No_Search_Results_Found"
+          xml:space="preserve">
+        <value>No Search Results Found</value>
+    </data>
+      <data name="No_Products_Found"
+          xml:space="preserve">
+        <value>No Products Found</value>
+    </data>
+      <data name="Home"
+          xml:space="preserve">
+        <value>Home</value>
+    </data>
+      <data name="My_Cart"
+          xml:space="preserve">
+        <value>My Cart</value>
+    </data>
+     <data name="Logout"
+          xml:space="preserve">
+        <value>Logout</value>
+    </data>
+     <data name="Search_Products"
+          xml:space="preserve">
+        <value>Search Products</value>
+    </data>
+    <data name="My_Address"
+          xml:space="preserve">
+        <value>My Address</value>
+    </data>
+    
 </root>
-

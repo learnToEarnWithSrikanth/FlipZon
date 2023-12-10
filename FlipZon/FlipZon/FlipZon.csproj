@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0-android;net7.0-ios16.1;net7.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net7.0-android;net7.0-ios16.1;</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
     <!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
@@ -38,16 +38,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
     <CreatePackage>false</CreatePackage>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
+ <!-- <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
     <CreatePackage>false</CreatePackage>
     <CodesignKey>Mac Developer</CodesignKey>
     <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-  </PropertyGroup>
+  </PropertyGroup>-->
   <ItemGroup>
     <!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FFFFFF" />
-
-    <!-- Splash Screen -->
     <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" />
 
     <!-- Images -->
@@ -64,10 +61,10 @@
     <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="AppActions.Icons.Maui" Version="1.0.0" />
-    <PackageReference Include="Controls.UserDialogs.Maui" Version="1.3.0" />
-    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.2" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.2" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Controls.UserDialogs.Maui" Version="1.2.1" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+    <PackageReference Include="Mopups" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -98,6 +95,16 @@
     <None Remove="Resources\Images\radio_button.svg" />
     <None Remove="Resources\Localization\" />
     <None Remove="Resources\Images\star.svg" />
+    <None Remove="Resources\Images\cart.svg" />
+    <None Remove="Resources\Images\search.svg" />
+    <None Remove="Resources\Images\down.svg" />
+    <None Remove="Views\Dialogs\" />
+    <None Remove="ViewModels\Dialogs\" />
+    <None Remove="Views\ContentViews\" />
+    <None Remove="Resources\Images\dog.png" />
+    <None Remove="Resources\Images\bin.svg" />
+    <None Remove="Resources\AppIcon\" />
+    <None Remove="Resources\AppIcon\appIcon.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\" />
@@ -113,6 +120,10 @@
     <Folder Include="Platforms\iOS\Handlers\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="Resources\Localization\" />
+    <Folder Include="Views\Dialogs\" />
+    <Folder Include="ViewModels\Dialogs\" />
+    <Folder Include="Views\ContentViews\" />
+    <Folder Include="Resources\AppIcon\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Localization\MobileLabel.resx">
@@ -126,6 +137,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Images\star.svg" />
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" BaseSize="128,128" Resize="false"/>
   </ItemGroup>
 </Project>

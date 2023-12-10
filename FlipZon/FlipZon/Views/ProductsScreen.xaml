@@ -4,36 +4,25 @@
              NavigationPage.HasNavigationBar="True"
              xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              xmlns:models="clr-namespace:FlipZon.Models"
-             xmlns:FAIcons="clr-namespace:FlipZon.Utilities.Helpers"
              x:Class="FlipZon.Views.ProductsScreen"
-             BackgroundColor="White"
+             BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              x:DataType="vm:ProductsScreenViewModel"
              Title="ProductsScreen">
-    <Grid RowDefinitions="Auto,Auto,Auto,*,Auto"
-          RowSpacing="10"
-          Padding="10">
-        <Grid ColumnDefinitions="Auto,*"
-              ColumnSpacing="10">
-            <ImageButton Source="back_arrow.png"
-                         WidthRequest="25"
-                         HeightRequest="25"
-                         VerticalOptions="Start"
-                         HorizontalOptions="Start"
-                         Command="{Binding BackCommand}"
-                         BackgroundColor="Transparent" />
-            <Label Text="Products Screen"
-                   Grid.Column="1"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Center"
-                   TextColor="BlueViolet"
-                   FontSize="14" />
-        </Grid>
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto"
+          RowSpacing="10">
+        <customcontrols:CustomHeader/>
+        <customcontrols:CustomNavigationBar BackCommand="{Binding BackCommand}"
+                                            Grid.Row="1"
+                                            Padding="10,0"
+                                            Text="{x:Static resx:MobileLabel.Products_Screen}" />
         <Grid ColumnDefinitions="*,Auto"
-              Grid.Row="1">
-            <Label Text="Products"
+              Grid.Row="2"
+              Padding="10,0">
+            <Label Text="{x:Static resx:MobileLabel.Products}"
                    VerticalTextAlignment="Center"
-                   TextColor="Green" />
+                   TextColor="{AppThemeBinding Light={x:StaticResource GreenColor},Dark={x:StaticResource DarkGreenColor}}" />
             <HorizontalStackLayout Grid.Column="1"
                                    Spacing="10">
                 <ImageButton Source="tile_black.png"
@@ -69,9 +58,10 @@
         </Grid>
         <CollectionView ItemsSource="{Binding Categories}"
                         HeightRequest="35"
+                        Margin="10,0"
                         x:Name="CategoriesCollection"
                         HorizontalScrollBarVisibility="Never"
-                        Grid.Row="2">
+                        Grid.Row="3">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Horizontal"
                                  HorizontalItemSpacing="5" />
@@ -90,13 +80,13 @@
                                              Binding="{Binding IsActive}"
                                              Value="True">
                                     <Setter Property="TextColor"
-                                            Value="White" />
+                                            Value="{x:StaticResource WhiteColor}" />
                                 </DataTrigger>
                                 <DataTrigger TargetType="Label"
                                              Binding="{Binding IsActive}"
                                              Value="False">
                                     <Setter Property="TextColor"
-                                            Value="Black" />
+                                            Value="{x:StaticResource BlackColor}" />
                                 </DataTrigger>
                             </Label.Triggers>
                         </Label>
@@ -105,13 +95,13 @@
                                          Binding="{Binding IsActive}"
                                          Value="True">
                                 <Setter Property="BackgroundColor"
-                                        Value="Black" />
+                                      Value="{x:StaticResource BlackColor}" />
                             </DataTrigger>
                             <DataTrigger TargetType="Frame"
                                          Binding="{Binding IsActive}"
                                          Value="False">
                                 <Setter Property="BackgroundColor"
-                                        Value="Gray" />
+                                         Value="{x:StaticResource GrayColor}" />
                             </DataTrigger>
                         </Frame.Triggers>
                         <Frame.GestureRecognizers>
@@ -125,7 +115,8 @@
         </CollectionView>
         <CollectionView ItemsSource="{Binding Products}"
                         VerticalScrollBarVisibility="Never"
-                        Grid.Row="3"
+                        Grid.Row="4"
+                        Margin="10,0"
                         IsVisible="{Binding CanShowListView,Converter={x:StaticResource inverseBoolConverter}}"
                         x:Name="ProductsCollection">
             <CollectionView.ItemsLayout>
@@ -140,16 +131,17 @@
                                                     Title="{Binding Title}"
                                                     Rating="{Binding Rating}"
                                                     OrginalPrice="{Binding Price}"
+                                                    DiscountedPrice="{Binding DiscountedPrice}"
                                                     Description="{Binding Description}"
                                                     ProductTappedCommand="{Binding Source={x:Reference ProductsCollection},Path=BindingContext.NavigateToDetailsScreen}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         <CollectionView ItemsSource="{Binding Products}"
-                        Margin="10"
+                        Margin="10,0"
                         IsVisible="{Binding CanShowListView}"
                         VerticalScrollBarVisibility="Never"
-                        Grid.Row="3"
+                        Grid.Row="4"
                         x:Name="ProductsCollectionListView">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
@@ -161,32 +153,39 @@
                                                     Title="{Binding Title}"
                                                     Rating="{Binding Rating}"
                                                     OrginalPrice="{Binding Price}"
+                                                    DiscountedPrice="{Binding DiscountedPrice}"
                                                     Description="{Binding Description}"
                                                     ProductTappedCommand="{Binding Source={x:Reference ProductsCollection},Path=BindingContext.NavigateToDetailsScreen}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <VerticalStackLayout Grid.Row="4"
+        <VerticalStackLayout Grid.Row="5"
                              IsVisible="{Binding IsAllTabSelected}">
             <VerticalStackLayout Spacing="10"
                                  Padding="10"
-                                 IsVisible="{Binding IsBusy}"
+                                 IsVisible="{Binding IsLoadingMoreProducts}"
                                  VerticalOptions="FillAndExpand"
                                  HorizontalOptions="FillAndExpand"
-                                 BackgroundColor="Gray">
-                <ActivityIndicator IsRunning="{Binding IsBusy}" />
-                <Label Text="Hang on Loading More Products"
+                                 BackgroundColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}">
+                <ActivityIndicator IsRunning="{Binding IsLoadingMoreProducts}"
+                                   Color="{AppThemeBinding Light={x:StaticResource PurpleColor},Dark={x:StaticResource DarkPurpleColor}}"
+                                   WidthRequest="30"
+                                   HeightRequest="30" />
+                <Label Text="{x:Static resx:MobileLabel.Hang_on_Loading_More_Products}"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"
-                       TextColor="Purple" />
+                       TextColor="{AppThemeBinding Light={x:StaticResource PurpleColor},Dark={x:StaticResource DarkPurpleColor}}" />
             </VerticalStackLayout>
             <Button Text="{Binding ButtonText}"
-                    IsVisible="{Binding IsBusy,Converter={x:StaticResource inverseBoolConverter}}"
+                    IsVisible="{Binding IsLoadingMoreProducts,Converter={x:StaticResource inverseBoolConverter}}"
                     Command="{Binding LoadMoreProducts}"
-                    TextColor="Purple"
+                    TextColor="{AppThemeBinding Light={x:StaticResource PurpleColor},Dark={x:StaticResource DarkPurpleColor}}"
+                    Margin="0,0,0,6"
                     IsEnabled="{Binding IsMoreButtonEnabled}"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
         </VerticalStackLayout>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="6" />
     </Grid>
 </ContentPage>

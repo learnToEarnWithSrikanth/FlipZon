@@ -11,6 +11,7 @@
             set { SetProperty(ref productsSearchList, value); }
         }
         private string searchText;
+
         public string SearchText
         {
             get => searchText;
@@ -25,25 +26,38 @@
         #region Commands
 
         #endregion
-        public SearchScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase) : base(navigationService, dataService, restService, dataBase)
+
+        #region CTOR
+        public SearchScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
         }
+        #endregion
+
+        #region Methods
         private async void ExecuteSearchProductsCommand()
         {
-            if (string.IsNullOrEmpty(searchText))
+            try
             {
-                ProductsSearchList?.Clear();
-                return;
+                if (string.IsNullOrEmpty(SearchText))
+                {
+                    ProductsSearchList?.Clear();
+                    return;
+                }
+             
+                var response = await RestService.SearchProducts(searchText);
+                if (response?.Result != null)
+                {
+                    ProductsSearchList = new ObservableCollection<Product>(response?.Result.Products);
+                }
             }
-  
-            var response = await RestService.SearchProducts(searchText);
-            if (response?.Result != null)
+            catch (Exception ex)
             {
-                ProductsSearchList = new ObservableCollection<Product>(response?.Result.Products);
+
             }
         }
+        #endregion
     }
 
-    
+
 }
 

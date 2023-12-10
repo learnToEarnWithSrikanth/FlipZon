@@ -13,32 +13,23 @@
         #endregion
 
         #region Commands
-
-
-        private DelegateCommand navigateToProductsScreen;
-        public DelegateCommand NavigateToProductsScreen =>
-            navigateToProductsScreen ?? (navigateToProductsScreen = new DelegateCommand(async () => { await ExecuteNavigatToProductsScreen(); }));
+        private DelegateCommand tryAgainCommand;
+        public DelegateCommand TryAgainCommand =>
+            tryAgainCommand ?? (tryAgainCommand = new DelegateCommand(async () => { await ExecuteTryAgainCommand(); }));
 
         #endregion
 
         #region CTOR
-        public HomeScreenViewModel(INavigationService navigationService,
-                                   IDataService dataService,
-                                   IRestService restService,
-                                   IDataBase dataBase)
-                                   : base(navigationService, dataService, restService,dataBase)
+        public HomeScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
-          
-       
         }
+
         #endregion
 
         #region Methods
-
-
-        private async Task ExecuteNavigatToProductsScreen()
+        private async Task ExecuteTryAgainCommand()
         {
-            await NavigationService.NavigateAsync("ProductsScreen");
+            await LoadData();
         }
 
 
@@ -52,10 +43,27 @@
             try
             {
                 base.Initialize(parameters);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private async Task LoadData()
+        {
+            try
+            {
                 IsBusy = true;
+                if (!CheckNetworkConnection())
+                {
+                    IsInternetConnectionAvailable = false;
+                    return;
+                }
+                IsInternetConnectionAvailable = true;
                 await GetProducts(skipCount, limitCount);
                 GetThumbnails();
-                
             }
             catch (Exception ex)
             {
@@ -66,6 +74,7 @@
                 IsBusy = false;
             }
         }
+        
 
         private void GetThumbnails()
         {

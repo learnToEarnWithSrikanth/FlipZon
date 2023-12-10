@@ -5,24 +5,34 @@ namespace FlipZon.Models
     {
         public int Id { get; set; }
         public Product ProductInfo { get; set; }
-
+        public int UserId { get; set; }
         private int quantity;
         public int Quantity
         {
             get => quantity;
-            set { SetProperty(ref quantity, value); }
+            set
+            {
+                SetProperty(ref quantity, value);
+            }
         }
-
-        public int  SubTotal { get; set; }
-
-        private bool isEditQuantityEnabled;
-        public bool IsEditQuantityEnabled
+        private double discountedSubTotal;
+        public double  DiscountedSubTotal
         {
-            get => isEditQuantityEnabled;
-            set { SetProperty(ref isEditQuantityEnabled, value); }
+            get => discountedSubTotal;
+            set
+            {
+                SetProperty(ref discountedSubTotal, value);
+            }
         }
-
-
+        private double subTotal;
+        public double SubTotal
+        {
+            get => subTotal;
+            set
+            {
+                SetProperty(ref subTotal, value);
+            }
+        }
     }
 }
 

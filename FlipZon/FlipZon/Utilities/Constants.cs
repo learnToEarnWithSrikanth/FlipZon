@@ -25,6 +25,7 @@
 
         #region Navigation Parameters
         public const string PRODUCT_ID = "ProductId";
+        public const string EDITABLE_ADDRESS= "EditableAddress";
         #endregion
 
         #region Database Configuration
@@ -46,6 +47,12 @@
                 return Path.Combine(basePath, DATABASE_NAME);
             }
         }
+        #endregion
+
+        #region Preferences
+        public const string USER_NAME = "UserName";
+        public const string EMAIL = "Email";
+        public const string USER_ID = "UserId";
         #endregion
 
     }

@@ -1,7 +1,11 @@
-﻿using Controls.UserDialogs.Maui;
+﻿using CommunityToolkit.Maui;
+using Controls.UserDialogs.Maui;
 using FlipZon.CustomRenders;
 #if ANDROID
 using FlipZon.Platforms.Android.Handlers;
+using Mopups.Hosting;
+using Mopups.Interfaces;
+using Mopups.Services;
 #endif
 #if IOS
 using FlipZon.Platforms.iOS.Handlers;
@@ -15,9 +19,10 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UsePrismApp<App>(PrismStartup.Configure)
-            .UseUserDialogs(true,() =>
+            .UseMauiCommunityToolkit()
+            .UseUserDialogs(() =>
             {
-
+                 ToastConfig.DefaultCornerRadius = 15;
             })
             .ConfigureFonts(fonts =>
             {
@@ -25,6 +30,8 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("fa-brands-400.ttf", "FAIcons");
             })
+            .ConfigureMopups()
+            
             .ConfigureMauiHandlers(handlers =>
             {
 #if ANDROID
@@ -45,6 +52,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<IDataService, DataService>();
         mauiAppBuilder.Services.AddSingleton<IRestService, RestService>();
         mauiAppBuilder.Services.AddSingleton<IDataBase, DataBase>();
+        mauiAppBuilder.Services.AddSingleton<IPopupNavigation>(MopupService.Instance);
         return mauiAppBuilder;
     }
     

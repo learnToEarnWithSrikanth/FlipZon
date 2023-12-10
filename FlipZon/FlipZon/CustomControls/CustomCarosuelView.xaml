@@ -21,8 +21,15 @@
             </CarouselView.ItemsLayout>
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:ThumbNailModel">
-                    <Image Source="{Binding Name,Converter={x:StaticResource imageSourceConverter}}"
-                           Aspect="Fill" />
+                    <Border StrokeShape="RoundRectangle 5">
+                      <Image Source="{Binding Name,Converter={x:StaticResource imageSourceConverter}}"
+                             Aspect="Fill"
+                           />
+                      <Border.GestureRecognizers>
+                         <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped"/>
+                      </Border.GestureRecognizers>
+                    </Border>
+                    
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>

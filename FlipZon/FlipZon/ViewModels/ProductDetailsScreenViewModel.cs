@@ -1,4 +1,6 @@
-﻿namespace FlipZon.ViewModels
+﻿using Mopups.Interfaces;
+
+namespace FlipZon.ViewModels
 {
     public class ProductDetailsScreenViewModel : BaseViewModel
     {
@@ -17,15 +19,19 @@
             set { SetProperty(ref images, value); }
         }
 
+        private bool isProductExistsInCart;
+        public bool IsProductExistsInCart
+        {
+            get => isProductExistsInCart;
+            set { SetProperty(ref isProductExistsInCart, value); }
+        }
+
 
 
         #endregion
 
         #region CTOR
-        public ProductDetailsScreenViewModel(INavigationService navigationService,
-                                            IDataService dataService,
-                                            IRestService restService,
-                                            IDataBase dataBase) : base(navigationService, dataService, restService,dataBase)
+        public ProductDetailsScreenViewModel(INavigationService navigationService, IDataService dataService, IRestService restService, IDataBase dataBase, IPopupNavigation popupNavigation) : base(navigationService, dataService, restService, dataBase, popupNavigation)
         {
         }
         #endregion
@@ -42,22 +48,41 @@
         #endregion
 
         #region Methods
+        private async Task ValidateItemExistsInCart(int productId,int userId)
+        {
+            try
+            {
+                var response = await DataBase.GetUserCartItem(productId, userId);
+                IsProductExistsInCart = response != null ? true : false;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
 
         private async Task ExecuteAddItemToCartCommand()
         {
             try
             {
+                if (IsProductExistsInCart)
+                {
+                    await NavigationService.NavigateAsync(nameof(CartScreen));
+                    return;
+                }
                 IsBusy = true;
                 var addToCart = new CartRequestDto
                 {
-                    UserId = 1,
+                    UserId = Preferences.Get(Constants.USER_ID, -1),
                     ProductId = ProductDetails.Id,
                     Quantity = 1,
                 };
                 var recordsInsertedCount= await DataBase.AddItemToCart(addToCart);
-                if(recordsInsertedCount==0)
+                if(recordsInsertedCount==1)
                 {
-                   return;
+                    IsProductExistsInCart = true;
+                    DisplayToast(string.Format("{0} added to cart",productDetails.Title), MessageType.Postive);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -100,6 +125,7 @@
                             Images.Add(thumbnail);
                         }
                     }
+                    await ValidateItemExistsInCart(productDetails.Id, Preferences.Get(Constants.USER_ID, -1));
                 }
             }
             catch (Exception ex)

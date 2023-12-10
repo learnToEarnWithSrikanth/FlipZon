@@ -2,39 +2,62 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlipZon.Views.SearchScreen"
-             BackgroundColor="White"
+             BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
              xmlns:models="clr-namespace:FlipZon.Models"
+             xmlns:customrenders="clr-namespace:FlipZon.CustomRenders"
+             xmlns:customcontrols="clr-namespace:FlipZon.CustomControls"
              x:DataType="vm:SearchScreenViewModel"
              Title="SearchScreen">
-    <Grid RowDefinitions="Auto,*"
-          Margin="10"
+    <Grid RowDefinitions="Auto,Auto,Auto,*"
           RowSpacing="10">
+        <customcontrols:CustomHeader/>
+        <customcontrols:CustomNavigationBar Text="{x:Static resx:MobileLabel.Search_Screen}"
+                                            Grid.Row="1"
+                                            Padding="10,0"
+                                            BackCommand="{Binding BackCommand}" />
         <Frame HasShadow="False"
-               BackgroundColor="White"
-               Padding="0"
-               BorderColor="Gray">
-            <Entry Placeholder="Search Products"
-                   PlaceholderColor="Gray"
-                   ClearButtonVisibility="WhileEditing"
-                   BackgroundColor="Transparent"
-                   Text="{Binding SearchText}"
-                   TextColor="Black"
-                   Keyboard="Text" />
+               BackgroundColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
+               Margin="10"
+               Padding="10,0"
+               Grid.Row="2"
+               CornerRadius="5"
+               HeightRequest="35"
+               BorderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}">
+            <Grid ColumnDefinitions="Auto,*"
+                  ColumnSpacing="5">
+                <Image Source="search.png"
+                       WidthRequest="15"
+                       HeightRequest="15" />
+                <customrenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Search_Products}"
+                                           PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}"
+                                           Grid.Column="1"
+                                           VerticalTextAlignment="Center"
+                                           ClearButtonVisibility="WhileEditing"
+                                           BackgroundColor="Transparent"
+                                           Text="{Binding SearchText}"
+                                           TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
+                                           Keyboard="Text" />
+            </Grid>
         </Frame>
         <CollectionView ItemsSource="{Binding ProductsSearchList}"
                         x:Name="ProductsSearchCollection"
-                        Grid.Row="1">
+                        Grid.Row="3">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  VerticalItemSpacing="10" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Product">
-                    <VerticalStackLayout Spacing="5"
+                    <HorizontalStackLayout Spacing="5"
                                          Padding="0,5">
+                        <Image Source="search.png"
+                               WidthRequest="20"
+                               HeightRequest="20"/>
                         <Label Text="{Binding Title}"
-                               Style="{x:StaticResource RegularBlack12}">
+                               FontSize="14"
+                             Style="{x:StaticResource RegularBlack12}">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1"
                                                       CommandParameter="{Binding .}"
@@ -42,10 +65,20 @@
                             </Label.GestureRecognizers>
                         </Label>
                         <BoxView HeightRequest="1"
-                                 BackgroundColor="Gray" />
-                    </VerticalStackLayout>
+                                 BackgroundColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
+                    </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Grid Grid.Row="2">
+                  <Label Text="{x:Static resx:MobileLabel.No_Search_Results_Found}"
+                         FontSize="20"
+                         VerticalTextAlignment="Center"
+                         HorizontalTextAlignment="Center"/>
+                </Grid>
+            </CollectionView.EmptyView>
         </CollectionView>
+        <customcontrols:CustomLoadingIndicator IsBusy="{Binding IsBusy}"
+                                               Grid.RowSpan="4" />
     </Grid>
 </ContentPage>

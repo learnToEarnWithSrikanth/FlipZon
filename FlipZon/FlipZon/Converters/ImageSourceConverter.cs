@@ -9,11 +9,20 @@ namespace FlipZon.Converters
         static WebClient Client = new WebClient();
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return null;
+            object response = null;
+            try
+            {
+                if (value == null)
+                    response = null;
 
-            var byteArray = Client.DownloadData(value.ToString());
-            return ImageSource.FromStream(() => new MemoryStream(byteArray));
+                var byteArray = Client.DownloadData(value.ToString());
+                response= ImageSource.FromStream(() => new MemoryStream(byteArray));
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

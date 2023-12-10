@@ -3,43 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlipZon.Views.LoginScreen"
              Title="LoginScreen"
-             xmlns:converter="clr-namespace:FlipZon.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:FlipZon.ViewModels"
+             xmlns:resx="clr-namespace:FlipZon.Resources.Localization"
              xmlns:customRenders="clr-namespace:FlipZon.CustomRenders"
              x:DataType="vm:LoginScreenViewModel">
-    <VerticalStackLayout Margin="10"
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Padding="10"
                          Spacing="10">
-        <Label Text="Welcome"
-               TextColor="Black"
+          <Image Source="lock.png"
+                 WidthRequest="100"
+                 Margin="0,120,0,0"
+                 HeightRequest="100"/>
+        <Label Text="{x:Static resx:MobileLabel.Login}"
+               TextColor="{AppThemeBinding Light={x:StaticResource BlackColor},Dark={x:StaticResource DarkBlackColor}}"
                FontAttributes="Bold"
+                 VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
                FontSize="30" />
         <VerticalStackLayout Spacing="5">
-            <Label Text="Email"
+            <Label Text="{x:Static resx:MobileLabel.Email}"
+                 
                    FontAttributes="Bold" />
-            <Frame HasShadow="False"
-                   Padding="0"
-                   CornerRadius="5"
-                   BorderColor="Gray">
-                <customRenders:CustomEntry Placeholder="Enter your Email"
+            <Frame Style="{x:StaticResource FrameStyle}">
+                <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_Your_Email}"
                                            Margin="5,0"
                                            Keyboard="Email"
-                                           PlaceholderColor="Gray" />
+                                           Text="{Binding Email}"
+                                           toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}"
+                                           PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
             </Frame>
         </VerticalStackLayout>
         <VerticalStackLayout Spacing="5">
-            <Label Text="Password"
+            <Label Text="{x:Static resx:MobileLabel.Password}"
                    FontAttributes="Bold" />
-            <Frame HasShadow="False"
-                   Padding="0"
-                   CornerRadius="5"
-                   BorderColor="Gray">
+            <Frame Style="{x:StaticResource FrameStyle}">
                 <Grid ColumnDefinitions="*,Auto"
                       ColumnSpacing="5"
                       Padding="5,0">
-                    <customRenders:CustomEntry Placeholder="Enter your Password"
+                    <customRenders:CustomEntry Placeholder="{x:Static resx:MobileLabel.Enter_your_Password}"
                                                IsPassword="{Binding CanShowPassword,Converter={x:StaticResource inverseBoolConverter}}"
                                                Grid.Column="0"
-                                               PlaceholderColor="Gray" />
+                                                Text="{Binding Password}"
+                                               x:Name="PasswordEntry"
+                                               PlaceholderColor="{AppThemeBinding Light={x:StaticResource GrayColor},Dark={x:StaticResource DarkGrayColor}}" />
                     <ImageButton Source="eye_close.png"
                                  WidthRequest="20"
                                  HeightRequest="20"
@@ -60,20 +67,20 @@
         </VerticalStackLayout>
         <VerticalStackLayout Margin="0,50,0,0"
                              Spacing="15">
-            <Button Text="Login"
+            <Button Text="{x:Static resx:MobileLabel.Login}"
                     Command="{Binding LoginUserCommand}"
                     CornerRadius="20"
                     HeightRequest="40"
-                    BackgroundColor="Orange"
-                    TextColor="White"
+                    BackgroundColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
+                    TextColor="{AppThemeBinding Light={x:StaticResource WhiteColor},Dark={x:StaticResource DarkWhiteColor}}"
                     FontAttributes="Bold" />
             <HorizontalStackLayout Spacing="3"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="CenterAndExpand">
-                <Label Text="Don't have the Account?"
+                <Label Text="{x:Static resx:MobileLabel.Dont_have_the_Account}"
                        FontAttributes="Bold" />
-                <Label Text="Sign up"
-                       TextColor="Orange"
+                <Label Text="{x:Static resx:MobileLabel.Signup}"
+                       TextColor="{AppThemeBinding Light={x:StaticResource OrangeColor},Dark={x:StaticResource DarkOrangeColor}}"
                        TextDecorations="Underline">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"
@@ -83,4 +90,5 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

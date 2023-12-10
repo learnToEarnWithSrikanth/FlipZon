@@ -54,7 +54,8 @@
         {
             get
             {
-                return Price-(Price * DiscountPercentage) / 100;
+                double discountedPrice = Price - (Price * DiscountPercentage) / 100;
+                return Math.Round(discountedPrice, 2);
             }
         }
     }
