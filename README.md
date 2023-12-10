@@ -68,6 +68,12 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 | Profile Screen | Order Confirmation Screen 
 
 
+## Video Link
+
+Check out our video tutorial for a quick overview of the project:
+
+[![Project Video](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=5ePrzhA6QPI)
+
 ## UI Controls 
 
 - Collection View
