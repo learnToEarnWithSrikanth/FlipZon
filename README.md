@@ -63,7 +63,7 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 | Cart Screen | Address List Screen | Add Address Screen |
 
 | ![Profile Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/profile.png)
-|:---:|:---:|:---:|
+|:---:|
 | Profile Screen |
 
 
