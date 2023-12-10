@@ -62,9 +62,10 @@ Welcome to FLIPZON, an advanced E-Commerce application developed using .NET MAUI
 |:---:|:---:|:---:|
 | Cart Screen | Address List Screen | Add Address Screen |
 
-| ![Profile Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/profile.png)
-|:---:|
-| Profile Screen |
+
+| ![Profile Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/profile.png) | ![Order Confirmation Screen](https://github.com/learnToEarnWithSrikanth/FlipZon/blob/main/FlipZon/FlipZon/Screenshots/orderConfirmation.png) |
+|:---:|:---:|
+| Profile Screen | Order Confirmation Screen 
 
 
 ## UI Controls 
