@@ -6,6 +6,8 @@ using FlipZon.Platforms.Android.Handlers;
 using Mopups.Hosting;
 using Mopups.Interfaces;
 using Mopups.Services;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 #endif
 #if IOS
 using FlipZon.Platforms.iOS.Handlers;
@@ -53,6 +55,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<IRestService, RestService>();
         mauiAppBuilder.Services.AddSingleton<IDataBase, DataBase>();
         mauiAppBuilder.Services.AddSingleton<IPopupNavigation>(MopupService.Instance);
+        mauiAppBuilder.Services.AddSingleton(typeof(IFingerprint), CrossFingerprint.Current);
         return mauiAppBuilder;
     }
     

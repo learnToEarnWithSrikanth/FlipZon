@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
+using Android.OS;
 using Controls.UserDialogs.Maui;
+using Plugin.Fingerprint;
 
 namespace MauiSampleTest
 {
@@ -14,6 +16,12 @@ namespace MauiSampleTest
         public MainActivity()
         {
            
+        }
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            CrossFingerprint.SetCurrentActivityResolver(() => Platform.CurrentActivity);
         }
 
         protected override void OnResume()

@@ -65,6 +65,7 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
     <PackageReference Include="Mopups" Version="1.2.0" />
+    <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
   </ItemGroup>
 
   <ItemGroup>

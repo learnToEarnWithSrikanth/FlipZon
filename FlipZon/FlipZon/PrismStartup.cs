@@ -1,4 +1,6 @@
-﻿namespace MauiSampleTest;
+﻿using Prism.Navigation;
+
+namespace MauiSampleTest;
 
 internal static class PrismStartup
 {
@@ -11,19 +13,49 @@ internal static class PrismStartup
     }
     private static void OnAppStart(IContainerProvider containerProvider, INavigationService navigationService)
     {
-        if (Preferences.ContainsKey(Constants.USER_ID))
+        try
         {
-            var id = Preferences.Get(Constants.USER_ID, -1);
-            if (id != -1)
+            if (Preferences.ContainsKey(Constants.USER_ID))
             {
-                // User is logged in, navigate to HomeScreen 
-                navigationService.NavigateAsync("NavigationPage/HomeScreen");
+                var id = Preferences.Get(Constants.USER_ID, -1);
+                if (id != -1)
+                {
+                
+                    navigationService.NavigateAsync("NavigationPage/HomeScreen");
+                    navigationService.NavigateAsync("NavigationPage/FingerPrintScreen");
+                }
+            }
+            else
+            {
+                // User is not logged navigate to LoginScreen
+                navigationService.NavigateAsync("NavigationPage/LoginScreen");
             }
         }
-        else
+        catch(Exception ex)
         {
-            // User is not logged navigate to LoginScreen
-            navigationService.NavigateAsync("NavigationPage/LoginScreen");
+
+        }
+
+    }
+
+    private static void IsLoginWithFigerPrintConfigured()
+    {
+        try
+        {
+            if (Preferences.ContainsKey(Constants.USER_ID))
+            {
+                var id = Preferences.Get(Constants.USER_ID, -1);
+                if (id != -1)
+                {
+
+                    navigationService.NavigateAsync("NavigationPage/HomeScreen");
+                    navigationService.NavigateAsync("NavigationPage/FingerPrintScreen");
+                }
+            }
+        }
+        catch
+        {
+
         }
     }
 
@@ -41,7 +73,7 @@ internal static class PrismStartup
         containerRegistry.RegisterForNavigation<AddAddressScreen, AddAddressScreenViewModel>();
         containerRegistry.RegisterForNavigation<MenuScreen, MenuScreenViewModel>();
         containerRegistry.RegisterForNavigation<OrderConfirmationScreen, OrderConfirmationScreenViewModel>();
-
+        containerRegistry.RegisterForNavigation<FingerPrintScreen, FingerPrintScreenViewModel>();
     }
     
 }
