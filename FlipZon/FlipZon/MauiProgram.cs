@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui;
+﻿using CarouselView;
+using CommunityToolkit.Maui;
 using Controls.UserDialogs.Maui;
 using FlipZon.CustomRenders;
 #if ANDROID
@@ -22,6 +23,7 @@ public static class MauiProgram
         builder
             .UsePrismApp<App>(PrismStartup.Configure)
             .UseMauiCommunityToolkit()
+            .UseMauiCarouselView()
             .UseUserDialogs(() =>
             {
                  ToastConfig.DefaultCornerRadius = 15;

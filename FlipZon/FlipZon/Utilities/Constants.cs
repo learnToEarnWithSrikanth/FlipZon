@@ -53,6 +53,7 @@
         public const string USER_NAME = "UserName";
         public const string EMAIL = "Email";
         public const string USER_ID = "UserId";
+        public const string LOGIN_WITH_FINGER_PRINT = "LoginWithFingerPrint";
         #endregion
 
     }

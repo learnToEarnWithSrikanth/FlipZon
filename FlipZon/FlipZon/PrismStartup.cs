@@ -20,9 +20,15 @@ internal static class PrismStartup
                 var id = Preferences.Get(Constants.USER_ID, -1);
                 if (id != -1)
                 {
-                
+                    //if (IsLoginWithFigerPrintConfigured())
+                    //{
+                    //    navigationService.NavigateAsync("NavigationPage/FingerPrintScreen");
+                    //}
+                    //else
+                    //{
+                    //    navigationService.NavigateAsync("NavigationPage/HomeScreen");
+                    //}
                     navigationService.NavigateAsync("NavigationPage/HomeScreen");
-                    navigationService.NavigateAsync("NavigationPage/FingerPrintScreen");
                 }
             }
             else
@@ -38,25 +44,21 @@ internal static class PrismStartup
 
     }
 
-    private static void IsLoginWithFigerPrintConfigured()
+    private static bool IsLoginWithFigerPrintConfigured()
     {
+        bool isFigerPrintAllowed = false;
         try
         {
-            if (Preferences.ContainsKey(Constants.USER_ID))
+            if (Preferences.ContainsKey(Constants.LOGIN_WITH_FINGER_PRINT))
             {
-                var id = Preferences.Get(Constants.USER_ID, -1);
-                if (id != -1)
-                {
-
-                    navigationService.NavigateAsync("NavigationPage/HomeScreen");
-                    navigationService.NavigateAsync("NavigationPage/FingerPrintScreen");
-                }
+                isFigerPrintAllowed = Preferences.Get(Constants.LOGIN_WITH_FINGER_PRINT, false);
             }
         }
         catch
         {
 
         }
+        return isFigerPrintAllowed;
     }
 
 

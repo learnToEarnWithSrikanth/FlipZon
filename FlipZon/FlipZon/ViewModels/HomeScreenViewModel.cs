@@ -10,6 +10,13 @@
             get => images;
             set { SetProperty(ref images, value); }
         }
+
+        private ThumbNailModel selectedItem;
+        public ThumbNailModel SelectedItem
+        {
+            get => selectedItem;
+            set { SetProperty(ref selectedItem, value); }
+        }
         #endregion
 
         #region Commands
@@ -99,6 +106,7 @@
                         Name = "https://source.unsplash.com/1024x768/?laptops"
                     }
                 };
+                SelectedItem = Images[0];
             }
             catch (Exception ex)
             {

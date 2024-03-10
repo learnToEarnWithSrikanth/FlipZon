@@ -66,6 +66,7 @@
     <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
     <PackageReference Include="Mopups" Version="1.2.0" />
     <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
+    <PackageReference Include="CarouselView.Maui" Version="1.0.6" />
   </ItemGroup>
 
   <ItemGroup>
